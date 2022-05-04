@@ -1,0 +1,16 @@
+.back {
+    position: absolute;
+    height: 20px;
+    top: 10px;
+    left: 10px;
+}
+
+.back button {
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+
+}

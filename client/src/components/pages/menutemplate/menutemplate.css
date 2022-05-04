@@ -1,0 +1,120 @@
+.menutemplate{ 
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.templateTitle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 15%;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+    background-color: rgba(255, 89, 89, 0.479);
+    margin-bottom: 2rem;
+    padding: 8px;
+}
+
+
+
+.template{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.templateCard {
+    margin-left: 3px;
+    width: 300px;
+    height: 500px;
+}
+
+.templateCard:hover {
+    border: 2px solid rgba(255, 89, 89, 0.479);
+}
+
+.cardTitle {
+    width: 100%;
+    height: 60px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 89, 89, 0.479);
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+
+}
+
+
+.cardDesc {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    font-family: 'Josefin Sans', sans-serif;
+
+}
+
+.cardimg {
+    width: 100%;
+    height: 250px;
+}
+
+.cardimg img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cardbtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    cursor: pointer;
+    border: 2px solid #666666;
+    border-radius: 10px;
+    width: 80%;
+    margin-top: 14px;
+    margin-left: 16px;
+    padding: 0.8rem;
+    font-size: 18px;
+    font-family: 'Josefin Sans', sans-serif;
+    text-decoration: none;
+    color: black;
+}
+
+.cardbtn:hover {
+    background-color: rgba(255, 89, 89, 0.479);
+}
+
+@media only screen and (max-width: 480px) {
+
+    .menutemplate {
+        height: auto;
+        
+    }
+    .template {
+        flex-direction: column;
+    }
+
+    .templateCard {
+        width: auto;
+    }
+
+    .cardTitle {
+        font-size: 18px;
+    }
+
+    .templateTitle h1 {
+        font-size: 26px;
+    }
+}

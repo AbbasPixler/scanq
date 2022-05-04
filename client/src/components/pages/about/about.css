@@ -1,0 +1,272 @@
+.about {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 1600px;
+    min-height: 100%;
+}
+
+
+.aboutHead {
+    display: flex !important;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+}
+.aboutHead img{
+    width: 50%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 20px;
+
+}
+
+.headtxt {
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+
+}
+
+.headtxt h1 {
+    text-align: left;
+    font-family: 'Prompt', sans-serif;
+    font-size: 52px;
+    font-weight: normal;
+    color: #666666;
+}
+
+.headtxt p {
+    text-align: left;
+    font-family: 'Prompt', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: #000000;
+}
+
+
+
+
+.aboutBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    width: 100%;
+    background-color: rgb(22, 22, 22);
+
+}
+
+.aboutTitle {
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+
+.aboutTitle h1{
+    font-family: 'Prompt', sans-serif;
+    color: #f7f7f7;
+    font-size: 42px;
+    padding: 10px;
+    
+}
+
+.aboutTitle p{
+    font-family: 'Prompt', sans-serif;
+    align-items: center;
+    font-size: 24px;
+    padding: 10px;
+    font-weight: 300;
+    color: #f7f7f7;
+
+
+}
+
+.aboutService {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    width: 100%;
+    height: 50vh;
+}
+
+.aboutService h1 {
+    font-family: 'Prompt', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    text-align: center;
+    color: #666666;
+    margin-top: 4rem;
+}
+.aboutCards {
+    height: 100%;
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    color: #666666;
+    gap: 3rem;
+}
+
+.aboutCard {
+    width: 100%;
+    height: 250px;
+    text-align: center;
+    padding: 2rem;
+}
+
+.aboutCard .fa-solid p {
+    font-family: 'Prompt', sans-serif;
+    margin-top: 3rem;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.aboutCard .fa-solid {
+    font-size: 44px;
+}
+
+.aboutPrice {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 50vh;
+    background-color: rgb(22, 22, 22);
+}
+
+.aboutPrice h1 {
+    font-family: 'Prompt', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    text-align: center;
+    color: #f7f7f7;
+    margin-top: 2rem;
+}
+
+.aboutPriceCard {
+    width: 100%;
+    height: 250px;
+    text-align: left;
+    padding: 2rem;
+    font-size: 24px;
+}
+
+.priceTitle {
+    font-family: 'Prompt', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    padding: 1rem;
+}
+
+.aboutPriceCard li {
+    font-family: 'Prompt', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.cardBtn {
+    border: 1px solid #f7f7f7;
+    width: 50%;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.cardBtn:hover {
+    background-color: #f7f7f7;
+    color: rgb(22, 22, 22);
+}
+
+.contactUs {
+    width: 100%;
+    height: auto;
+}
+
+.contactUs h1 {
+    font-family: 'Prompt', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.contactContainer {
+    display: flex !important;
+    min-height: 50vh;
+}
+
+.contactLeft {
+    width: 50%;
+    text-align: center;
+}
+
+.contactRight {
+    width: 50%;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 480px) {
+
+    .aboutHead {
+        flex-direction: column;
+    }
+
+    .aboutHead img{
+        width: 100%;
+    }
+
+    .headtxt {
+        width: 100%;
+    }
+
+    .headtxt h1 {
+        font-size: 32px;
+    }
+
+    .headtxt p {
+        font-size: 20px;
+    }
+    
+    .aboutTitle {
+        margin-top: 1rem;
+        padding: 0;
+    }
+
+    .aboutTitle h1 {
+        font-size: 24px;
+
+    }
+
+    .aboutTitle p {
+        font-size: 20px;
+
+    }
+
+    .aboutCards {
+        flex-direction: column;
+    }
+
+    .aboutService {
+        height: auto;
+    }
+
+    .aboutPrice {
+        height: auto;
+    }
+}

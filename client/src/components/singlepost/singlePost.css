@@ -1,0 +1,95 @@
+.singlePost {
+    flex: 9;
+    position: relative;
+    width: 100%;
+}
+
+.singlePost img {
+    width: 100%;
+  height: 300px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.singlePostTitle {
+    text-align: center;
+    padding-bottom: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+    font-size: 50px;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.singlePostEdit {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: right;
+    font-size: 24px !important;
+    margin-right: 1rem;
+    width: 100px;
+    float: right;
+    cursor: pointer;
+}
+
+.singlePostAuthor {
+    font-family: 'Josefin Sans', sans-serif;
+    display: inline;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    border-bottom: 1px solid black;
+}
+
+.link{
+    margin-left:5px;
+}
+
+.singlePostDate {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.singlePostInfo {
+    display: flex;
+    position: absolute;
+    justify-content: space-evenly;
+    width: 50%;
+    left: 25%;
+    height: auto;
+}
+
+.posttext{
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 2rem;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+
+
+.singlePostText {
+    text-align: left;
+    padding: 2rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.singlePostImg {
+    object-fit: cover;
+}
+
+
+@media only screen and (max-width: 480px) {
+    .singlePostTitle {
+        font-size: 22px;
+    }
+    .singlePostInfo {
+        width: 100%;
+        left: 0;
+    }
+}
+

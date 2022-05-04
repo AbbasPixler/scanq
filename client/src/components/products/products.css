@@ -1,0 +1,44 @@
+.productsBody{
+    width: 100%;
+    height: auto;
+}
+
+
+.products {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    gap: 1rem;
+    top: 0;
+    /* margin-top: 1rem; */
+}
+.menu-title {
+    margin-bottom: 40px;
+    margin-top: 1rem;
+}
+.menu-title h2 {
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: #363636;
+    font-size: 30px;
+}
+
+
+body .MuiPaper-elevation1 {
+    box-shadow: none;
+}
+body .MuiPaper-rounded {
+    border-radius: 0;
+}
+.menuProduct .MuiPaper-root {
+    background-color: transparent;
+}
+.menuProduct {
+    width: 100%;
+    height: auto;
+    overflow-y: unset;
+}

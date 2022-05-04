@@ -1,0 +1,36 @@
+.shopsBody{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+
+.shops {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    gap: 10px;
+    top: 0;
+    margin-top: 1rem;
+}
+
+
+@media only screen and (max-width: 480px) {
+    .shopsBody {    
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+    }
+
+
+
+    .shops {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 0;
+
+    }
+}

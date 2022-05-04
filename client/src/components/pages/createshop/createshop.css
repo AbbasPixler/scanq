@@ -1,0 +1,168 @@
+.shopinfo {
+    display: flex;
+    height: 92vh;
+    width: 100%;
+
+}
+
+.shopwrapper {
+    flex: 9;
+    padding: 0px 0px 0px 70px;
+    background-color: #ebebeb;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:center;
+}
+
+.shopBody {
+    width: 90%;
+    margin-top: 3rem;
+}
+
+.shopHeading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.shopUpdateTitle {
+    display: flex;
+    width: 80%;
+    padding: 1rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    color: lightcoral;
+}
+
+
+.shopForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+.shopPp {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.shopPp > img {
+    width: 80%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.shopPp .fa-circle-user {
+    font-size: 120px;
+    color: #666666;
+}
+
+.shopPp .shopPpIcon {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: rgb(49, 49, 49);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.accountCircleIcon {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+}
+
+.shopFormBody {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.shopSubmit {
+    width: 150px;
+    align-self: flex-start;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 10px;
+    color: white;
+    background-color: teal;
+    cursor: pointer;
+}
+
+.checkRmb {
+    display: flex;
+    padding: 10px 0;
+    width: 50%;
+  }
+  
+  .checkRmb p {
+    margin-left: 3px;
+    margin-top: 7px;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 300;
+  }
+
+  .catCheckbox {
+    width: 10px;
+  }
+
+.checkcategory{
+  display: inline-flex;
+}
+
+.catlabel {
+    margin:3px;
+    margin-top: 7px;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+
+.catlabel label {
+    margin-left: 3px;
+    margin-top: 7px;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+
+@media only screen and (max-width: 480px) {
+    .shopinfo {
+        display: flex;
+        flex-direction: column;
+        height: 90vh;
+    }
+
+    .shopwrapper {
+        padding: 0;
+    }
+
+    .shopBody {
+        margin: 1rem;
+    }
+
+    .shopFormBody {
+        width: 100%;
+    }
+
+    .shopPp > img {
+        height: 200px;
+    }
+
+    .css-jwk6l7-MuiFormControl-root-MuiTextField-root {
+        width: 80% !important;
+    }
+
+}

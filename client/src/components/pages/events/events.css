@@ -1,0 +1,23 @@
+.event {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    height: auto;
+    width: 100%;
+}
+
+.eventTitle {
+    text-align: center;
+    height: auto;
+    padding: 2rem;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: 400;
+}
+
+
+@media only screen and (max-width: 480px) {
+    .event {    
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}

@@ -1,0 +1,133 @@
+.profileinfo {
+    display: flex;
+    height: 92vh;
+    width: 100%;
+
+}
+
+.profilewrapper {
+    flex: 9;
+    padding: 0px 0px 0px 70px;
+    background-color: #ebebeb;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:center;
+
+}
+
+.profileBody {
+    width: 90%;
+    margin-top: 3rem;
+
+}
+
+.profileTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+}
+
+.profileUpdateTitle {
+    display: flex;
+    width: 80%;
+    padding: 1rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    color: lightcoral;
+
+}
+
+
+.profileForm {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.profilePp {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.profilePp img{
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.profilePp .fa-circle-user {
+    font-size: 120px;
+    color: #666666;
+}
+
+.profilePp .profilePpIcon {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: rgb(49, 49, 49);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+.accountCircleIcon {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+}
+
+.profileForm > label {
+    font-size: 20px;
+    margin-top: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+
+}
+
+.profileForm > input {
+    color: gray;
+    margin: 10px 0;
+    height: 30px;
+    width: 60%;
+    border: none;
+    border-bottom: 1px solid #000;
+
+}
+
+.profileSubmit {
+    width: 150px;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    color: white;
+    background-color: teal;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+@media only screen and (max-width: 480px) {
+    .profileinfo {
+        display: flex;
+        flex-direction: column;
+        height: 90vh;
+
+    }
+
+    .profilewrapper {
+        padding: 0;
+    }
+
+    .profileBody {
+        margin-top: 1rem;
+    }
+
+    .profileForm > input {
+        width: 80%;
+    }
+}

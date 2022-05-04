@@ -1,0 +1,218 @@
+
+.sidebar {
+    flex: 3;
+    display: flex;
+    position: sticky;
+    top: 0;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #f3f3f3;
+    margin-top: 4px;
+}
+
+.sideHeader {
+    font-size: 28px;
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center; 
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+    height: 40px;
+}
+
+.sideTitle {
+    font-size: 28px;
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center; 
+    height: 40px;
+}
+
+.sideTitle h5{
+    font-weight: 300;
+}
+
+.sideTitle h1{
+    font-size: 48px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+}
+
+.sideHour {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+
+}
+
+.sideHour h3 {
+    text-align: center;
+    font-size: 28px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    border-bottom: .8px dotted black;
+}
+
+.sideDate {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+.sideDate div {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+ .sideDate p {
+    margin-right: 1rem;
+    text-align: center;
+}
+
+
+.sideAddress {
+    display: flex;
+    width: 250px;
+    flex-direction: column;
+    margin-top: 1rem;
+    height: 100px;
+}
+
+
+.sideAddress p{
+    font-size: 18px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300; 
+    text-align: center;
+}
+
+.sideAddress .btn {
+    text-align: right;
+    margin-right: 1rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    color: black !important; 
+}
+
+.sideContact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.sideContact h5 {
+    font-size: 22px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    color: black !important; 
+    margin: 1rem;
+}
+
+.sideContact a {
+    text-decoration: none;
+    font-size: 18px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    color: black !important; 
+    cursor: pointer;
+}
+
+.sideBtn button{
+    font-size: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    border-radius: 30px;
+    border: none !important;
+    background-color: #d8d8d8;
+    box-shadow: 0px 2px 4px 0px #666666be;
+    padding: 0.5rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+.sideBtn button:hover {
+    background-color: transparent;
+}
+
+.sideSocial {
+    height: 100px;
+
+}
+
+.sideSocial .sideIcons{
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+
+.sideIcon {
+    font-size: 24px;
+    color: #6d6d6d;
+    cursor: pointer;
+    transition: .3s ease-in;
+}
+
+
+.fa-facebook:hover {
+    color: #4267B2;
+}
+
+
+.fa-instagram:hover {
+    color: #bc2a8d;
+}
+
+
+.fa-twitter:hover {
+    color: #00acee;
+}
+
+.fa-youtube:hover {
+    color: 	#FF0000;
+}
+
+.sideOrder {
+    height: 150px;
+}
+.sideOrderImg {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.sideOrderImg img{
+    border-radius: 50%;
+}
+
+.sideMenu{
+    border: 1px solid black;
+    width: 100%;
+    height: 50px;
+    background-color: #353535;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+}
+
+
+@media only screen and (max-width: 480px) {
+    .sideHeader {
+        display: none;
+    }
+    .sideTitle {
+        margin-top: 2rem;
+    }
+}

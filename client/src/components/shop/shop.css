@@ -1,0 +1,85 @@
+
+.shop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    height: 350px;
+    opacity: 1;
+    transition: 0.3s ease-in-out;
+}
+
+.shop:hover{
+    opacity: 0.8;
+}
+
+.shopCard {
+    width: 100%;
+    height: 100%;
+}
+
+
+.shopImg {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: .5s ease;
+    border-radius: 20px;
+
+}
+
+
+.shopInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    height: 25%;
+
+}
+
+
+.shopCat {
+    font-family: 'Varela Round', sans-serif;
+    font-size: 11px;
+    color: #be9656;
+    cursor: pointer;
+
+}
+
+.shopTitle {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    text-align: center;
+
+
+}
+
+
+@media only screen and (max-width: 480px) {
+    .shop {
+        width: 100%;
+        margin: 0px 0px 2px 0px;
+    }
+
+    .shopTitle {
+        align-items: center;
+        font-size: 16px;
+        width: 90%;
+    }
+
+
+    .shopInfo {
+        flex-direction: column;
+        align-items: center;
+    }
+}
