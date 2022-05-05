@@ -27,7 +27,7 @@ dotenv.config();
 app.use(express.json());
 app.use(multerMid.single('file'))
 app.use("/", express.static(path.join(__dirname, "/public")))
-
+console.log(process.env.MONGO_URL)
 mongoose
   .connect(process.env.MONGO_URL)
   .then(console.log("MongoDB connection successful"))
