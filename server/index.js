@@ -53,12 +53,12 @@ app.post('/upload', async(req, res, next) => {
 })
 
 
-app.use("/api/auth", authRoute);
-app.use("/api/users", userRoute);
-app.use("/api/posts", postRoute);
-app.use("/api/shops", shopRoute);
-app.use("/api/products", productRoute);
-app.use("/api/categories", categoryRoute);
+app.use("/auth", authRoute);
+app.use("/users", userRoute);
+app.use("/posts", postRoute);
+app.use("/shops", shopRoute);
+app.use("/products", productRoute);
+app.use("/categories", categoryRoute);
 
 // app.use(express.static(path.join(__dirname, "index.html")));
 // if (process.env.NODE_ENV === 'production') {
