@@ -1,0 +1,10 @@
+service: scanq-rest-api
+runtime: nodejs16
+
+instance_class: F4
+
+env_variables:
+  MONGO_URL: "mongodb+srv://mymenus:mymenus2@cluster0.omaxl.mongodb.net/menus?retryWrites=true&w=majority"
+  GOOGLE_APPLICATION_CREDENTIALS: "./serviceAccountKey.json"
+  
+service_account: snaqkyo@snaqkyo.iam.gserviceaccount.com
