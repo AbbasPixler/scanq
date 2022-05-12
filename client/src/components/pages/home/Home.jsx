@@ -45,7 +45,7 @@ export default function Home() {
       <div className="home">
         <Categories categories={categories} />
         <Container>
-            <div className="selectTitle"><h1>Discover  SCANQ</h1>
+            <div className="selectTitle"><h1>Discover  EATOUT</h1>
             </div>
           <div className="homeSelect">
             <div className="selectLeft">
@@ -54,7 +54,7 @@ export default function Home() {
                 alt=""
               />
               <div className="selectLeftText">
-              <p>What is Scanq</p>
+              <p>What is EATOUT</p>
               <Link to={'/about'}>
               <button className="homebtn">Discover more</button>
               </Link>

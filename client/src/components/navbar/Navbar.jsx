@@ -23,11 +23,11 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import React from "react";
 
-import logo from "../../images/logo_transparent.png";
+//import logo from "../../images/logo_transparent.png";
 import { PicBaseUrl } from "../../imageBaseUrl";
 
-
-
+var logo = PicBaseUrl + "eatout.png"
+// https://storage.googleapis.com/snackyo/eatout.png
 export default function Navbar() {
   const { user, dispatch } = useContext(Context);
 

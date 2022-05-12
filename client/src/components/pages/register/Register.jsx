@@ -71,26 +71,35 @@ const onCheckBoxChange = async(e)=>{
       setOpen(true);
       setError(true)
     }else{
+
+      const specialChars = /[`!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?~]/;
+      //console.log(specialChars.test(x));
    
-    try {
-      const res = await axiosInstance.post("/auth/register", {
-        username,
-        email,
-        password,
-      });
-      
-      if(res.data.username){
-        setSuccess(true);
-        setOpen(true);
-        res.data && window.location.replace("/login");
-      }else{
-        setOpen(true);
-        setError(true);
-        setErrorMsg(res.data.message);
-      }
-    } catch (err) {
-      setError(true);
+    if(specialChars.test(username)){
+      setErrorMsg('You cannot use any other characters apart from Letters, Alphabets and underscores in username!');
       setOpen(true);
+      setError(true)
+    }else{
+      try {
+        const res = await axiosInstance.post("/auth/register", {
+          username,
+          email,
+          password,
+        });
+        
+        if(res.data.username){
+          setSuccess(true);
+          setOpen(true);
+          res.data && window.location.replace("/login");
+        }else{
+          setOpen(true);
+          setError(true);
+          setErrorMsg(res.data.message);
+        }
+      } catch (err) {
+        setError(true);
+        setOpen(true);
+      }
     }
   }
     

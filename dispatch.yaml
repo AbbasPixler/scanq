@@ -1,0 +1,9 @@
+dispatch:
+    - url: "api.eatout.solutions/*"
+      service: default
+
+    - url: "eatout.solutions/*"
+      service: scanq-client
+         
+    - url: "www.eatout.solutions/*"
+      service: scanq-client

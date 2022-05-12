@@ -18,8 +18,15 @@ const uploadImage = require('./helpers/helpers')
 const multerMid = multer({
   storage: multer.memoryStorage(),
   limits: {
-    fileSize: 10 * 1024 * 1024,
+    fileSize: 15 * 1024 * 1024,
   },
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(png|jpg|jpeg)$/)) { 
+       // upload only png and jpg format
+       return cb(new Error('Please upload a Image'))
+     }
+   cb(undefined, true)
+}
 })
 
 app.use(cors())
@@ -36,6 +43,7 @@ mongoose
 
   
 app.post('/upload', async(req, res, next) => {
+  console.log("right function")
   try {
     const myFile = req.file
     myFile.nameWithStamp = req.body.name
