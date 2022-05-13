@@ -33,6 +33,15 @@ app.use(cors())
 dotenv.config();
 app.use(express.json());
 app.use(multerMid.single('file'))
+app.all('*', function(req, res, next){
+  console.log('req start: ',req.secure, req.hostname, req.originalurl, app.get('port'));
+  if (req.secure) {
+      return next();
+  }
+
+  res.redirect('https://'+req.hostname + ':' + app.get('secPort') + req.originalurl);
+});
+
 app.use("/", express.static(path.join(__dirname, "/public")))
 console.log(process.env.MONGO_URL)
 mongoose
@@ -89,17 +98,6 @@ if (process.env.NODE_ENV === 'production') {
 //   res.redirect('https://' + req.headers.host + req.url);
 //   // res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
 // });
-
-
-// app.all('*', function(req, res, next){
-//   console.log('req start: ',req.secure, req.hostname, req.originalurl, app.get('port'));
-//   if (req.secure) {
-//       return next();
-//   }
-
-//   res.redirect('https://'+req.hostname + ':' + app.get('secPort') + req.originalurl);
-// });
-
 
 
 app.listen(process.env.PORT || 4545 , () => {
