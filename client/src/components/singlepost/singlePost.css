@@ -93,3 +93,22 @@
     }
 }
 
+
+
+
+.single {
+    display: flex;
+    overflow-x: clip;
+}
+.singlePost {
+    width: 100%;
+}
+/* body .sidebar {
+    width: 30%;
+} */
+.singlePost {
+    width: 70%;
+}
+.singlePostText .posttext {
+    white-space: normal;
+}

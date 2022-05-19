@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <div className='footer'>
         <div className="leftFooter">
-        <p>Copyright &copy; 2022 Scanq.io</p>
+        <p>Copyright &copy; 2022 EATOUT.io</p>
             </div>
 
         </div>

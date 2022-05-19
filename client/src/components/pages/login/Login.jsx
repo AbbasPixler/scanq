@@ -18,6 +18,8 @@ import LockIcon from '@mui/icons-material/Lock';
 import CircularProgress from '@mui/material/CircularProgress';
 import { axiosInstance } from "../../../config";
 
+import {GoogleLogin} from 'react-google-login';
+
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -78,6 +80,13 @@ export default function Login() {
     }
   };
 
+  const responseSuccessGoogle = (response) => {
+    console.log(response)
+  }
+
+  const responseFailureGoogle = (error) => {
+    console.log(error)
+  }
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -108,7 +117,7 @@ export default function Login() {
         <div className="loginWrapper">
         <img src="https://images.pexels.com/photos/4359106/pexels-photo-4359106.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
           <span className="loginTitle">
-            <p>SCANQ</p>
+            <p>EATOUT</p>
             <div className="txtTitle">
             <p>Welcome back</p></div>
           </span>
@@ -143,6 +152,14 @@ export default function Login() {
             <Button className="loginButton" variant="contained" color="primary" type="submit" disabled={isFetching}>
               Login
             </Button>
+
+            <GoogleLogin
+              clientId="129289860315-qocc56lfam2s27phga02bjd239js8ifh.apps.googleusercontent.com"
+              buttonText="Login With Google"
+              onSuccess={responseSuccessGoogle}
+              onFailure={responseFailureGoogle}
+              cookiePolicy={'single_host_origin'}
+            />,
 
             <p className="txt">or</p>
             <div className="toRegister">
