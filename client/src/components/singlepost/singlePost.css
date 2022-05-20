@@ -100,15 +100,15 @@
     display: flex;
     overflow-x: clip;
 }
-.singlePost {
+/* .singlePost {
     width: 100%;
-}
+} */
 /* body .sidebar {
     width: 30%;
 } */
-.singlePost {
+/* .singlePost {
     width: 70%;
-}
+} */
 .singlePostText .posttext {
     white-space: normal;
 }
