@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState  } from "react";
 import { Context } from "./context/Context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
@@ -19,11 +19,79 @@ import SingleMenu from "./components/singlemenu/SingleMenu"
 import Qr from "./components/pages/qr/Qr";
 import Singlecat from "./components/pages/singlecat/Singlecat";
 import Events from "./components/pages/events/Events";
-
-
+import { SocialBaseUrl } from "./shareBaseUrl";
 
 function App() {
   const {user} = useContext(Context);
+  const { dispatch } = useContext(Context);
+
+    const [userr, setUser] = useState(null);
+  
+    useEffect(() => {
+      const getUser = () => {
+        fetch(SocialBaseUrl+"auth/googleLogin/success", {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": true,
+          },
+        })
+          .then((response) => {
+            if (response.status === 200) return response.json();
+            console.log(response)
+            throw new Error("authentication has been failed!");
+          })
+          .then((resObject) => {
+            setUser(resObject.user)
+            dispatch({ type: "LOGIN_START" });
+            if(resObject.user.email){
+              dispatch({ type: "LOGIN_SUCCESS", payload: resObject.user });
+            }else{
+              dispatch({ type: "LOGIN_FAILURE" });
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+      getUser();
+    }, []);
+
+    useEffect(() => {
+      const getUser = () => {
+        fetch(SocialBaseUrl+"auth/facebookLogin/success", {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": true,
+          },
+        })
+          .then((response) => {
+            if (response.status === 200) return response.json();
+            console.log(response)
+            throw new Error("authentication has been failed!");
+          })
+          .then((resObject) => {
+            setUser(resObject.user)
+            dispatch({ type: "LOGIN_START" });
+            if(resObject.user.email){
+              dispatch({ type: "LOGIN_SUCCESS", payload: resObject.user });
+            }else{
+              dispatch({ type: "LOGIN_FAILURE" });
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+      getUser();
+    }, []);
+
+    // console.log(userr)
 
   useEffect(() => {
     window.scrollTo(0, 0)

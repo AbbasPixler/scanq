@@ -14,11 +14,23 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import LockIcon from '@mui/icons-material/Lock';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GoogleIcon from '@mui/icons-material/Google';
+import LoginIcon from '@mui/icons-material/Login';
 
-import CircularProgress from '@mui/material/CircularProgress';
+
+// import CircularProgress from '@mui/material/CircularProgress';
 import { axiosInstance } from "../../../config";
+import { SocialBaseUrl } from "../../../shareBaseUrl";
 
-import {GoogleLogin} from 'react-google-login';
+// import {GoogleLogin} from 'react-google-login';
+
+// import "./../../../config/firebase-config"
+
+// import firebase from 'firebase';
+// import 'firebase/auth';
+// import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+// import { async } from "@firebase/util";
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -44,8 +56,15 @@ export default function Login() {
       setCheckBox(false)
     }
   }
-  
 
+  const google = async () => {
+    window.open(SocialBaseUrl+"auth/google", "_self");
+  };
+
+  const facebook = () => {
+    window.open(SocialBaseUrl+"auth/facebook", "_self");
+  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(false);
@@ -79,14 +98,8 @@ export default function Login() {
       }
     }
   };
+  
 
-  const responseSuccessGoogle = (response) => {
-    console.log(response)
-  }
-
-  const responseFailureGoogle = (error) => {
-    console.log(error)
-  }
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -94,6 +107,7 @@ export default function Login() {
     }
     setOpen(false);
   };
+
 
   const action = (
     <React.Fragment>
@@ -150,17 +164,46 @@ export default function Login() {
             </div>
 
             <Button className="loginButton" variant="contained" color="primary" type="submit" disabled={isFetching}>
+            <LoginIcon sx={{  mr: 1, my: 0.5 }} style={{ color: "white" }} />
               Login
             </Button>
 
-            <GoogleLogin
+
+
+            <Button className="googleLoginButton" onClick = {google } variant="contained">
+              <GoogleIcon sx={{  mr: 1, my: 0.5 }} style={{ color: "white" }} />
+              Login with Google
+            </Button>
+
+            {/* <Button className="facebookLoginButton" onClick = {facebook } color="primary" variant="contained">
+              <FacebookIcon sx={{  mr: 1, my: 0.5 }} style={{ color: "white" }} />
+              Login with Facebook
+            </Button> */}
+
+           
+            {/* <Button className="loginButton" variant="contained" color="primary" type="submit" disabled={isFetching}>
+              Login
+            </Button> */}
+          
+            {/* <GoogleLogin
               clientId="129289860315-qocc56lfam2s27phga02bjd239js8ifh.apps.googleusercontent.com"
               buttonText="Login With Google"
               onSuccess={responseSuccessGoogle}
               onFailure={responseFailureGoogle}
               cookiePolicy={'single_host_origin'}
-            />,
+            />, */}
+            
 
+            {/* <Button className="loginButton" variant="contained" onClick = {loginWithGoogle} color="primary"  disabled={isFetching}>
+            Login With Google
+            </Button> */}
+
+{/*             
+              <Button className="loginGoogle" onCLick={test}  variant="contained" color="primary" >
+                Login With Google
+              </Button> */}
+
+           
             <p className="txt">or</p>
             <div className="toRegister">
               Not a member ?

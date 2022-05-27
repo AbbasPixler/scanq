@@ -14,7 +14,6 @@ const UserSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
     },
     profilePic: {
       type: String,
@@ -36,6 +35,13 @@ const UserSchema = new mongoose.Schema(
       type: Number,
       required: false,
     },
+    provider: {
+      type: String,
+      default: "email"
+    },
+    provider_id: {
+      type: String,
+    }
   },
   { timestamps: true }
 );
