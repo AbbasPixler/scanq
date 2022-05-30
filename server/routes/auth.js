@@ -5,7 +5,7 @@ const passport = require("passport")
 require("./../passport")
 
 // const CLIENT_URL =  "http://localhost:3000/"
-const CLIENT_URL =  "https://eatout.solutions/"
+const CLIENT_URL =  "https://www.eatout.solutions/"
 
 
 
@@ -97,37 +97,37 @@ router.get("/facebookLogin/success", async (req, res)=>{
           user: req.user
         })
 
-    // const user = await User.findOne({provider_id: req.user.id, provider: req.user.provider})
-    // if(user){
-    //  return  res.status(200).json({
-    //     success: true,
-    //     message: "success",
-    //     user: user
-    //   })
-    // }else{
+    const user = await User.findOne({provider_id: req.user.id, provider: req.user.provider})
+    if(user){
+     return  res.status(200).json({
+        success: true,
+        message: "success",
+        user: user
+      })
+    }else{
 
-    //   const checkUserEmail = await User.findOne({email: req.user.email})
+      const checkUserEmail = await User.findOne({email: req.user.email})
       
-    //   if(checkUserEmail){
-    //     res.status(401).json({
-    //       success: false,
-    //       message: "User already Exist with this email id",
-    //     })
-    //   }else{
-    //     const user = await User.create({
-    //       username: req.user.name.givenName+ "_" +req.user.name.familyName,
-    //       email: req.user.emails[0].value,
-    //       provider: req.user.provider,
-    //       provider_id: req.user.id
-    //     });
+      if(checkUserEmail){
+        res.status(401).json({
+          success: false,
+          message: "User already Exist with this email id",
+        })
+      }else{
+        const user = await User.create({
+          username: req.user.name.givenName+ "_" +req.user.name.familyName,
+          email: req.user.emails[0].value,
+          provider: req.user.provider,
+          provider_id: req.user.id
+        });
 
-    //     return  res.status(200).json({
-    //       success: true,
-    //       message: "success",
-    //       user: user
-    //     })
-    //   }
-    // }
+        return  res.status(200).json({
+          success: true,
+          message: "success",
+          user: user
+        })
+      }
+    }
 
 
   }

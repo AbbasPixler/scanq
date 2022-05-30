@@ -8,6 +8,7 @@ const postRoute = require("./routes/posts");
 const shopRoute = require("./routes/shops");
 const productRoute = require("./routes/products");
 const categoryRoute = require("./routes/categories");
+const productCategoryRoute = require("./routes/product_categories");
 const multer = require("multer");
 const cors = require('cors');
 const path = require("path");
@@ -41,13 +42,16 @@ app.use(cookieSession({
   name: 'google-auth-session',
   keys: ['key1', 'key2']
 }));
+
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(cors({
-  origin: "https://eatout.solutions",
+
+var corsOptions =  {
+  origin: ["https://www.eatout.solutions", "https://eatout.solutions"],
   methods: "GET,POST,PUT,DELETE",
   credentials: true,
-}))
+}
+app.use(cors(corsOptions))
 // app.all('*', function(req, res, next){
 //   console.log('req start: ',req.secure, req.hostname, req.originalurl, app.get('port'));
 //   if (req.secure) {
@@ -66,7 +70,7 @@ mongoose
 
 
   
-app.post('api/upload', async(req, res, next) => {
+app.post('/upload', async(req, res, next) => {
   console.log("right function")
   try {
     const myFile = req.file
@@ -85,12 +89,13 @@ app.post('api/upload', async(req, res, next) => {
 })
 
 
-app.use("/api/auth", authRoute);
-app.use("/api/users", userRoute);
-app.use("/api/posts", postRoute);
-app.use("/api/shops", shopRoute);
-app.use("/api/products", productRoute);
-app.use("/api/categories", categoryRoute);
+app.use("/auth", authRoute);
+app.use("/users", userRoute);
+app.use("/posts", postRoute);
+app.use("/shops", shopRoute);
+app.use("/products", productRoute);
+app.use("/categories", categoryRoute);
+app.use("/product_categories", productCategoryRoute);
 
 // app.use(express.static(path.join(__dirname, "index.html")));
 // if (process.env.NODE_ENV === 'production') {

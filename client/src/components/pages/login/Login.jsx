@@ -58,11 +58,13 @@ export default function Login() {
   }
 
   const google = async () => {
-    window.open(SocialBaseUrl+"auth/google", "_self");
+    var url = SocialBaseUrl+ "auth/google"
+    window.open(url, "_self");
   };
 
   const facebook = () => {
-    window.open(SocialBaseUrl+"auth/facebook", "_self");
+     var url = SocialBaseUrl+ "auth/facebook"
+    window.open(url, "_self");
   };
   
   const handleSubmit = async (e) => {
@@ -175,10 +177,10 @@ export default function Login() {
               Login with Google
             </Button>
 
-            {/* <Button className="facebookLoginButton" onClick = {facebook } color="primary" variant="contained">
+            <Button className="facebookLoginButton" onClick = {facebook } color="primary" variant="contained">
               <FacebookIcon sx={{  mr: 1, my: 0.5 }} style={{ color: "white" }} />
               Login with Facebook
-            </Button> */}
+            </Button>
 
            
             {/* <Button className="loginButton" variant="contained" color="primary" type="submit" disabled={isFetching}>
