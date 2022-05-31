@@ -80,8 +80,6 @@ router.get("/googleLogin/failure", (req, res)=>{
 // ===========================Facebook Login===========================
 
 
-
-
 router.get("/facebook", passport.authenticate("facebook", { scope: ["email"] }));
 
 router.get("/facebook/callback", passport.authenticate("facebook", {
@@ -113,6 +111,7 @@ router.get("/facebookLogin/success", async (req, res)=>{
           success: false,
           message: "User already Exist with this email id",
         })
+        
       }else{
         const user = await User.create({
           username: req.user.name.givenName+ "_" +req.user.name.familyName,

@@ -53,8 +53,7 @@ export default function Createshop() {
   const [open, setOpen] = useState(false);
   const [categories, setCategories] = useState([]);
   const [checkboxItems, setCheckboxItems] = useState([]);
-  // //console.log(categories)
-  console.log(shop)
+ 
   const handleCheckboxChange = async(e)=>{
     if(e.target.checked){
       setCheckboxItems([...checkboxItems, e.target.value])
@@ -67,7 +66,6 @@ export default function Createshop() {
       }
     }
 
-    // console.log(checkboxItems)
   
   // ================================================
   // =================Week Day=======================
@@ -114,7 +112,6 @@ export default function Createshop() {
     e.preventDefault();
 
     if(!file || !shopTitle || !shopDesc || !telephone || !address){
-      // console.log("Please fill form")
       setOpen(true)
       setError(true)
       setErrorMsg("Please fill all the details in the form!")
@@ -136,10 +133,10 @@ export default function Createshop() {
       categories:checkboxItems
     };
     if (file) {
-      if(file.size > 2097152){
+      if(file.size > 15728640){
         setOpen(true)
         setError(true)
-        setErrorMsg("Please upload a file smaller than 2 MB!")
+        setErrorMsg("Please upload a file smaller than 15 MB!")
         return false;
       }
       const data = new FormData();
@@ -155,6 +152,7 @@ export default function Createshop() {
     try {
       const res = await axiosInstance.post("/shops", newShop);
       setSuccess(true);
+      setOpen(true)
     } catch (err) {
 
     }
@@ -181,12 +179,12 @@ export default function Createshop() {
       categories:checkboxItems
     };
     if (file) {
-      // if(file.size > 2097152){
-      //   setOpen(true)
-      //   setError(true)
-      //   setErrorMsg("Please upload a file smaller than 2 MB!")
-      //   return false;
-      // }
+      if(file.size > 15728640){
+        setOpen(true)
+        setError(true)
+        setErrorMsg("Please upload a file smaller than 15 MB!")
+        return false;
+      }
 
       const data = new FormData();
       const filename = Date.now() + file.name;
@@ -273,411 +271,410 @@ export default function Createshop() {
       </IconButton>
     </React.Fragment>
   );
-  
-  return (
-    <div className="shopinfo">
-      <div className="shopwrapper">
-        <div className="shopBody">
-          <div className="shopHeading">
-            <span className="shopUpdateTitle">
-              <h1>Create shop</h1>
-            </span>
+return (
+  <div className="shopinfo">
+    <div className="shopwrapper">
+      <div className="shopBody">
+        <div className="shopHeading">
+          <span className="shopUpdateTitle">
+            <h1>Create shop</h1>
+          </span>
+        </div>
+        <form action="" className="shopForm" onSubmit={button ? handleUpdateSubmit : handleSubmit}>
+          <div className="shopPp">
+            <img
+            src={file ? URL.createObjectURL(file) : shop.coverPhoto==null ? PicBaseUrl+"noPreview.png" : PicBaseUrl+ shop.coverPhoto}
+              alt=""
+            />
+            <label htmlFor="fileInput">
+              <i class="shopPpIcon fa-solid fa-plus"></i>
+            </label>
+            <input
+              type="file"
+              id="fileInput"
+              style={{ display: "none" }}
+              onChange={(e) => setFile(e.target.files[0])}
+            />
           </div>
-          <form action="" className="shopForm" onSubmit={button ? handleUpdateSubmit : handleSubmit}>
-            <div className="shopPp">
-              <img
-              src={file ? URL.createObjectURL(file) : shop.coverPhoto==null ? PicBaseUrl+"noPreview.png" : PicBaseUrl+ shop.coverPhoto}
-                alt=""
+
+          <div className="shopFormBody">
+            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <HomeIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+              <TextField
+                fullWidth
+                sx={{ mt: 2, width: "60%", height: "50%" }}
+                id="standard-multiline-flexible"
+                placeholder="Shop title"
+                multiline
+                maxRows={4}
+                variant="standard"
+                type="text"
+                value={shopTitle}
+                onChange={(e) => setShopTitle(e.target.value)}
               />
-              <label htmlFor="fileInput">
-                <i class="shopPpIcon fa-solid fa-plus"></i>
-              </label>
-              <input
-                type="file"
-                id="fileInput"
-                style={{ display: "none" }}
-                onChange={(e) => setFile(e.target.files[0])}
+            </Box>
+
+            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <ArticleIcon sx={{ color: "action.active", mr: 1, my: 0.5 }}/>
+              <TextField
+                fullWidth
+                sx={{ mt: 2, width: "60%", height: "50p%" }}
+                id="standard-multiline-flexible"
+                placeholder="Shop Description"
+                multiline
+                maxRows={4}
+                variant="standard"
+                type="text"
+                value={shopDesc}
+                onChange={(e) => setShopDesc(e.target.value)}
               />
-            </div>
+            </Box>
 
-            <div className="shopFormBody">
-              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                <HomeIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-                <TextField
-                  fullWidth
-                  sx={{ mt: 2, width: "60%", height: "50%" }}
-                  id="standard-multiline-flexible"
-                  placeholder="Shop title"
-                  multiline
-                  maxRows={4}
-                  variant="standard"
-                  type="text"
-                  value={shopTitle}
-                  onChange={(e) => setShopTitle(e.target.value)}
-                />
-              </Box>
+            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <PhoneIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+              <TextField
+                sx={{ mt: 2, width: "60%", height: "50%" }}
+                id="input-with-sx"
+                placeholder="Contact number"
+                variant="standard"
+                value={telephone}
+                onChange={(e) => setTelephone(e.target.value)}
+              />
+            </Box>
 
-              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                <ArticleIcon sx={{ color: "action.active", mr: 1, my: 0.5 }}/>
-                <TextField
-                  fullWidth
-                  sx={{ mt: 2, width: "60%", height: "50p%" }}
-                  id="standard-multiline-flexible"
-                  placeholder="Shop Description"
-                  multiline
-                  maxRows={4}
-                  variant="standard"
-                  type="text"
-                  value={shopDesc}
-                  onChange={(e) => setShopDesc(e.target.value)}
-                />
-              </Box>
-
-              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                <PhoneIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-                <TextField
-                  sx={{ mt: 2, width: "60%", height: "50%" }}
-                  id="input-with-sx"
-                  placeholder="Contact number"
-                  variant="standard"
-                  value={telephone}
-                  onChange={(e) => setTelephone(e.target.value)}
-                />
-              </Box>
-
-              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                <PlaceIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-                <TextField
-                  sx={{ mt: 2, width: "60%", height: "50%" }}
-                  id="input-with-sx"
-                  placeholder="Shop Address"
-                  variant="standard"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                <InstagramIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-                <TextField
-                  sx={{ mt: 2, width: "60%", height: "50%" }}
-                  id="input-with-sx"
-                  placeholder="Instagram Url"
-                  variant="standard"
-                  value={Instagram}
-                  onChange={(e) => setInstagram(e.target.value)}
-                />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                <FacebookIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-                <TextField
-                  sx={{ mt: 2, width: "60%", height: "50%" }}
-                  id="input-with-sx"
-                  placeholder="Facebook Url"
-                  variant="standard"
-                  value={Facebook}
-                  onChange={(e) => setFacebook(e.target.value)}
-                />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                <TwitterIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-                <TextField
-                  sx={{ mt: 2, width: "60%", height: "50%" }}
-                  id="input-with-sx"
-                  placeholder="Twitter Url"
-                  variant="standard"
-                  value={Twitter}
-                  onChange={(e) => setTwitter(e.target.value)}
-                />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                <YouTubeIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-                <TextField
-                  sx={{ mt: 2, width: "60%", height: "50%" }}
-                  id="input-with-sx"
-                  placeholder="Youtube Url"
-                  variant="standard"
-                  value={Youtube}
-                  onChange={(e) => setYoutube(e.target.value)}
-                />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                <InsertPhotoIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-                <TextField
-                  sx={{ mt: 2, width: "60%", height: "50%" }}
-                  id="input-with-sx"
-                  placeholder="Grab URL"
-                  variant="standard"
-                  value={Grab}
-                  onChange={(e) => setGrab(e.target.value)}
-                />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                <InsertPhotoIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-                <TextField
-                  sx={{ mt: 2, width: "60%", height: "50%" }}
-                  id="input-with-sx"
-                  placeholder="Lineman URL"
-                  variant="standard"
-                  value={Lineman}
-                  onChange={(e) => setLineman(e.target.value)}
-                />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                <InsertPhotoIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-                <TextField
-                  sx={{ mt: 2, width: "60%", height: "50%" }}
-                  id="input-with-sx"
-                  placeholder="Robinhood URL"
-                  variant="standard"
-                  value={Robinhood}
-                  onChange={(e) => setRobinhood(e.target.value)}
-                />
-              </Box>
-             <div className="catlabel">
-                <label>Category</label>
-                <div className="checkcategory">              
-                  {categories.map((check) => (
-                    <div className="checkRmb">
-                      <input className="catCheckbox" value= {check.name}
-                      type="checkbox"
-                      onChange={handleCheckboxChange}
-                      checked={checkboxItems.includes(check.name)? true: false}
-                      />
-                      <p>{check.name}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <PlaceIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+              <TextField
+                sx={{ mt: 2, width: "60%", height: "50%" }}
+                id="input-with-sx"
+                placeholder="Shop Address"
+                variant="standard"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+            </Box>
+            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <InstagramIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+              <TextField
+                sx={{ mt: 2, width: "60%", height: "50%" }}
+                id="input-with-sx"
+                placeholder="Instagram Url"
+                variant="standard"
+                value={Instagram}
+                onChange={(e) => setInstagram(e.target.value)}
+              />
+            </Box>
+            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <FacebookIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+              <TextField
+                sx={{ mt: 2, width: "60%", height: "50%" }}
+                id="input-with-sx"
+                placeholder="Facebook Url"
+                variant="standard"
+                value={Facebook}
+                onChange={(e) => setFacebook(e.target.value)}
+              />
+            </Box>
+            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <TwitterIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+              <TextField
+                sx={{ mt: 2, width: "60%", height: "50%" }}
+                id="input-with-sx"
+                placeholder="Twitter Url"
+                variant="standard"
+                value={Twitter}
+                onChange={(e) => setTwitter(e.target.value)}
+              />
+            </Box>
+            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <YouTubeIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+              <TextField
+                sx={{ mt: 2, width: "60%", height: "50%" }}
+                id="input-with-sx"
+                placeholder="Youtube Url"
+                variant="standard"
+                value={Youtube}
+                onChange={(e) => setYoutube(e.target.value)}
+              />
+            </Box>
+            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <InsertPhotoIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+              <TextField
+                sx={{ mt: 2, width: "60%", height: "50%" }}
+                id="input-with-sx"
+                placeholder="Grab URL"
+                variant="standard"
+                value={Grab}
+                onChange={(e) => setGrab(e.target.value)}
+              />
+            </Box>
+            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <InsertPhotoIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+              <TextField
+                sx={{ mt: 2, width: "60%", height: "50%" }}
+                id="input-with-sx"
+                placeholder="Lineman URL"
+                variant="standard"
+                value={Lineman}
+                onChange={(e) => setLineman(e.target.value)}
+              />
+            </Box>
+            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <InsertPhotoIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+              <TextField
+                sx={{ mt: 2, width: "60%", height: "50%" }}
+                id="input-with-sx"
+                placeholder="Robinhood URL"
+                variant="standard"
+                value={Robinhood}
+                onChange={(e) => setRobinhood(e.target.value)}
+              />
+            </Box>
+           <div className="catlabel">
+              <label>Category</label>
+              <div className="checkcategory">              
+                {categories.map((check) => (
+                  <div className="checkRmb">
+                    <input className="catCheckbox" value= {check.name}
+                    type="checkbox"
+                    onChange={handleCheckboxChange}
+                    checked={checkboxItems.includes(check.name)? true: false}
+                    />
+                    <p>{check.name}
+                    </p>
+                  </div>
+                ))}
               </div>
-              <div className="Weekdays">
-              <TextField
-                fullWidth
-                sx={{ mt: 3, mb:3, width: "20%", height: "50px", p: 1 }}
-                id="outlined-select-openingday"
-                select
-                label="From"
-                value={ schedule1.dayFrom == undefined ? '' : schedule1.dayFrom}
+            </div>
+            <div className="Weekdays">
+            <TextField
+              fullWidth
+              sx={{ mt: 3, mb:3, width: "20%", height: "50px", p: 1 }}
+              id="outlined-select-openingday"
+              select
+              label="From"
+              value={ schedule1.dayFrom == undefined ? '' : schedule1.dayFrom}
+              onChange={(e) => {
+                scheduleData.dayFrom = e.target.value
+                setSchedule1({...schedule1, ...scheduleData})
+              }}
+            >
+              {weekdays.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              fullWidth
+              sx={{ mt: 3, mb:3, width: "20%", height: "50px", p: 1 }}
+              id="outlined-select-closingday"
+              select
+              label="To"
+              value={schedule1.dayTo == undefined ? '' : schedule1.dayTo}
+              onChange={(e) => {
+                scheduleData.dayTo = e.target.value
+                setSchedule1({...schedule1, ...scheduleData})
+              }}
+              // helperText="Please select your Opening day"
+            >
+              {weekdays.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
+              <FormHelperText id="filled-weight-helper-text">From</FormHelperText>
+              <OutlinedInput
+                id="outlined-adornment-timeFrom"
+                type="time"
+                value={schedule1.timeFrom == undefined ? '' : schedule1.timeFrom}
                 onChange={(e) => {
-                  scheduleData.dayFrom = e.target.value
+                  scheduleData.timeFrom = e.target.value
                   setSchedule1({...schedule1, ...scheduleData})
                 }}
-              >
-                {weekdays.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <TextField
-                fullWidth
-                sx={{ mt: 3, mb:3, width: "20%", height: "50px", p: 1 }}
-                id="outlined-select-closingday"
-                select
-                label="To"
-                value={schedule1.dayTo == undefined ? '' : schedule1.dayTo}
+              />
+            </FormControl>
+            <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
+            <FormHelperText id="filled-weight-helper-text">To</FormHelperText>
+              <OutlinedInput 
+                id="outlined-adornment-timeTo"
+                type="time"
+                value={schedule1.timeTo == undefined ? '' : schedule1.timeTo}
                 onChange={(e) => {
-                  scheduleData.dayTo = e.target.value
+                  scheduleData.timeTo = e.target.value
                   setSchedule1({...schedule1, ...scheduleData})
                 }}
-                // helperText="Please select your Opening day"
-              >
-                {weekdays.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
-                <FormHelperText id="filled-weight-helper-text">From</FormHelperText>
-                <OutlinedInput
-                  id="outlined-adornment-timeFrom"
-                  type="time"
-                  value={schedule1.timeFrom == undefined ? '' : schedule1.timeFrom}
-                  onChange={(e) => {
-                    scheduleData.timeFrom = e.target.value
-                    setSchedule1({...schedule1, ...scheduleData})
-                  }}
-                />
-              </FormControl>
-              <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
+              />
+            </FormControl>
+          </div>
+          <div className="Weekdays">
+            <TextField
+              fullWidth
+              sx={{ mt: 3, mb:3, width: "20%", height: "50px", p: 1 }}
+              id="outlined-select-openingday"
+              select
+              label="From"
+              value={schedule2.dayFrom == undefined ? '' : schedule2.dayFrom}
+              onChange={(e) => {
+                scheduleData.dayFrom = e.target.value
+                setSchedule2({...schedule2, ...scheduleData})
+              }}
+            >
+              {weekdays.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              fullWidth
+              sx={{ mt: 3, mb:3, width: "20%", height: "50px", p: 1 }}
+              id="outlined-select-closingday"
+              select
+              label="To"
+              value={schedule2.dayTo == undefined ? '' : schedule2.dayTo}
+              onChange={(e) => {
+                scheduleData.dayTo = e.target.value
+                setSchedule2({...schedule2, ...scheduleData})
+              }}
+              // helperText="Please select your Opening day"
+            >
+              {weekdays.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
+              <FormHelperText id="filled-weight-helper-text">From</FormHelperText>
+              <OutlinedInput
+                id="outlined-adornment-timeFrom"
+                type="time"
+                value={schedule2.timeFrom == undefined ? '' : schedule2.timeFrom}
+                onChange={(e) => {
+                  scheduleData.timeFrom = e.target.value
+                  setSchedule2({...schedule2, ...scheduleData})
+                }}
+              />
+            </FormControl>
+            <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
               <FormHelperText id="filled-weight-helper-text">To</FormHelperText>
-                <OutlinedInput 
-                  id="outlined-adornment-timeTo"
-                  type="time"
-                  value={schedule1.timeTo == undefined ? '' : schedule1.timeTo}
-                  onChange={(e) => {
-                    scheduleData.timeTo = e.target.value
-                    setSchedule1({...schedule1, ...scheduleData})
-                  }}
-                />
-              </FormControl>
-            </div>
-            <div className="Weekdays">
-              <TextField
-                fullWidth
-                sx={{ mt: 3, mb:3, width: "20%", height: "50px", p: 1 }}
-                id="outlined-select-openingday"
-                select
-                label="From"
-                value={schedule2.dayFrom == undefined ? '' : schedule2.dayFrom}
+              <OutlinedInput
+                id="outlined-adornment-timeTo"
+                type="time"
+                value={schedule2.timeTo == undefined ? '' : schedule2.timeTo}
                 onChange={(e) => {
-                  scheduleData.dayFrom = e.target.value
+                  scheduleData.timeTo = e.target.value
                   setSchedule2({...schedule2, ...scheduleData})
                 }}
-              >
-                {weekdays.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <TextField
-                fullWidth
-                sx={{ mt: 3, mb:3, width: "20%", height: "50px", p: 1 }}
-                id="outlined-select-closingday"
-                select
-                label="To"
-                value={schedule2.dayTo == undefined ? '' : schedule2.dayTo}
+              />
+            </FormControl>
+          </div>
+          <div className="Weekdays">
+            <TextField
+              fullWidth
+              sx={{ mt: 3, mb:3, width: "20%", height: "50px", p: 1 }}
+              id="outlined-select-openingday"
+              select
+              label="From"
+              value={schedule3.dayFrom == undefined ? '' : schedule3.dayFrom}
+              onChange={(e) => {
+                scheduleData.dayFrom = e.target.value
+                setSchedule3({...schedule3, ...scheduleData})
+              }}
+            >
+              {weekdays.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              fullWidth
+              sx={{ mt: 3, mb:3, width: "20%", height: "50px", p: 1 }}
+              id="outlined-select-closingday"
+              select
+              label="To"
+              value={schedule3.dayTo == undefined ? '' : schedule3.dayTo}
+              onChange={(e) => {
+                scheduleData.dayTo = e.target.value
+                setSchedule3({...schedule3, ...scheduleData})
+              }}
+              // helperText="Please select your Opening day"
+            >
+              {weekdays.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
+              <FormHelperText id="filled-weight-helper-text">From</FormHelperText>
+              <OutlinedInput
+                id="outlined-adornment-timeFrom"
+                type="time"
+                value={schedule3.timeFrom == undefined ? '' : schedule3.timeFrom}
                 onChange={(e) => {
-                  scheduleData.dayTo = e.target.value
-                  setSchedule2({...schedule2, ...scheduleData})
-                }}
-                // helperText="Please select your Opening day"
-              >
-                {weekdays.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
-                <FormHelperText id="filled-weight-helper-text">From</FormHelperText>
-                <OutlinedInput
-                  id="outlined-adornment-timeFrom"
-                  type="time"
-                  value={schedule2.timeFrom == undefined ? '' : schedule2.timeFrom}
-                  onChange={(e) => {
-                    scheduleData.timeFrom = e.target.value
-                    setSchedule2({...schedule2, ...scheduleData})
-                  }}
-                />
-              </FormControl>
-              <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
-                <FormHelperText id="filled-weight-helper-text">To</FormHelperText>
-                <OutlinedInput
-                  id="outlined-adornment-timeTo"
-                  type="time"
-                  value={schedule2.timeTo == undefined ? '' : schedule2.timeTo}
-                  onChange={(e) => {
-                    scheduleData.timeTo = e.target.value
-                    setSchedule2({...schedule2, ...scheduleData})
-                  }}
-                />
-              </FormControl>
-            </div>
-            <div className="Weekdays">
-              <TextField
-                fullWidth
-                sx={{ mt: 3, mb:3, width: "20%", height: "50px", p: 1 }}
-                id="outlined-select-openingday"
-                select
-                label="From"
-                value={schedule3.dayFrom == undefined ? '' : schedule3.dayFrom}
-                onChange={(e) => {
-                  scheduleData.dayFrom = e.target.value
+                  scheduleData.timeFrom = e.target.value
                   setSchedule3({...schedule3, ...scheduleData})
                 }}
-              >
-                {weekdays.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <TextField
-                fullWidth
-                sx={{ mt: 3, mb:3, width: "20%", height: "50px", p: 1 }}
-                id="outlined-select-closingday"
-                select
-                label="To"
-                value={schedule3.dayTo == undefined ? '' : schedule3.dayTo}
+              />
+            </FormControl>
+            <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
+              <FormHelperText id="filled-weight-helper-text">To</FormHelperText>
+              <OutlinedInput
+                id="outlined-adornment-timeTo"
+                type="time"
+                value={schedule3.timeTo == undefined ? '' : schedule3.timeTo}
                 onChange={(e) => {
-                  scheduleData.dayTo = e.target.value
+                  scheduleData.timeTo = e.target.value
                   setSchedule3({...schedule3, ...scheduleData})
                 }}
-                // helperText="Please select your Opening day"
-              >
-                {weekdays.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
-                <FormHelperText id="filled-weight-helper-text">From</FormHelperText>
-                <OutlinedInput
-                  id="outlined-adornment-timeFrom"
-                  type="time"
-                  value={schedule3.timeFrom == undefined ? '' : schedule3.timeFrom}
-                  onChange={(e) => {
-                    scheduleData.timeFrom = e.target.value
-                    setSchedule3({...schedule3, ...scheduleData})
-                  }}
-                />
-              </FormControl>
-              <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
-                <FormHelperText id="filled-weight-helper-text">To</FormHelperText>
-                <OutlinedInput
-                  id="outlined-adornment-timeTo"
-                  type="time"
-                  value={schedule3.timeTo == undefined ? '' : schedule3.timeTo}
-                  onChange={(e) => {
-                    scheduleData.timeTo = e.target.value
-                    setSchedule3({...schedule3, ...scheduleData})
-                  }}
-                />
-              </FormControl>
-            </div>
-            </div>
-            <button className="shopSubmit" type="submit">
-            {button ?"Update" :"Create"}
-            </button>
-            {success && (
-              <Snackbar
-                open={success}
-                autoHideDuration={6000}
-                onClose={handleClose}
-              >
-                <Alert
-                  onClose={handleClose}
-                  severity="success"
-                  sx={{ width: "100%" }}
-                >
-                  Shop Created !
-                </Alert>
-              </Snackbar>
-            )}
-            {error && (
+              />
+            </FormControl>
+          </div>
+          </div>
+          <button className="shopSubmit" type="submit">
+          {button ?"Update" :"Create"}
+          </button>
+          {success && (
             <Snackbar
-              open={open}
+              open={success}
               autoHideDuration={6000}
               onClose={handleClose}
-              action={action}
             >
               <Alert
                 onClose={handleClose}
-                severity="error"
+                severity="success"
                 sx={{ width: "100%" }}
               >
-                {/* Register failed, Username has already been used */}
-                {errorMsg}
+                Shop Created !
               </Alert>
             </Snackbar>
           )}
-          </form>
-        </div>
+          {error && (
+          <Snackbar
+            open={open}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            action={action}
+          >
+            <Alert
+              onClose={handleClose}
+              severity="error"
+              sx={{ width: "100%" }}
+            >
+              {/ Register failed, Username has already been used /}
+              {errorMsg}
+            </Alert>
+          </Snackbar>
+        )}
+        </form>
       </div>
-      <Sideprofile />
     </div>
-  );
+    <Sideprofile />
+  </div>
+);
 }

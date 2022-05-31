@@ -1,3 +1,5 @@
+/////////////////single menu page//////////////////////.
+
 import React from "react";
 import "./singleMenu.css";
 import { useLocation } from "react-router-dom";
@@ -40,6 +42,7 @@ export default function SingleMenu() {
   const path = (location.pathname.split("/")[2])
   const [shop, setShop] = useState ({});
   const [products, setproducts] = useState([])
+  const [productCategories, setProdductCategories] = useState([])
   const user = useContext(Context);
 
   const [category, setCategory]= useState("")
@@ -70,6 +73,14 @@ export default function SingleMenu() {
       }
       fetchProduct();
     },[path])
+
+    useEffect(() => {
+      const fetchProductCategories = async () => {
+        const res = await axiosInstance.get("/product_categories/" + path);
+        setProdductCategories(res.data);
+      };
+      fetchProductCategories();
+    },[path]);
     
     const handleCategoryChange= async (e)=>{  
       e.preventDefault()
@@ -105,8 +116,8 @@ export default function SingleMenu() {
         {slides.map((slide, index) => {
             return (
               <>
-              {categories.map((option) => (
-              <button className="filters" value={option.value} onClick = {handleCategoryChange} >{option.label}</button>
+              {productCategories.map((option) => (
+              <button className="filters" value={option.name} onClick = {handleCategoryChange} >{option.name}</button>
               ))}
               </>
             );

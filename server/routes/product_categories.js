@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
   //GET Category by id
 router.get("/:id", async (req, res) => {
   try {
-    const cat = await Product_Category.findById(req.params.id);
+    const cat = await Product_Category.find({username:req.params.id});
     res.status(200).json(cat);
   } catch (err) {
     res.status(500).json(err);

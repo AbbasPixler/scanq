@@ -2,9 +2,13 @@ const mongoose = require("mongoose");
 
 const ProductCategorySchema = new mongoose.Schema(
   {
+    username: {
+      type:String,
+      required:true,
+    },
     name: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     coverImage: {
       type: String,

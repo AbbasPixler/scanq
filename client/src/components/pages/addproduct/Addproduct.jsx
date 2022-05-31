@@ -1,45 +1,16 @@
 import React from "react";
 import "./addproduct.css";
 import TextField from "@mui/material/TextField";
-import FormControl from "@mui/material/FormControl";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import SideProfile from "../../sideprofile/Sideprofile";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Context } from "../../../context/Context";
 import { axiosInstance } from "../../../config";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-
-const categories = [
-  {
-    value: "Top Pick",
-    label: "Top Pick",
-  },
-  {
-    value: "Favourite",
-    label: "Favourite",
-  },
-  {
-    value: "Recommended",
-    label: "Recommended",
-  },
-  {
-    value: "New Menu",
-    label: "New Menu",
-  },
-  {
-    value: "Special",
-    label: "Special",
-  },
-
-];
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -55,6 +26,7 @@ export default function Addproduct() {
   const [errorMsg, setErrorMsg] = useState("");
   const [error, setError] = useState(false);
   const [open, setOpen] = useState(false);
+  const [productCategories, setProdductCategories] = useState([])
 
   const [values, setValues] = React.useState({
     amount: "",
@@ -70,7 +42,6 @@ export default function Addproduct() {
     e.preventDefault();
 
     if(!file || !title || !productDesc || !price || !category){
-      console.log("please fill the form")
       setOpen(true)
       setError(true)
       setErrorMsg("Please fill all the details in the form!")
@@ -98,6 +69,7 @@ export default function Addproduct() {
     try {
       const res = axiosInstance.post("/products", newProduct);
       console.log(res)
+      setOpen(true)
       setSuccess(true);
       setTitle("");
       setProductDesc("");
@@ -119,6 +91,14 @@ export default function Addproduct() {
     setOpen(false)
     setError(false)
   };
+
+  useEffect(() => {
+    const fetchProductCategories = async () => {
+      const res = await axiosInstance.get("/product_categories/" + user.username);
+      setProdductCategories(res.data);
+    };
+    fetchProductCategories();
+  },[]);
 
   const action = (
     <React.Fragment>
@@ -193,9 +173,9 @@ export default function Addproduct() {
                 onChange={(e) => setCategory(e.target.value)}
                 helperText="Please select your product category"
               >
-                {categories.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
+                {productCategories.map((option) => (
+                  <MenuItem key={option.name} value={option.name}>
+                    {option.name}
                   </MenuItem>
                 ))}
               </TextField>
@@ -236,7 +216,7 @@ export default function Addproduct() {
                 severity="error"
                 sx={{ width: "100%" }}
               >
-                {/* Register failed, Username has already been used */}
+                {/ Register failed, Username has already been used /}
                 {errorMsg}
               </Alert>
             </Snackbar>
