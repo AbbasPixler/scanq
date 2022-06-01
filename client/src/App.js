@@ -20,6 +20,7 @@ import Qr from "./components/pages/qr/Qr";
 import Singlecat from "./components/pages/singlecat/Singlecat";
 import Events from "./components/pages/events/Events";
 import { SocialBaseUrl } from "./shareBaseUrl";
+import Productcategory from "./components/pages/productcategory/Productcategory";
 
 function App() {
   const {user} = useContext(Context);
@@ -91,7 +92,6 @@ function App() {
       getUser();
     }, []);
 
-    // console.log(userr)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -113,6 +113,7 @@ function App() {
         <Route path="/blog" element={user ? <Blog /> :<Register/>}></Route>
         <Route path="/qr" element={user ? <Qr /> :<Register/>}></Route>
         <Route path="/Addproduct" element={user ? <Addproduct/> :<Register/>}></Route>
+        <Route path="/Addproductcategory" element={user ? <Productcategory/> :<Register/>}></Route>
         <Route path="/profileinfo" element={user ? <Profileinfo /> :<Register/>}></Route>
         <Route path="/createshop" element={user ? <Createshop /> :<Register/>}></Route>
         <Route path="/Events" element={<Events />}></Route>

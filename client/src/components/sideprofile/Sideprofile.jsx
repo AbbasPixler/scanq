@@ -3,6 +3,7 @@ import "./sideprofile.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 // import ChromeReaderModeIcon from "@mui/icons-material/ChromeReaderMode";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import CategoryIcon from '@mui/icons-material/Category';
 import HomeIcon from '@mui/icons-material/Home';
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
@@ -36,6 +37,12 @@ export default function SideProfile() {
               <Link to={"/Addproduct"} className="sidePage">
                 <AddCircleOutlineIcon />
                 <p>Create Menu</p>
+              </Link>
+            </Button>
+            <Button>
+              <Link to={"/Addproductcategory"} className="sidePage">
+                <CategoryIcon />
+                <p>Add Product Category</p>
               </Link>
             </Button>
           </div>
