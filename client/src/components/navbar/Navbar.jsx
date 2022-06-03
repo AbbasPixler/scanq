@@ -12,6 +12,10 @@ import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 import ChromeReaderModeIcon from "@mui/icons-material/ChromeReaderMode";
 import ContentPasteSearchIcon from "@mui/icons-material/ContentPasteSearch";
 import HomeIcon from '@mui/icons-material/Home';
+import { axiosInstance } from "./../../config";
+import { useCookies } from "react-cookie"
+
+
 
 
 
@@ -30,9 +34,29 @@ var logo = PicBaseUrl + "eatout.png"
 // https://storage.googleapis.com/snackyo/eatout.png
 export default function Navbar() {
   const { user, dispatch } = useContext(Context);
+  const [cookies, setCookie, removeCookie] = useCookies();
 
-  const handleLogout = () => {
-    dispatch({ type: "LOGOUT" });
+  // console.log(user.provider);
+
+  const handleLogout = async() => {
+    if(user && user.provider == "email"){
+      console.log("email")
+      dispatch({ type: "LOGOUT" });
+    }else if(user && user.provider == "google"){
+      
+      console.log("GOOGLE")
+      await localStorage.clear();
+      await cookies.remove("google-auth-session");
+      await removeCookie("google-auth-session.sig");
+      dispatch({ type: "LOGOUT" });
+
+      // const res = await axiosInstance.get("/auth/logout");
+      // console.log(res)
+      // alert(res)
+      // console.log("GOOGLE")
+      // const res = await axiosInstance.get("/auth/logout");
+      // console.log(res)
+    }
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);

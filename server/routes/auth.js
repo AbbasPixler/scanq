@@ -10,8 +10,7 @@ const CLIENT_URL =  "https://www.eatout.solutions/"
 
 
 
-// router.get("/google", passport.authenticate("google", {scope:['profile', 'email']}))
-
+// router.get("/google", passport.authenticate("google", {scope:['profile', 'email
 
 // ===========================Google Login===========================
 // ===========================Google Login===========================
@@ -89,11 +88,6 @@ router.get("/facebook/callback", passport.authenticate("facebook", {
 
 router.get("/facebookLogin/success", async (req, res)=>{
   if(req.user){
-        res.status(200).json({
-          success: true,
-          message: "success",
-          user: req.user
-        })
 
     const user = await User.findOne({provider_id: req.user.id, provider: req.user.provider})
     if(user){
@@ -173,6 +167,20 @@ router.post("/register", async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+
+
+router.get("/logout", (req, res) => {
+  res.send("fhsifjsgbdiskl")
+//   req.session.destroy(function(e){
+//     req.logout();
+//     res.redirect('/');
+// });
+
+  // localStorage.clear();
+  // req.logout();
+  // res.redirect(CLIENT_URL);
 });
 
 //LOGIN
