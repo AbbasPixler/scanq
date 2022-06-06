@@ -43,7 +43,7 @@ export default function Navbar() {
       console.log("email")
       dispatch({ type: "LOGOUT" });
     }else if(user && user.provider == "google"){
-      
+      // const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
       console.log("GOOGLE")
       await localStorage.clear();
       var cookie = document.cookie.split(';');
