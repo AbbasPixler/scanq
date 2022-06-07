@@ -38,10 +38,9 @@ const multerMid = multer({
 dotenv.config();
 app.use(express.json());
 app.use(multerMid.single('file'))
-app.use(cookieSession({
-  name: 'google-auth-session',
-  keys: ['key1', 'key2']
-}));
+app.use(
+  cookieSession({ name: "session", keys: ["eatout"], maxAge: 24 * 60 * 60 * 100, resave: false, saveUninitialized: false, })
+);
 
 app.use(passport.initialize())
 app.use(passport.session())

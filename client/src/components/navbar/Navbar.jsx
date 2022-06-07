@@ -34,8 +34,9 @@ var logo = PicBaseUrl + "eatout.png"
 // https://storage.googleapis.com/snackyo/eatout.png
 export default function Navbar() {
   const { user, dispatch } = useContext(Context);
-  const [cookies, setCookie, removeCookie] = useCookies();
-
+  const [cookies, setCookie, removeCookie] = useCookies('user');
+  
+const SocialBaseUrl = "https://api.eatout.solutions/";
   // console.log(user.provider);
 
   const handleLogout = async() => {
@@ -43,27 +44,10 @@ export default function Navbar() {
       console.log("email")
       dispatch({ type: "LOGOUT" });
     }else if(user && user.provider == "google"){
-      // const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
-      console.log("GOOGLE")
+      removeCookie();
       await localStorage.clear();
-      var cookie = document.cookie.split(';');
-
-      for (var i = 0; i < cookie.length; i++) {
-
-      var chip = cookie[i],
-        entry = chip.split("="),
-        name = entry[0];
-
-      document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-      }
-      dispatch({ type: "LOGOUT" });
-
-      // const res = await axiosInstance.get("/auth/logout");
-      // console.log(res)
-      // alert(res)
-      // console.log("GOOGLE")
-      // const res = await axiosInstance.get("/auth/logout");
-      // console.log(res)
+      await sessionStorage.clear();
+      window.open(SocialBaseUrl+"/auth/logout", "_self");
     }
   };
 

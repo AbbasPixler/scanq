@@ -172,15 +172,9 @@ router.post("/register", async (req, res) => {
 
 
 router.get("/logout", (req, res) => {
-  res.send("fhsifjsgbdiskl")
-//   req.session.destroy(function(e){
-//     req.logout();
-//     res.redirect('/');
-// });
-
-  // localStorage.clear();
-  // req.logout();
-  // res.redirect(CLIENT_URL);
+  req.logout(); req.session = null;
+  delete req._passport.user;
+    res.redirect(CLIENT_URL);
 });
 
 //LOGIN

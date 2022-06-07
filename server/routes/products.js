@@ -66,7 +66,13 @@ router.get("/:id", async (req, res) => {
   try {
     const username = req.params.id
     const product = await Product.find({username : username})
-    res.status(200).json(product)
+    if(product.length > 0){
+      res.status(200).json(product)
+    }else{
+      const error = "No Products from this user"
+      res.status(500).json(error)
+    }
+   
   } catch (err) {
     res.status(500).json(err)
   }
@@ -116,4 +122,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+
+
+// Get All Product by username
+// router.get("/productByUser", async (req, res) => {
+//   try {
+//    const getAllProducts = await Product.find({username: req.body.username})
+//   //  const userProducts = await Product.find ({ userId: getProduct._id})
+//    res.status(200).json(); 
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// })
 module.exports = router;
