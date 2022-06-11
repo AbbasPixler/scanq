@@ -45,16 +45,16 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
-    if (product.username === req.body.username) {
+    // if (product.username === req.body.username) {
       try {
         await product.delete();
         res.status(200).json("Product has been delete");
       } catch (err) {
         res.status(500).json(err);
       }
-    } else {
-      res.status(401).json("You can delete only your product !");
-    }
+    // } else {
+    //   res.status(401).json("You can delete only your product !");
+    // }
   } catch (err) {
 
     res.status(500).json(err);
@@ -66,12 +66,27 @@ router.get("/:id", async (req, res) => {
   try {
     const username = req.params.id
     const product = await Product.find({username : username})
+   
     if(product.length > 0){
       res.status(200).json(product)
     }else{
       const error = "No Products from this user"
       res.status(500).json(error)
     }
+   
+  } catch (err) {
+    res.status(500).json(err)
+  }
+});
+
+
+//GET Product through id
+router.get("/getProductById/:id", async (req, res) => {
+  try {
+    const id = req.params.id
+    const product = await Product.findById(id)
+
+    res.status(200).json(product)
    
   } catch (err) {
     res.status(500).json(err)

@@ -1,0 +1,108 @@
+.editproduct {
+  display: flex;
+  height: 92vh;
+  width: 100%;
+}
+
+.editproductWrapper {
+  flex: 9;
+  padding: 0px 0px 0px 70px;
+  background-color: #ebebeb;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items:center;
+}
+
+.editproductBody {
+  margin-top: 3rem;
+  width: 90%;
+}
+.editproductTitle {
+  display: flex;
+  width: 80%;
+  padding: 1rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  color: lightcoral;
+}
+
+.editproductForm {
+  display: flex;
+  flex-direction: column;
+
+  
+}
+.addproductDesc {
+  margin-top: 1rem;
+}
+
+.css-1f1s0qz-MuiFormControl-root-MuiTextField-root {
+  margin-top: 32px !important;
+  padding: 0 !important;
+}
+
+.editproductBtn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+
+.editproductBtn Button {
+  font-size: 16px;
+  padding: 1rem;
+  border-radius: 20px;
+}
+
+
+.addProductImg {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: rgb(49, 49, 49);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.productImg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+.productImg img {
+  width: 80%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+input, select {
+  margin: .5rem;
+  padding: .5rem;
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 480px) {
+  .editproduct {
+      display: flex;
+      flex-direction: column;
+      height: 90vh;
+
+  }
+
+  .editproductWrapper {
+      padding: 0;
+  }
+  .editproductBody {
+      margin-top: 1rem;
+  }
+}

@@ -7,6 +7,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 import HomeIcon from '@mui/icons-material/Home';
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import InventoryIcon from '@mui/icons-material/Inventory';
 
 export default function SideProfile() {
   return (
@@ -43,6 +44,12 @@ export default function SideProfile() {
               <Link to={"/Addproductcategory"} className="sidePage">
                 <CategoryIcon />
                 <p>Add Product Category</p>
+              </Link>
+            </Button>
+            <Button>
+              <Link to={"/allproduct"} className="sidePage">
+                <InventoryIcon />
+                <p>All product</p>
               </Link>
             </Button>
           </div>

@@ -9,12 +9,20 @@ import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
 import Footer from "../../footer/Footer";
 import { axiosInstance } from "../../../config";
+import { MdLaptopWindows } from "react-icons/md";
 
 export default function Home() {
   const [categories, setCategories] = useState([]);
   const [posts, setPosts] = useState([]);
   const [shops, setShops] = useState([]);
   const { search } = useLocation();
+
+  
+  console.log(window.location.href); 
+  if(window.location.hash == "#_=_"){
+    let urlString = window.location.href.split("#")[0] 
+    window.location.href = urlString
+  }
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axiosInstance.get("/posts/getposts/limitation");
@@ -30,7 +38,6 @@ export default function Home() {
     };
     fetchCategories();
   },[search]);
-
   useEffect(() => {
     const fetchShops = async () => {
       const res = await axiosInstance.get("/shops/getshops/limitations")

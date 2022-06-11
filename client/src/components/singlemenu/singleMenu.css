@@ -117,10 +117,10 @@
     display: flex;
     position: relative;
     position: sticky;
-    top: 74px;
+    top: 69px;
     z-index: 99;
     background: #f5f4f0;
-    padding: 10px;
+    /* padding: 10px; */
     border-bottom: 1px solid rgb(0 0 0 / 11%);
 }
 

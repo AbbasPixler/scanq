@@ -62,6 +62,26 @@ const ShopSchema = new mongoose.Schema(
           type: String,
           required: false
         },
+        qrCode:{
+          codeText: {
+            type: String, 
+            default: "Eat Out"
+          },
+          fgColor: {
+            type: String,
+            default: "black"
+          },
+          bgColor: {
+            type: String,
+            default: "white"
+          },
+          padding: {
+            type: Number,
+          },
+          borderRadius: {
+            type: Number,
+          },
+        },
         categories:[ String ],
         timings:[
           {

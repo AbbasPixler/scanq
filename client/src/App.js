@@ -21,6 +21,8 @@ import Singlecat from "./components/pages/singlecat/Singlecat";
 import Events from "./components/pages/events/Events";
 import { SocialBaseUrl } from "./shareBaseUrl";
 import Productcategory from "./components/pages/productcategory/Productcategory";
+import Allproduct from "./components/pages/allproductbyuser/Allproductbyuser";
+import Editproduct from "./components/pages/editproduct/Editproduct";
 
 function App() {
   const {user} = useContext(Context);
@@ -114,6 +116,8 @@ function App() {
         <Route path="/qr" element={user ? <Qr /> :<Register/>}></Route>
         <Route path="/Addproduct" element={user ? <Addproduct/> :<Register/>}></Route>
         <Route path="/Addproductcategory" element={user ? <Productcategory/> :<Register/>}></Route>
+        <Route path="/allproduct" element={user ? <Allproduct/> :<Register/>}></Route>
+        <Route path="/allproduct/:id" element={user ? <Editproduct/> :<Register/>}></Route>
         <Route path="/profileinfo" element={user ? <Profileinfo /> :<Register/>}></Route>
         <Route path="/createshop" element={user ? <Createshop /> :<Register/>}></Route>
         <Route path="/Events" element={<Events />}></Route>
