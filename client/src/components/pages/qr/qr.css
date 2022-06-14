@@ -22,9 +22,21 @@
     padding: 6px;
 }
 
+#paddingSlider{
+    direction: rtl;
+    color: transparent;
+    background: transparent;
+}
 
+.colorInput input{
+    padding: 0 0 0 0;
+}
 
+.colorInput{
+    width: 23px;
+    margin: 0%;
 
+}
 .myQr {
     border-top: 0.5rem solid #666;
     border-right: 0.5rem solid #666;

@@ -19,9 +19,16 @@ export default function Home() {
 
   
   console.log(window.location.href); 
+
   if(window.location.hash == "#_=_"){
     let urlString = window.location.href.split("#")[0] 
     window.location.href = urlString
+  }
+  if(window.location.href.split(":")[0] == "http"){
+    console.log("url: ",window.location.href.slice(4, -1))
+    let urlString = "https"+window.location.href.slice(4, -1) 
+    window.location.href = urlString
+
   }
   useEffect(() => {
     const fetchPosts = async () => {
