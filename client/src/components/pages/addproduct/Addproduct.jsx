@@ -11,6 +11,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import PercentIcon from '@mui/icons-material/Percent';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -27,6 +28,8 @@ export default function Addproduct() {
   const [error, setError] = useState(false);
   const [open, setOpen] = useState(false);
   const [productCategories, setProdductCategories] = useState([])
+  const [THCPercent, setTHCPercent] = useState();
+  const [CBDPercent, setCBDPercent] = useState();
 
   const [values, setValues] = React.useState({
     amount: "",
@@ -161,7 +164,46 @@ export default function Addproduct() {
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             ></TextField>
+{/* Product Type */}
+              <div className="productPriceCat">
+              <TextField
+                fullWidth
+                sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
+                id="outlined-select-productCategories"
+                select
+                label="Select"
+                value={productType}
+                onChange={(e) => setProductType(e.target.value)}
+                helperText="Please select your product type"
+              >
+                {productCategories.map((option) => (
+                  <MenuItem key={option.name} value={option.name}>
+                    {option.name}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </div>
+{/* Strain Type Type */}
+            <div className="productPriceCat">
+              <TextField
+                fullWidth
+                sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
+                id="outlined-select-productCategories"
+                select
+                label="Select"
+                value={strainType}
+                onChange={(e) => setStrainType(e.target.value)}
+                helperText="Please select your strain type!"
+              >
+                {productCategories.map((option) => (
+                  <MenuItem key={option.name} value={option.name}>
+                    {option.name}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </div>
 
+            {/* Product Category Type */}
             <div className="productPriceCat">
               <TextField
                 fullWidth
@@ -180,11 +222,69 @@ export default function Addproduct() {
                 ))}
               </TextField>
             </div>
+            {/* Percentage of Cannabis */}
+            <TextField
+              fullWidth
+              sx={{ mt: 2, width: "40%", height: "50px" }}
+              id="outlined-basic"
+              label="Price"
+              variant="outlined"
+              value={CBDPercent}
+              onChange={(e) => setCBDPercent(e.target.value)}
+            ><PercentIcon/></TextField>
+              <TextField
+              fullWidth
+              sx={{ mt: 2, width: "40%", height: "50px" }}
+              id="outlined-basic"
+              label="Price"
+              variant="outlined"
+              value={THCPercent}
+              onChange={(e) => setTHCPercent(e.target.value)}
+            ></TextField>
+            {/* Percentage of Cannabis */}
+            
+            <div className="productPriceCat">
+              <TextField
+                fullWidth
+                sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
+                id="outlined-select-productCategories"
+                select
+                label="Select"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                helperText="Please select your product category"
+              >
+                {productCategories.map((option) => (
+                  <MenuItem key={option.name} value={option.name}>
+                    {option.name}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </div>
+
+            <div className="productPriceCat">
+              <TextField
+                fullWidth
+                sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
+                id="outlined-select-productCategories"
+                select
+                label="Select"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                helperText="Please select your product category"
+              >
+                {productCategories.map((option) => (
+                  <MenuItem key={option.name} value={option.name}>
+                    {option.name}
+                  </MenuItem>
+                ))} 
+              </TextField>
+            </div>
             
             <div className="addproductBtn">
-              <Button className="" variant="outlined" color="primary">
+              {/* <Button className="" variant="outlined" color="primary">
                 Back
-              </Button>
+              </Button> */}
               <Button variant="contained" color="primary" type="submit">
                 Add product
               </Button>

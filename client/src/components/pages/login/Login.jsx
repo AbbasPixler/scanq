@@ -133,7 +133,7 @@ export default function Login() {
         <div className="loginWrapper">
         <img src="https://images.pexels.com/photos/4359106/pexels-photo-4359106.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
           <span className="loginTitle">
-            <p>EATOUT</p>
+            <p>BUDVISTA</p>
             <div className="txtTitle">
             <p>Welcome back</p></div>
           </span>

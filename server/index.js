@@ -47,7 +47,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 var corsOptions =  {
-  origin: ["https://www.eatout.solutions", "https://eatout.solutions"],
+  origin: ["https://www.budvista.co", "https://api.budvista.co"],
   methods: "GET,POST,PUT,DELETE",
   credentials: true,
 }

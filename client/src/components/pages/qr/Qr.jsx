@@ -8,19 +8,23 @@ import {html2canvas} from "html2canvas";
 // import { Baseurl } from "../../../Baseurl";
 import { TextField } from "@mui/material";
 import { Slider } from "@mui/material";
+import { Grid } from "@mui/material";
+// import * as htmlToImage from 'html-to-image';
+
 
 export default function Qr() {
-  const Baseurl =  "http://localhost:3000/"
-  // const Baseurl =  "https://www.eatout.solutions/"
+  // const Baseurl =  "http://localhost:3000/"
+  const Baseurl =  "https://www.budvista.co/"
+
 
 
   
   const user = useContext(Context)
-  const[size, setSize] = useState("400")
+  const[size, setSize] = useState("220px")
   const[borderRadius, setBorderRadius] = useState("1")
   const[actualRadius, setActualRadius] = useState()
-  const[bgColor, setBgColor] = useState("white")
-  const[fgColor, setFgColor] = useState("black")
+  const[bgColor, setBgColor] = useState("#ffffff")
+  const[fgColor, setFgColor] = useState("#000000")
   const[text, setText] = useState("EatOut")
   // const paddingString = padding + "px"
   // const divStyle = {
@@ -38,22 +42,7 @@ export default function Qr() {
 
   // ===============================================
 
-  // const handleDownloadImage = async() => {
-  //   const element = document.getElementById('print'),
-  //   canvas = await html2canvas(element),
-  //   data = canvas[0].toDataURL('image/jpg'),
-  //   link = document.createElement('a');
  
-  //   link.href = data;
-  //   link.download = 'downloaded-image.jpg';
- 
-  //   document.body.appendChild(link)
-;
-  //   link.click();
-  //   document.body.removeChild(link)
-;
-  // };
-
   // ===============================================
   
   
@@ -73,33 +62,87 @@ export default function Qr() {
     document.body.removeChild(downloadLink);
   };
 
+  const downloadQRCodePlusDiv = () => {
+    
+    // var node = document.getElementById('print');
+
+  //   htmlToImage.toJpeg(document.getElementById('print'), { quality: 0.95 })
+  // .then(function (dataUrl) {
+  //   var link = document.createElement('a');
+  //   link.download = 'my-image-name.jpeg';
+  //   link.href = dataUrl;
+  //   link.click();
+  // });
+    // htmlToImage.toPng(node)
+    //   .then(function (dataUrl) {
+    //     var img = new Image();
+    //     img.src = dataUrl;
+    //     document.body.appendChild(img);
+    //     download(dataUrl, img);
+    //   })
+    //   .catch(function (error) {
+    //     console.error('oops, something went wrong!', error);
+    //   });
+  };
+
   return (
     <div className="qr">
       <div className="genQr">
-        <h1>Qr generator</h1>
-        <label>Size</label>
+      <div className="qrcode-content">
+      <div className="qrcode-content-inner">
+        <h1>Customize QR Code</h1>
+        <div className="form-group bg-color-element hide-picbg">
+        <label>Background color</label>
+        <TextField
+          name='bgColor'
+          type='color'
+          value={bgColor}
+          className="colorInput"
+          onChange={(e) => setBgColor(e.target.value)}
+        />
+         <span className="colorcode">{bgColor}</span>
+        </div>
+
+        <div className="form-group bg-color-element">
+        <label>Foreground color</label>
+        <TextField
+          name='fgColor'
+          type='color'
+          value={fgColor}
+          className="colorInput"
+          onChange={(e) => setFgColor(e.target.value)}
+        />
+        <span className="colorcode">{fgColor}</span>
+       </div>
+
+        <div className="form-group">
+        {/* <label>Mode</label>
         <input
         id="paddingSlider"
         name="size"
         type="range"
         value={size}
-        min='200'
-        max='400'
+        style={{backgroundColor: "black", color: "red"}}
+        min='280'
+        max='320'
         track= "inverted"
-        // step="1"
-        onChange={(e) => setSize(e.target.value)}
-        />  
+        // onChange={(e) => setSize(e.target.value)}
+        />   */}
+         </div>
 
+        <div className="form-group">
+        {/* <label>Corner Radius</label>
         <input
-        id="borderRadiusSlider"
+        id="borderRadiusSlider"  
         name="borderRadius"
-        type="range"
-        value={borderRadius}
+        type="range" 
         min='1'
         max='50'
-        // step="1"
         onChange={modifyRadius}
-        />  
+        />   */}
+        </div>  
+
+
         {/* <label>Padding</label>
         <input
         name="padding"
@@ -109,50 +152,53 @@ export default function Qr() {
         max='10'
         onChange={(e) => setPadding(e.target.value)}
         /> */}
-        <label>Text</label>
+
+        <div className="form-group">
+        {/* <label>Text</label>
         <TextField
           name='text'
           type='text'
           value={text}
           onChange={(e) => setText(e.target.value)}
-        />
-        <label>Background color</label>
-        <TextField
-          name='bgColor'
-          type='color'
-          value={bgColor}
-          className="colorInput"
-          onChange={(e) => setBgColor(e.target.value)}
-        />
-        <label>foreground color</label>
-        <TextField
-          name='fgColor'
-          type='color'
-          value={fgColor}
-          className="colorInput"
-          onChange={(e) => setFgColor(e.target.value)}
-        />
-        <br />
-        <div id="print" style={{width:400, height:400, backgroundColor: bgColor ,display:'flex', alignItems:'center', justifyContent:'center', borderRadius: actualRadius, borderStyle: "solid", borderColor: "transparent"}}>
-        <p style={{zIndex:1, backgroundColor: "white", position: "absolute", fontSize: "20px", padding:" 10px 15px", fontWeight: 500, letterSpacing: "1px", }} >{text}</p>
-          
-            <QRCode
+        /> */}
+        </div>
 
+        
+
+       
+
+           
+          </div>
+          </div>
+          
+
+        <div className="qrcode-icon ">
+           <div id="print" style={{width:230, height:230, backgroundColor: bgColor ,display:'flex', alignItems:'center', justifyContent:'center', borderRadius: actualRadius, borderStyle: "solid", borderColor: "transparent"}}>
+        {/* <p style={{zIndex:1, backgroundColor: "white", position: "absolute", fontSize: "20px", padding:" 10px 15px", fontWeight: 500, letterSpacing: "1px", }} >{text}</p> */}
+        
+            <QRCode
+  
               id="qr-gen"
               value={qrValue}
-              size={size}
+              // size= '275'
               bgColor={bgColor}
               fgColor={fgColor}
               // level={"H"}
-              style={{borderRadius: actualRadius, borderStyle: "solid", borderColor: "transparent"}}
+              style={{borderRadius: actualRadius, borderStyle: "solid", borderColor: "transparent", height: '220px', width: '220px', maxWidth:"auto", maxHeight:"auto"}}
              
               // className="myQr"
             />
-     
+          
         </div>
-        <button type="button" onClick={downloadQRCode}>
+
+       <div className="download-btn">
+       <button type="button" onClick={downloadQRCode} style={{margin: "14px"}}>
           Download QR Code
         </button>
+       </div>
+        </div>
+        
+
       </div>
       <Sideprofile />
     </div>
@@ -161,67 +207,3 @@ export default function Qr() {
 
 
 
-
-
-
-// import React from "react";
-// import "./qr.css";
-// import QRCode from "qrcode.react";
-// import { useState } from "react";
-// import Sideprofile from "../../sideprofile/Sideprofile";
-
-// export default function Qr() {
-//   const [qrValue, setQrValue] = useState("myqr");
-//   const handleOnChange = (event) => {
-//     const { value } = event.target;
-//     setQrValue(value);
-//   };
-//   const downloadQRCode = () => {
-//     // Generate download with use canvas and stream
-//     const canvas = document.getElementById("qr-gen");
-//     const pngUrl = canvas
-//       .toDataURL("image/png")
-//       .replace("image/png", "image/octet-stream");
-//     let downloadLink = document.createElement("a");
-//     downloadLink.href = pngUrl;
-//     downloadLink.download = `${qrValue}.png`;
-//     document.body.appendChild(downloadLink);
-//     downloadLink.click();
-//     document.body.removeChild(downloadLink);
-//   };
-
-//   return (
-//     <div className="qr">
-//       <div className="genQr">
-//         <h1>Qr generator</h1>
-//         <input
-//           onChange={handleOnChange}
-//           placeholder="paste shop link here get qr code.."
-//         />
-//         <br />
-//         <QRCode
-//           id="qr-gen"
-//           value={qrValue}
-//           size={300}
-//           bgColor="white"
-//           level={"H"}
-//           includeMargin={true}
-//           className="myQr"
-//         />{" "}
-//         <button type="button" onClick={downloadQRCode}>
-//           Download QR Code
-//         </button>
-//       </div>
-//       <Sideprofile />
-//     </div>
-//   );
-// }
-
-
-
-// var canvas = document.getElementById("qr-gen");
-//var context = canvas.getContext(contextType);
-
-// $("#qr-gen").click(function(){  
-//   $("#qr-gen").append("abbas");  
-// });  

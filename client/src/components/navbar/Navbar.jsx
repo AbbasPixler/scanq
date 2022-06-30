@@ -30,13 +30,13 @@ import React from "react";
 //import logo from "../../images/logo_transparent.png";
 import { PicBaseUrl } from "../../imageBaseUrl";
 
-var logo = PicBaseUrl + "eatout.png"
+var logo = PicBaseUrl + "budvista_logo.png"
 // https://storage.googleapis.com/snackyo/eatout.png
 export default function Navbar() {
   const { user, dispatch } = useContext(Context);
   const [cookies, setCookie, removeCookie] = useCookies('user');
   
-const SocialBaseUrl = "https://api.eatout.solutions/";
+const SocialBaseUrl = "https://api.budvista.co/";
   // console.log(user.provider);
 
   const handleLogout = async() => {
@@ -47,7 +47,7 @@ const SocialBaseUrl = "https://api.eatout.solutions/";
       removeCookie();
       await localStorage.clear();
       await sessionStorage.clear();
-      window.open(SocialBaseUrl+"/auth/logout", "_self");
+      window.open(SocialBaseUrl+"auth/logout", "_self");
     }
   };
 
@@ -76,7 +76,7 @@ const SocialBaseUrl = "https://api.eatout.solutions/";
         <Toolbar>
           <div className="desktopLogo">
             <Link className="link" to="/">
-              <img src={logo} alt="" width="70px" height="70px" />
+              <img src={logo} alt="" width="120px" height="65px" />
             </Link>
           </div>
 

@@ -33,6 +33,7 @@
 }
 
 .addproductCatBtn {
+
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -42,6 +43,7 @@
 
 
 .addproductCatBtn Button {
+  background-color: #29A89F;
   font-size: 16px;
   padding: 1rem;
   border-radius: 20px;

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Categories from "../../categories/Categories";
 import Header from "../../header/Header";
+import Directory from "../../directory/Directory";
 import Posts from "../../posts/Posts";
 import Shops from "../../shops/Shops";
 import "./home.css";
@@ -11,12 +12,15 @@ import Footer from "../../footer/Footer";
 import { axiosInstance } from "../../../config";
 import { MdLaptopWindows } from "react-icons/md";
 
+import  { PicBaseUrl } from "../../../imageBaseUrl";
+
 export default function Home() {
   const [categories, setCategories] = useState([]);
   const [posts, setPosts] = useState([]);
   const [shops, setShops] = useState([]);
   const { search } = useLocation();
-
+  const headerImage1 = PicBaseUrl + "headerImage1.jpg"
+  const headerImage2 = PicBaseUrl + "headerImage2.jpg"
   
   console.log(window.location.href); 
 
@@ -59,16 +63,16 @@ export default function Home() {
       <div className="home">
         <Categories categories={categories} />
         <Container>
-            <div className="selectTitle"><h1>Discover  EATOUT</h1>
+            <div className="selectTitle"><h1>Discover  BUDVISTA</h1>
             </div>
           <div className="homeSelect">
             <div className="selectLeft">
               <img
-                src="https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                src={headerImage1}
                 alt=""
               />
               <div className="selectLeftText">
-              <p>What is EATOUT</p>
+              <p>What is BUDVISTA</p>
               <Link to={'/about'}>
               <button className="homebtn">Discover more</button>
               </Link>
@@ -76,7 +80,7 @@ export default function Home() {
             </div>
             <div className="selectRight">
               <img
-                src="https://images.pexels.com/photos/8963884/pexels-photo-8963884.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                src={headerImage2}
                 alt=""
               />
               <div className="selectRightText">
@@ -103,7 +107,7 @@ export default function Home() {
         <div className="viewMore"><Link className="viewMoreShops" to='/Menus'>More Restaurants</Link></div>
         </Container>
       </div>
-
+    <Directory/>
       <Footer/>
     </>
   );

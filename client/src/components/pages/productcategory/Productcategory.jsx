@@ -112,9 +112,9 @@ export default function Productcategory() {
             ></TextField>
             
             <div className="addproductCatBtn">
-              <Button className="" variant="outlined" color="primary">
+              {/* <Button className="" variant="outlined" color="primary">
                 Back
-              </Button>
+              </Button> */}
               <Button variant="contained" color="primary" type="submit">
                 Add product category
               </Button>

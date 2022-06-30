@@ -1,9 +1,19 @@
+# dispatch:
+#     - url: "api.eatout.solutions/*"
+#       service: default
+
+#     - url: "eatout.solutions/*"
+#       service: scanq-client
+         
+#     - url: "www.eatout.solutions/*"
+#       service: scanq-client
+
 dispatch:
-    - url: "api.eatout.solutions/*"
+    - url: "api.budvista.co/*"
       service: default
 
-    - url: "eatout.solutions/*"
+    - url: "budvista.co/*"
       service: scanq-client
          
-    - url: "www.eatout.solutions/*"
+    - url: "www.budvista.co/*"
       service: scanq-client

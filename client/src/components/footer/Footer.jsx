@@ -5,11 +5,10 @@ import Container from '@material-ui/core/Container';
 
 export default function Footer() {
   return (
-    <div className='footer'>
-        <div className="leftFooter">
-        <p>Copyright &copy; 2022 EATOUT.io</p>
-            </div>
+    <Container className='footer'>
+        <p className='footerText'>Copyright &copy; 2022 Budvista</p>
 
-        </div>
+        </Container>
   )
 }
+

@@ -14,8 +14,7 @@ import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import { Context } from '../../../context/Context';
 import { Link } from "react-router-dom";
 import "./../profileinfo/profileinfo.css";
-import { PicBaseUrl } from "./../../../imageBaseUrl"
-
+import { PicBaseUrl } from "./../../../imageBaseUrl";
 
 export default function Allproductbyuser() {
   
@@ -54,7 +53,7 @@ export default function Allproductbyuser() {
               // key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell><img src={ PicBaseUrl + userProduct.productImage } width="200" height="200"></img></TableCell>
+              <TableCell><img src={ PicBaseUrl + userProduct.productImage } width="50" height="50"></img></TableCell>
               <TableCell>{userProduct.title}</TableCell>
               <TableCell>{userProduct.productDesc}</TableCell>
               <TableCell>{userProduct.price}</TableCell>

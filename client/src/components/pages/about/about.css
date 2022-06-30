@@ -10,6 +10,515 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
+  background-color: #ececec;
+  padding: 3rem 0;
+  margin-top: 1rem;
+  border-radius: 10px;
+}
+
+.aboutService h1 {
+  font-family: "Prompt", sans-serif;
+  font-size: 38px;
+  font-weight:bold;
+  text-align: center;
+  color: #666666;
+  width: 100%;
+}
+
+
+.aboutCards {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #666666;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.aboutCard {
+  width: 100%;
+  height: 150px;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 3rem;
+}
+
+.aboutCard p {
+  font-size: 12px;
+  font-family: "Prompt", sans-serif;
+  padding: 6px;
+  text-align: center !important;
+}
+
+.aboutCard h4 {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Prompt", sans-serif;
+  padding: 6px;
+  text-align: center !important;
+}
+
+.aboutCard .aboutIcons {
+  width: 100px;
+  height: 100px;
+}
+
+
+.aboutCards button {
+  display: flex;
+}
+
+.aboutBody {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.aboutTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  flex-direction: column;
+  text-align: left;
+}
+
+.aboutTitle .aboutBrand {
+  font-size: 42px;
+  color: #29A89F;
+  text-align: left;
+}
+
+
+
+.aboutTitle h1 {
+  font-family: "Prompt", sans-serif;
+  font-weight: 400;
+  font-size: 38px;
+  padding: 20px;
+  color: #666666;
+  text-align: left;
+  width: 80%;
+}
+
+.aboutTitle p {
+  font-family: "Prompt", sans-serif;
+  text-align: left;
+  padding: 1rem 20px;
+  font-size: 20px;
+  font-weight: 400;
+  color: black;
+  width: 80%;
+}
+
+.aboutBody2 {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
+  margin-top: 2rem;
+}
+
+.aboutList li {
+  list-style-type: disc;
+  line-height: 2rem;
+  margin-left: 2rem;
+}
+
+.aboutList {
+  font-family: "Prompt", sans-serif;
+  text-align: left;
+  padding: 12px 0px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #666666;
+  width: 100%;
+}
+
+.aboutBtn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+}
+
+.titleBtnLeft {
+  font-family: "Prompt", sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 12px 12px;
+  border-radius: 10px;
+  background-color: #008080;
+  color: white;
+}
+
+
+.aboutBtn2 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin-left: 2rem;
+}
+
+.titleBtn2 span {
+  border-bottom: 2px solid #666666;
+  font-family: "Prompt", sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #666666;
+
+}
+
+.aboutImg {
+  width: 50%;
+  height: 500px;
+}
+
+.aboutImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+
+.aboutFaq {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  padding: 2rem;
+}
+
+.aboutFaq h1{
+  font-family: "Prompt", sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  padding: 1rem;
+}
+
+
+
+.aboutContact {
+    display: flex !important;
+    background-color: #29A89F;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60vh;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+  }
+
+  .aboutContactText {
+    display: flex;
+    width: 50%;
+    height: auto;
+    flex-direction: column;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .aboutContactText h1 {
+    width: auto;
+    font-family: "Prompt", sans-serif;
+    text-align: right;
+    font-weight: 400;
+    font-size: 42px;
+    padding: 20px;
+    color: #666666;
+  }
+  
+  .aboutContactText p {
+    font-family: "Prompt", sans-serif;
+    padding: 2rem;
+    text-align: right;
+    font-size: 20px;
+    font-weight: 300;
+    cursor: pointer;
+    color: #666666;
+  }
+
+  .aboutContactText p:hover {
+    color: #424242;
+  }
+
+  .requestBtn {
+    cursor: pointer;
+    border: 1px solid #666666;
+    padding: 1rem 2rem ;
+    color: #666666;
+    font-size: 1rem;
+    background: transparent;
+    border-radius: 10px;
+    margin-right: 14px;
+    float: right;
+  }
+
+  .requestBtn:hover {
+    background: #29A89F ;
+  }
+
+.contactUs {
+  width: 100%;
+  height: 70vh;
+}
+
+.contactContainer {
+  background-color: white;
+  display: flex !important;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.contactLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+
+.contactLeft img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.contactLeftText {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0px;
+  font-size: 16px;
+  color: #666666;
+}
+
+.contactLeftText:hover {
+  color: black;
+}
+
+.contactLeftText h5 {
+  font-family: "Prompt", sans-serif;
+  font-weight: 400;
+  margin: 0px 10px;
+}
+
+.contactRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+
+.contactRight h1 {
+  font-family: "Prompt", sans-serif;
+  font-weight: 400;
+  margin: 0px 10px;
+  font-size: 42px;
+  color: #666666;
+}
+
+.contactRightIcons {
+  padding: 2rem;
+  cursor: pointer;
+}
+
+.contactRightIcon {
+  color: #666666;
+  font-size: 52px;
+  padding: 1rem;
+}
+
+@media only screen and (max-width: 480px) {
+
+  .aboutBody {
+    flex-direction: column-reverse;
+    margin-top: 3rem;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .aboutBody2 {
+    flex-direction: column;
+    margin-top: 0;
+    height: 100%;
+  }
+
+
+  .aboutImg {
+    width: 100%;
+    height: 50%;
+  }
+
+  .aboutImg img {
+    border-radius: 0;
+  }
+
+  .aboutTitle {
+    padding: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .aboutTitle h1 {
+    font-size: 20px;
+    padding: 20px 10px;
+    width: 320px;
+    
+  }
+
+  .aboutTitle p {
+    font-size: 16px;
+    padding: 20px 10px;
+    width: 320px;
+  }
+
+  .aboutBtn {
+    padding: 20px 10px;
+    justify-content: center;
+  }
+
+  .aboutBtn2 {
+    margin-left: 0;
+    padding: 20px 10px;
+    justify-content: center;
+  }
+
+  .titleBtnLeft {
+    font-size: 14px;
+    padding: 10px 24px;
+  }
+
+
+  .titleBtn2 span {
+    margin-left: 0;
+  }
+
+  .aboutFaq {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  
+
+  .aboutService {
+    height: auto;
+  }
+
+  .aboutService h1 {
+    font-size: 20px;
+    margin-bottom: 1rem;
+    width: 100%;
+
+  }
+
+  .aboutCards {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+  }
+
+  .aboutCard {
+    margin-top: 10px;
+    height: 120px;
+  }
+
+  .aboutCard .aboutIcons {
+    height: 60px;
+    width: 60px;
+  }
+
+
+  .aboutContact {
+      margin-top: 3rem;
+      border-radius: 0;
+  }
+
+
+  .aboutContactText {
+      width: 100%;
+  }
+
+  .aboutContactText h1 {
+    font-size: 24px;
+
+}
+
+
+.requestBtn {
+  padding: 10px;
+}
+
+
+  .contactUs {
+    height: 100%;
+  }
+  .contactContainer {
+    flex-direction: column;
+  }
+
+  .contactRight {
+    height: 100%;
+    width: 100%;
+    padding: 1rem 0;
+  }
+
+  .contactRight h1 {
+    font-size: 22px;
+  }
+
+  .contactRightIcon {
+    font-size: 32px;
+  }
+
+  .fa-facebook-f:hover {
+    color: #3b5998 !important;
+  }
+
+  .fa-line:hover {
+    color: #00b900 !important;
+  }
+
+  .contactLeft {
+    height: 100%;
+    width: 100%;
+    padding: 3rem 0;
+  }
+  .contactLeft img {
+    width: 100%;
+    height: 300px;
+  }
+}
+
+
+
+/* .about {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.aboutService {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   height: 100vh;
 }
 
@@ -451,4 +960,4 @@ video {
     width: 100%;
     height: 300px;
   }
-}
+} */

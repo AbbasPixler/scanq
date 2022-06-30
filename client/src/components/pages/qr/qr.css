@@ -1,10 +1,10 @@
 .qr {
     display: flex;
+    height: 100%;
 }
 
 .genQr {
     flex:10;
-    height: 92vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -14,14 +14,16 @@
 }
 
 .genQr h1 {
-    font-family: 'Josefin Sans', sans-serif;
     font-size: 52px;
     font-weight: 400;
     letter-spacing: 5px;
     margin-bottom: 10px;
     padding: 6px;
 }
-
+.hide-picbg img{
+    position:absolute;
+    opacity:0;
+}
 #paddingSlider{
     direction: rtl;
     color: transparent;
@@ -60,7 +62,7 @@
     padding: 1rem;
     color: #ffffff;
     font-size: 1rem;
-    background: teal;
+    background: #ffde59;
     border-radius: 20px;
     margin-top: 14px;
   }
@@ -75,24 +77,259 @@
     transition: all 0.36s ease-in-out;
   }
   
-/*   input:focus {
-    width: 50%;
-  } */
+  .genQr {
+    flex: 9 1;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #ebebeb;
+}
+.qrcode-content {
+    flex: 6;
+    padding: 50px;
+    flex-direction: column;
+    display: flex;
+    border:none;
+}
+.qrcode-icon {
+    flex: 6;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+div#print {
+    margin: 0 auto;
+}
+.qrcode-content-inner {
+    flex-direction: column;
+    display: flex;
+    border: none;
+    padding: 50px;
+}
+.genQr h1 {
+    font-size: 35px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    text-align: center;
+    padding-bottom: 1rem;
+}
+.qrcode-content-inner label {
+    font-size: 20px;
+    display: inline-block;
+}
+.form-group label {
+    width: 100%;
+    display: block;
+    margin-bottom: 5px;
+    padding-top: 1rem;
+}
+.form-group input {
+    margin: 0;
+    width: 90%;
+}
+.form-group input#mui-3 + fieldset {
+    width: 100%;
+    border: none;
+     border-bottom: 1px solid #363636; 
+    border-radius: 0;
+}
+.form-group div {
+    width: 100%;
+    border: none !important;
+    outline: none;
+    box-shadow: none;
+}
+input#mui-2,input#mui-1 {
+    width: 51px;
+    height: 51px;
+    padding: 0;
+}
 
+span.colorcode {
+    position: absolute;
+    right: -99px;
+    top: 4px;
+    border: 1px solid rgb(119 119 119);
+    height: 41px;
+    width: 100px;
+    line-height: 41px;
+    text-align: center;
+}
+.form-group.bg-color-element{
+    position: relative;
+}
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline{
+    border:none;
+}
+.form-group div fieldset {
+    border: none;
+}
+.form-group.bg-color-element label {
+    display: inline-block;
+    width: auto;
+}
+.form-group.bg-color-element div {
+    display: inline-block;
+    width: auto;
+    text-align: right;
+    float: right;
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+.form-group.bg-color-element {
+    width: 80%;
+    margin-top: 25px;
+}
+
+input[type="range"] { 
+    margin: auto;
+    -webkit-appearance: none;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 0; 
+    width: 500px;
+    padding: 0px;
+    height: 10px;
+    
+}
+
+::-webkit-slider-runnable-track {
+    background: #ddd;
+}
+
+/*
+ * 1. Set to 0 width and remove border for a slider without a thumb
+ * 2. Shadow is negative the full width of the input and has a spread 
+ *    of the width of the input.
+ */
+::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+    background: #363636;
+    box-shadow: -500px 0 0 500px #ffde59; 
+    border: 0px solid #999;
+    border-radius: 20px;
+}
+
+::-moz-range-track {
+    height:10px;
+    width: 10px;
+    background: #ddd;
+    border-radius: 100px;
+}
+
+::-moz-range-thumb {
+    background: #363636;
+    height: 10px;
+    width: 10px;
+    border: 0px solid #999;
+    border-radius: 0 !important;
+    box-shadow: -500px 0 0 500px #ffde59;
+    box-sizing: border-box;
+    border-radius: 100px;
+}
+
+::-ms-fill-lower { 
+    background: #ffde59;
+}
+
+::-ms-thumb { 
+    background: #fff;
+    border: 0px solid #999;
+    height: 10px;
+    width: 10px;
+    box-sizing: border-box;
+}
+
+::-ms-ticks-after { 
+    display: none; 
+}
+
+::-ms-ticks-before { 
+    display: none; 
+}
+
+::-ms-track { 
+    background: #ddd;
+    color: transparent;
+    height: 10px;
+    border: none;
+    border-radius: 100px;
+}
+
+::-ms-tooltip { 
+    display: none;
+}
+.download-btn button {
+    background-color: #29A89F;
+    padding: 15px 30px;
+    border-radius: 30px;
+    color: #363636;
+    font-weight: 600;
+}
+.download-btn {
+    margin-top: 5rem;
+}
 
   @media only screen and (max-width: 480px)  {
       .qr {
           flex-direction: column;
-          height: 90vh;
       }
 
       .genQr h1 {
-          font-size: 40px;
+          font-size: 24px;
       }
           input {
               width: 70%
           }
-/*           input:focus {
-            width: 80%;
-          } */
   }
+
+
+  @media only screen and (max-width: 786px)  {
+  
+
+    .genQr h1 {
+        font-size: 25px;
+    }
+    .qrcode-content-inner label {
+        display: inline-block;
+        font-size: 16px;
+    }
+    .qrcode-content-inner{
+        padding:0;
+    }
+    .form-group.bg-color-element {
+        margin-top: 5px;
+        width: 72%;
+    }
+}
+@media only screen and (max-width: 767px)  {
+    .genQr {
+        display:block;
+    }
+    .qrcode-content {
+        padding: 15px;
+    }    
+    .genQr h1 {
+        font-size: 25px;
+    }
+    .qrcode-content-inner label {
+        display: inline-block;
+        font-size: 16px;
+    }
+    .qrcode-content-inner{
+        padding:0;
+    }
+    .form-group.bg-color-element {
+        margin-top: 5px;
+        width: 72%;
+    }
+}

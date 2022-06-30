@@ -7,7 +7,7 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 // const FACEBOOK_CLIENT_ID = "301804745494462"
 // const FACEBOOK_CLIENT_SECRET = "28d7db472f3fb55a4f857567c3acb055";
 
-const SocialBaseUrl = "https://api.eatout.solutions/";
+const SocialBaseUrl = "https://api.budvista.co/";
 
 
 // ===========================GOOGLE STRATEGY===========================

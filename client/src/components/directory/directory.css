@@ -1,0 +1,92 @@
+.directory {
+    border-top: 1px dotted #666666;
+}
+
+.aboutDirectory {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.aboutDirectoryTitle {
+    font-family: "Prompt", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    color: #666666;
+    padding: 1rem 0;
+}
+
+.aboutDirectorySubtitle {
+    display: flex;
+    flex-direction: column;
+    line-height: 20px;
+    color: #666666;
+}
+
+.aboutDirectorySubtitle a {
+    font-family: "Prompt", sans-serif;
+    font-size: 10px !important;
+    font-weight: 400;
+}
+
+
+
+.aboutDirectoryForm {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.requestDemo {
+    width: 240px;
+    height: 40px;
+    padding:  10px 0;
+    background-color: #29A89F;
+    border-radius: 10px;
+    color: #ffffff;
+    font-family: "Prompt", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.requestDemo span{
+    color: white;
+    font-weight: 400;
+    font-size: 17px;
+}
+
+
+.requestDemo:hover {
+    background-color: #3cd4ca;
+}
+
+
+
+@media only screen and (max-width: 480px) {
+    .aboutDirectory {
+        flex-direction: column;
+    }
+
+    .aboutDirectoryTitle {
+        border-bottom: 1px dotted #666666;
+    }
+
+    .aboutDirectoryForm {
+        padding: 0;
+        margin-top: 16px;
+    }
+    .requestDemo {
+        width: 100%;
+    }
+}

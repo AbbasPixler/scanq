@@ -397,7 +397,7 @@ return (
                 onChange={(e) => setYoutube(e.target.value)}
               />
             </Box>
-            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+            {/* <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <InsertPhotoIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
               <TextField
                 sx={{ mt: 2, width: "60%", height: "50%" }}
@@ -429,7 +429,7 @@ return (
                 value={Robinhood}
                 onChange={(e) => setRobinhood(e.target.value)}
               />
-            </Box>
+            </Box> */}
            <div className="catlabel">
               <label>Category</label>
               <div className="checkcategory">              
