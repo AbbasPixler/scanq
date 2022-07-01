@@ -12,6 +12,12 @@ import CloseIcon from "@mui/icons-material/Close";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import PercentIcon from '@mui/icons-material/Percent';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Chip from '@mui/material/Chip';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Box from "@mui/material/Box";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -30,16 +36,98 @@ export default function Addproduct() {
   const [productCategories, setProdductCategories] = useState([])
   const [THCPercent, setTHCPercent] = useState();
   const [CBDPercent, setCBDPercent] = useState();
+  const [productType, setProductType] = useState();
+  const [strainType, setStrainType] = useState();
+  const [flavourType, setflavourType] = useState([]);
+  const [effectType, setEffectType] = useState([]);
+  const [recommended, setRecommended] = useState();
+
+
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+  
+  const productTypeArray = [
+    "Flower",
+    "Pre-rolls",
+    "Edibles",
+    "Accessories",
+    "Food",
+    "Drink",
+    "Others"
+    ]
+
+    const strainTypeArray = [
+      "Savita",
+    "Hybrid",
+    "Indica"
+    ]
+    const effectTypeArray = [
+      "Happy",
+      "Creative",
+      "Euphoria",
+      "Relaxed",
+      "Sleep",
+      "Stone",
+      "Talkative",
+      "Focused",
+      "Hungry",
+      "Uplifting",
+      "Energizing",
+      "Sociable"
+
+    ]
+
+    const flavourTypeArray = [
+      "Herbal",
+      "Earthy",
+      "Citrus",
+      "Vanilla",
+      "Mint",
+      "Lemon",
+      "Pine",
+      "Sweet",
+      "Spicy",
+      "Woody",
+      "Nutty",
+      "Grape",
+      "Fruity",
+      "Berry",
+      "Menthol"
+
+    ]
 
   const [values, setValues] = React.useState({
     amount: "",
   });
+
+
+  
+
+
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
   const [category, setCategory] = React.useState("THB");
+
+  const handleFlavourChange = (e)=>{
+    setflavourType(e.target.value)
+  }
+  const handleEffectChange = (e)=>{
+    setEffectType(e.target.value)
+  }
+  const onCheckBoxChange = (e)=>{
+    setRecommended(e.target.checked)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,12 +137,38 @@ export default function Addproduct() {
       setError(true)
       setErrorMsg("Please fill all the details in the form!")
     }else{
+
+      var effectString = "";
+      effectType.map((effect)=>{
+        if(effectString.length < 1){
+          effectString = effect
+        }else{
+          effectString += "_"+effect;
+        }
+      })
+
+      var flavourString = "";
+      flavourType.map((flavour)=>{
+        if(flavourString.length < 1){
+          flavourString = flavour
+        }else{
+          flavourString += "_"+flavour;
+        }
+      })
+
     const newProduct = {
       username: user.username,
       title,
       productDesc,
       price,
       category,
+      CBD: CBDPercent,
+      THC: THCPercent,
+      strainType,
+      productType,
+      flavourType: flavourString,
+      effectType: effectString,
+      recommended
     };
     
     if (file) {
@@ -69,7 +183,7 @@ export default function Addproduct() {
         console.log(err)
       }
     }
-    try {
+    try {      
       const res = axiosInstance.post("/products", newProduct);
       console.log(res)
       setOpen(true)
@@ -147,7 +261,7 @@ export default function Addproduct() {
             ></TextField>
             <TextField
               fullWidth
-              sx={{ mt: 2, width: "100%", height: "120px" }}
+              sx={{ mt: 4, width: "100%", height: "120px" }}
               id="outlined-multiline-static"
               label="Product Description"
               multiline
@@ -157,63 +271,51 @@ export default function Addproduct() {
             />
             <TextField
               fullWidth
-              sx={{ mt: 2, width: "40%", height: "50px" }}
+              sx={{ mt: 4, width: "40%", height: "50px" }}
               id="outlined-basic"
               label="Price"
               variant="outlined"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             ></TextField>
-{/* Product Type */}
-              <div className="productPriceCat">
               <TextField
                 fullWidth
                 sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
                 id="outlined-select-productCategories"
                 select
-                label="Select"
+                label="Select product type"
                 value={productType}
                 onChange={(e) => setProductType(e.target.value)}
-                helperText="Please select your product type"
               >
-                {productCategories.map((option) => (
-                  <MenuItem key={option.name} value={option.name}>
-                    {option.name}
+                {productTypeArray.map((option) => (
+                  <MenuItem key={option} value={option}>
+                    {option}
                   </MenuItem>
                 ))}
               </TextField>
-            </div>
-{/* Strain Type Type */}
-            <div className="productPriceCat">
               <TextField
                 fullWidth
                 sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
                 id="outlined-select-productCategories"
                 select
-                label="Select"
+                label="Select strain type"
                 value={strainType}
                 onChange={(e) => setStrainType(e.target.value)}
-                helperText="Please select your strain type!"
               >
-                {productCategories.map((option) => (
-                  <MenuItem key={option.name} value={option.name}>
-                    {option.name}
+                {strainTypeArray.map((option) => (
+                  <MenuItem key={option} value={option}>
+                    {option}
                   </MenuItem>
                 ))}
               </TextField>
-            </div>
-
-            {/* Product Category Type */}
-            <div className="productPriceCat">
               <TextField
                 fullWidth
                 sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
                 id="outlined-select-productCategories"
                 select
-                label="Select"
+                label="Select product category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                helperText="Please select your product category"
               >
                 {productCategories.map((option) => (
                   <MenuItem key={option.name} value={option.name}>
@@ -221,65 +323,92 @@ export default function Addproduct() {
                   </MenuItem>
                 ))}
               </TextField>
-            </div>
             {/* Percentage of Cannabis */}
             <TextField
               fullWidth
-              sx={{ mt: 2, width: "40%", height: "50px" }}
+              sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
               id="outlined-basic"
-              label="Price"
+              label="CBD"
               variant="outlined"
               value={CBDPercent}
               onChange={(e) => setCBDPercent(e.target.value)}
-            ><PercentIcon/></TextField>
-              <TextField
+              >
+              <span><PercentIcon fontSize="small"/></span>
+            </TextField>
+            <TextField
               fullWidth
-              sx={{ mt: 2, width: "40%", height: "50px" }}
+              sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
               id="outlined-basic"
-              label="Price"
+              label="THC"
               variant="outlined"
               value={THCPercent}
               onChange={(e) => setTHCPercent(e.target.value)}
             ></TextField>
-            {/* Percentage of Cannabis */}
             
-            <div className="productPriceCat">
-              <TextField
-                fullWidth
-                sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
-                id="outlined-select-productCategories"
-                select
-                label="Select"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                helperText="Please select your product category"
-              >
-                {productCategories.map((option) => (
-                  <MenuItem key={option.name} value={option.name}>
-                    {option.name}
-                  </MenuItem>
-                ))}
-              </TextField>
+      <FormControl sx={{ mt: 4, width: "40%" }}>
+        <InputLabel id="demo-multiple-chip-label">Product Effect</InputLabel>
+        <Select
+          labelId="demo-multiple-chip-label"
+          id="demo-multiple-chip"
+          multiple
+          value={effectType}
+          onChange={handleEffectChange}
+          input={<OutlinedInput id="select-multiple-chip" label="Product Effect" />}
+          renderValue={(selected) => (
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+              {selected.map((value) => (
+                <Chip key={value} label={value} />
+              ))}
+            </Box>
+          )}
+          MenuProps={MenuProps}
+        >
+          {effectTypeArray.map((name) => (
+            <MenuItem
+              key={name}
+              value={name}
+            >
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
+      <FormControl sx={{ mt: 3.5, width: "40%" }}>
+        <InputLabel id="demo-multiple-chip-label">Product Flavour</InputLabel>
+        <Select
+          labelId="demo-multiple-chip-label"
+          id="demo-multiple-chip"
+          multiple
+          value={flavourType}
+          onChange={handleFlavourChange}
+          input={<OutlinedInput id="select-multiple-chip" label="Product Flavour" />}
+          renderValue={(selected) => (
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+              {selected.map((value) => (
+                <Chip key={value} label={value} />
+              ))}
+            </Box>
+          )}
+          MenuProps={MenuProps}
+        >
+          {flavourTypeArray.map((name) => (
+            <MenuItem
+              key={name}
+              value={name}
+            >
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
+    <div className="loginRmb">
+              <input className="loginCheckbox" onClick = {onCheckBoxChange} type="checkbox" value={recommended}/>
+              <p><strong>Add recommended tag to this product!</strong></p>
             </div>
 
-            <div className="productPriceCat">
-              <TextField
-                fullWidth
-                sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
-                id="outlined-select-productCategories"
-                select
-                label="Select"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                helperText="Please select your product category"
-              >
-                {productCategories.map((option) => (
-                  <MenuItem key={option.name} value={option.name}>
-                    {option.name}
-                  </MenuItem>
-                ))} 
-              </TextField>
-            </div>
+    
             
             <div className="addproductBtn">
               {/* <Button className="" variant="outlined" color="primary">
@@ -316,7 +445,7 @@ export default function Addproduct() {
                 severity="error"
                 sx={{ width: "100%" }}
               >
-                {/ Register failed, Username has already been used /}
+                {/* {/ Register failed, Username has already been used /} */}
                 {errorMsg}
               </Alert>
             </Snackbar>

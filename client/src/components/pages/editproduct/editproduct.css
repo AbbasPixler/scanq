@@ -1,9 +1,11 @@
 .editproduct {
   display: flex;
-  height: 92vh;
+  /* height: 92vh; */
   width: 100%;
 }
-
+.form-group-mui{
+  margin-bottom:1rem;
+}
 .editproductWrapper {
   flex: 9;
   padding: 0px 0px 0px 70px;

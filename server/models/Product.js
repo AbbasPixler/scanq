@@ -27,6 +27,28 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    strainType:{
+      type: String
+    },
+    productType:{
+      type: String
+    },
+    flavourType:{
+      type:String
+    },
+    effectType:{
+      type:String
+    },
+    CBD:{
+      type: String
+    },
+    THC:{
+      type: String
+    },
+    recommended:{
+      type: Boolean,
+      default: false
+    }
   },
   { timestamps: true }
 );
