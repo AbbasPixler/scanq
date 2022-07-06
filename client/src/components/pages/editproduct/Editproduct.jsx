@@ -13,13 +13,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { PicBaseUrl } from "../../../imageBaseUrl";
-import PercentIcon from '@mui/icons-material/Percent';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Box from "@mui/material/Box";
+import PercentIcon from '@mui/icons-material/Percent';
+import InputAdornment from '@mui/material/InputAdornment';
 // import { pink } from "@material-ui/core/colors";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -347,6 +348,9 @@ export default function Editproduct() {
               variant="outlined"
               value={CBDPercent}
               onChange={(e) => setCBDPercent(e.target.value)}
+              InputProps={{
+                startAdornment: <InputAdornment position="end"><PercentIcon fontSize="small"/></InputAdornment>,
+              }}
               >
               <span><PercentIcon fontSize="small"/></span>
               </TextField>
@@ -358,6 +362,9 @@ export default function Editproduct() {
               variant="outlined"
               value={THCPercent}
               onChange={(e) => setTHCPercent(e.target.value)}
+              InputProps={{
+                startAdornment: <InputAdornment position="end"><PercentIcon fontSize="small"/></InputAdornment>,
+              }}
             ></TextField>
         <FormControl sx={{ mt: 4, width: "40%"  }}>
         <InputLabel id="demo-multiple-chip-label">Product Effect</InputLabel>

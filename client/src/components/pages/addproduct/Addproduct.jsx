@@ -12,12 +12,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import PercentIcon from '@mui/icons-material/Percent';
+import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Box from "@mui/material/Box";
+
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -280,7 +282,7 @@ export default function Addproduct() {
             ></TextField>
               <TextField
                 fullWidth
-                sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
+                sx={{ mt: 4, width: "40%", height: "50px"}}
                 id="outlined-select-productCategories"
                 select
                 label="Select product type"
@@ -295,7 +297,7 @@ export default function Addproduct() {
               </TextField>
               <TextField
                 fullWidth
-                sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
+                sx={{ mt: 4, width: "40%", height: "50px"}}
                 id="outlined-select-productCategories"
                 select
                 label="Select strain type"
@@ -310,7 +312,7 @@ export default function Addproduct() {
               </TextField>
               <TextField
                 fullWidth
-                sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
+                sx={{ mt: 4, width: "40%", height: "50px"}}
                 id="outlined-select-productCategories"
                 select
                 label="Select product category"
@@ -326,23 +328,28 @@ export default function Addproduct() {
             {/* Percentage of Cannabis */}
             <TextField
               fullWidth
-              sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
+              sx={{ mt: 4, width: "40%", height: "50px"}}
               id="outlined-basic"
               label="CBD"
               variant="outlined"
               value={CBDPercent}
               onChange={(e) => setCBDPercent(e.target.value)}
-              >
-              <span><PercentIcon fontSize="small"/></span>
-            </TextField>
+              InputProps={{
+                startAdornment: <InputAdornment position="end"><PercentIcon fontSize="small"/></InputAdornment>,
+              }}
+              />
+             
             <TextField
               fullWidth
-              sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
+              sx={{ mt: 4, width: "40%", height: "50px"}}
               id="outlined-basic"
               label="THC"
               variant="outlined"
               value={THCPercent}
               onChange={(e) => setTHCPercent(e.target.value)}
+              InputProps={{
+                startAdornment: <InputAdornment position="end"><PercentIcon fontSize="small"/></InputAdornment>
+              }}
             ></TextField>
             
       <FormControl sx={{ mt: 4, width: "40%" }}>
@@ -445,7 +452,7 @@ export default function Addproduct() {
                 severity="error"
                 sx={{ width: "100%" }}
               >
-                {/* {/ Register failed, Username has already been used /} */}
+                {/ Register failed, Username has already been used /}
                 {errorMsg}
               </Alert>
             </Snackbar>

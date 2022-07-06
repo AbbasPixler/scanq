@@ -81,8 +81,32 @@ span.c-name {
     padding: 6px;
 }
 
-@media only screen and (max-width: 767px) {
-
+@media only screen and (max-width: 480px) {
+    product image size and border raduis 
+    .product-imgs img {
+           border-radius: 10px;
+           height: 180px;
+           object-fit: cover;
+           width: 160px;
+   }
+   Product detail section
+    span.c-name {
+      font-size: 14px;
+   }
+       span.recommended {
+           background: #29a493;
+      border-radius: 10px;
+      color: #fff;
+      font-weight: 400;
+      line-height: 2;
+      padding: 2px 16px;
+   }
+        .menu-content h3 {
+      font-family: roboto,serif;
+      font-size: 16px;
+      font-weight: 700;
+   }
+   
    
 }
 
@@ -109,9 +133,10 @@ span.c-name {
         object-fit: cover;
 }
 .menu-content {
-    flex: 1 0 60%;
+    flex: 0 1 60%;
     padding: 8px;
-}
+ } 
+ 
 .MuiPaper-elevation1 {
     box-shadow: none;
 }

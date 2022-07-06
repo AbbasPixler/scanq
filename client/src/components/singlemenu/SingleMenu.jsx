@@ -11,6 +11,7 @@ import Products from "../products/Products";
 import { axiosInstance } from "../../config";
 import { PicBaseUrl } from "../../imageBaseUrl";
 import { Context } from "../../context/Context";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 const categories = [
   {
@@ -98,12 +99,10 @@ export default function SingleMenu() {
         }
       </div>
       <div className="menutitle">
-        <Link to={`/?user=${shop.username}`}>
-        <h1>{shop.username}</h1>
-        </Link>
-        <p>
-          {shop.shopTitle}
-        </p>
+        <img src="https://storage.googleapis.com/snackyo/budvista_logo.png" />
+        <h1>{shop.shopTitle}</h1>
+        <h1>{shop.address}</h1>
+        <p className="time"><AccessTimeIcon/> <span className="open">Open Now</span> :  <span className="close">Close 20:00</span></p>
       </div>
 
       <div className="menuFilters">

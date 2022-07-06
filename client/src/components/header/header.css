@@ -61,6 +61,46 @@
 
 }
 
+
+/* nilaya 6thjuly2022 */
+
+.header {
+    display: block;
+}
+
+.headerHead {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    padding: 50px;
+    text-align: center;
+}
+
+.headerHead h1 {
+    color: #fff;
+    font-size: 45px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.headerHead .headerBtn {
+    display: inline-flex;
+    background: #fff;
+    border: 0;
+    padding: 10px 40px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: capitalize;
+    border-radius: 5px;
+}
+
+.headerHead .headerBtn svg {
+    margin-left: 10px;
+}
+
 @media only screen and (max-width: 480px) {
     .headerTitles {
         width: 80%;
@@ -69,5 +109,11 @@
 
     .headerTitlesSm {
         font-size: 14px;
+    }
+
+    .headerHead {
+        width: 100%;
+        padding: 0;
+
     }
 }

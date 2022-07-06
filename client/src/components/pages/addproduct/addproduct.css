@@ -1,6 +1,6 @@
 .addproduct {
     display: flex;
-    height: 92vh;
+    height: 100%;
     width: 100%;
 }
 
@@ -107,4 +107,9 @@ input, select {
     .addproductBody {
         margin-top: 1rem;
     }
+
+    .css-a8b1jo-MuiFormControl-root-MuiTextField-root, .css-17hh878-MuiFormControl-root, .loginRmb, .css-6utiqi-MuiFormControl-root, .css-1f1s0qz-MuiFormControl-root-MuiTextField-root {
+        width: 100%!important;
+    }
+
 }

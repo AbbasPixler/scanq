@@ -8,13 +8,15 @@
 
 .headerimg {
     position: relative;
+    height: 500px;
+    overflow: hidden;
 }
 
 
 
 .headerimg img{
     width: 100%;
-    height: 500px;
+    height: 100%;
     object-fit: cover;
     border-radius: 0px;
 }
@@ -27,7 +29,7 @@
     width: 100%;
     height: 100%;
     content: '';
-    top: -3px;
+    top: 0;
 }
 
 .menutitle {
@@ -185,6 +187,54 @@ button.filters:hover{
 }
 
 
+/* nilaya 6th july 2022*/
+.menutitle img {
+    width: 200px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.menutitle .time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.menutitle .time svg {
+    margin-right: 10px;
+}
+
+.menutitle .time .open {
+    color: green;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.menutitle .time .close {
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+.menuFilter {
+    width: 100%!important;
+    background-color: #29a493;
+}
+
+.filters {
+    background: transparent;
+    border: 0;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 20px!important;
+}
+
+button.filters:hover {
+    border: 0;
+}
+
+
 @media only screen and (max-width: 480px) {
     .singlemenu {
         padding: 0px !important;
@@ -194,7 +244,7 @@ button.filters:hover{
 
     .headerimg img {
         border-radius: 0;
-        height: 400px;
+        height: 100%;
     }
 
     .menuFilter {

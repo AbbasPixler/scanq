@@ -42,3 +42,56 @@ body .MuiPaper-rounded {
     height: auto;
     overflow-y: unset;
 }
+
+/* nilaya 6thjuly2022 */
+
+.category-title {
+    margin: 30px 0;
+}
+
+.category-title h3 {
+    position: relative;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.category-title h3:after {
+    position: absolute;
+    content: '';
+    width: 80%;
+    height: 1px;
+    background: #363636;
+    top: 15px;
+    right: 0;
+}
+
+.category-title h2 {
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: #363636;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+
+@media only screen and (max-width: 480px) {
+
+    .product-menupage {
+        flex-direction: row;
+    }
+    
+    .product-imgs img {
+        width: 100%!important;
+    }
+    
+    span.recommended {
+        padding: 2px 20px!important;
+    }
+    
+    .content-middle-Nm h6 {
+        align-items: center;
+        justify-content: space-between;
+    }
+
+}
