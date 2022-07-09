@@ -1,5 +1,5 @@
 import React from "react";
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
+// import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import Header from "../../header/Header"
 import "./map.css"
 import  { PicBaseUrl } from "../../../imageBaseUrl";

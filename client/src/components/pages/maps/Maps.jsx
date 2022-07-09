@@ -7,6 +7,7 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
@@ -39,20 +40,25 @@ export default function Maps(){
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+
+  const [open_1, setOpen_1] = React.useState(false);
+  const handleOpen_1 = () => setOpen_1(true);
+  const handleClose_1 = () => setOpen_1(false);
+
   return (
     <div className="maps-main" style={{backgroundImage:"url(https://www.komar.de/en/media/catalog/product/cache/5/image/9df78eab33525d08d6e5fb8d27136e95/4/-/4-050_worldmap_neu_ma_1.jpg)"}}>
         <Container>
             <div className="map-popup-outer">
 
             <div>
-              <Button onClick={handleOpen}>Open modal</Button>
+              <Button onClick={handleOpen}>modal one</Button>
               <Modal
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
-                <Box sx={style}>
+                <Box sx={style} onClick={handleClose}>
                   <div className="map-popup-modal">
                   <div className="map-popup-modal-outer">
                     <div className="map-popup-modal-upper">
@@ -137,6 +143,74 @@ export default function Maps(){
                       <div className="map-popup-view-btn">
                         <Link to="#" className="viewMorePosts">View Menu</Link>
                       </div>
+                    </div>
+                  </div>                
+                </div>
+                </Box>
+              </Modal>
+            </div> 
+
+            <div>
+              <Button onClick={handleOpen_1}>modal two</Button>
+              <Modal
+                open={open_1}
+                onClose={handleClose_1}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style} onClick={handleClose}>
+                  <div className="map-popup-modal">
+                  <div className="map-popup-modal-outer">
+                    <div className="map-popup-modal-upper map-popup-modal-upper_1">
+                      <p>search result cannabis shop around thonglhor</p>
+                    </div>
+
+                    <div className="map-popup-modal-image map-popup-modal-image_1">
+                      <div className="map-popup-modal-image-image">
+                        <img src="https://img.freepik.com/free-photo/cannabis-leaves-shoots-placed-shopping-cart_1150-19252.jpg?w=2000&t=st=1657041724~exp=1657042324~hmac=9fd3a8f8e519d5796a14c063ac28e2d0b7a9df331c82ee3ea07e539f261c5474" />
+                      </div>
+                      <div className="map-popup-modal-image-content">
+                        <h6>Hightland cafe</h6>
+                        <p>Dispensary</p>
+                        <Link to="#" className="map-popup-modal-image-content-link">Open</Link>
+                      </div>
+                      <div className="map-popup-modal-heart">
+                        <FavoriteBorderIcon />
+                      </div>
+                    </div>
+
+                    <div className="map-popup-modal-image map-popup-modal-image_1">
+                      <div className="map-popup-modal-image-image">
+                        <img src="https://img.freepik.com/free-photo/cannabis-leaves-shoots-placed-shopping-cart_1150-19252.jpg?w=2000&t=st=1657041724~exp=1657042324~hmac=9fd3a8f8e519d5796a14c063ac28e2d0b7a9df331c82ee3ea07e539f261c5474" />
+                      </div>
+                      <div className="map-popup-modal-image-content">
+                        <h6>Hightland cafe</h6>
+                        <p>Dispensary</p>
+                        <Link to="#" className="map-popup-modal-image-content-link">Open</Link>
+                      </div>
+                      <div className="map-popup-modal-heart">
+                        <FavoriteBorderIcon />
+                      </div>
+                    </div>
+
+                    <div className="map-popup-modal-image map-popup-modal-image_1">
+                      <div className="map-popup-modal-image-image">
+                        <img src="https://img.freepik.com/free-photo/cannabis-leaves-shoots-placed-shopping-cart_1150-19252.jpg?w=2000&t=st=1657041724~exp=1657042324~hmac=9fd3a8f8e519d5796a14c063ac28e2d0b7a9df331c82ee3ea07e539f261c5474" />
+                      </div>
+                      <div className="map-popup-modal-image-content">
+                        <h6>Hightland cafe</h6>
+                        <p>Dispensary</p>
+                        <Link to="#" className="map-popup-modal-image-content-link">Open</Link>
+                      </div>
+                      <div className="map-popup-modal-heart">
+                        <FavoriteBorderIcon />
+                      </div>
+                    </div>
+
+
+                    <div className="map-popup-modal-upper map-popup-modal-upper_1 map-popup-modal-upper_2 ">
+                      <p>scroll for more</p>
+                      <Link to="#"><KeyboardArrowDownIcon /></Link>
                     </div>
                   </div>                
                 </div>

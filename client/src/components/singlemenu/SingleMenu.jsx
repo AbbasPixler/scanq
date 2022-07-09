@@ -99,7 +99,9 @@ export default function SingleMenu() {
         }
       </div>
       <div className="menutitle">
-        <img src="https://storage.googleapis.com/snackyo/budvista_logo.png" />
+        <div className="menutitle_img">
+          <img src="https://storage.googleapis.com/snackyo/budvista_logo.png" />
+        </div>
         <h1>{shop.shopTitle}</h1>
         <h1>{shop.address}</h1>
         <p className="time"><AccessTimeIcon/> <span className="open">Open Now</span> :  <span className="close">Close 20:00</span></p>

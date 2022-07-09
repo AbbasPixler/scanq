@@ -287,12 +287,13 @@ export default function Editproduct() {
             />
               <TextField
                 fullWidth
-                sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
+                sx={{ mt: 4, width: "40%", height: "50px"}}
                 id="outlined-select-productCategories"
                 select
                 label="Select product type"
                 value={productType}
                 onChange={(e) => setProductType(e.target.value)}
+                className="input_width"
               >
                 {productTypeArray.map((option) => (
                   <MenuItem key={option} value={option}>
@@ -302,12 +303,13 @@ export default function Editproduct() {
               </TextField>
               <TextField
                 fullWidth
-                sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
+                sx={{ mt: 4, width: "40%", height: "50px"}}
                 id="outlined-select-productCategories"
                 select
                 label="Select strain type"
                 value={strainType}
                 onChange={(e) => setStrainType(e.target.value)}
+                className="input_width"
               >
                 {strainTypeArray.map((option) => (
                   <MenuItem key={option} value={option}>
@@ -317,21 +319,23 @@ export default function Editproduct() {
               </TextField>
             <TextField
               fullWidth
-              sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
+              sx={{ mt: 4, width: "40%", height: "50px"}}
               id="outlined-basic"
               label="Price"
               variant="outlined"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
+              className="input_width"
             ></TextField>
               <TextField
                 fullWidth
-                sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
+                sx={{ mt: 4, width: "40%", height: "50px"}}
                 id="outlined-select-productCategories"
                 select
                 label="Select product category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
+                className="input_width"
               >
                 {productCategories.map((option) => (
                   <MenuItem key={option.name} value={option.name}>
@@ -342,12 +346,13 @@ export default function Editproduct() {
               {/* Percentage of Cannabis */}
               <TextField
               fullWidth
-              sx={{ mt: 12, width: "40%", height: "50px", p: 1 }}
+              sx={{ mt: 4, width: "40%", height: "50px"}}
               id="outlined-basic"
               label="CBD"
               variant="outlined"
               value={CBDPercent}
               onChange={(e) => setCBDPercent(e.target.value)}
+              className="input_width"
               InputProps={{
                 startAdornment: <InputAdornment position="end"><PercentIcon fontSize="small"/></InputAdornment>,
               }}
@@ -356,12 +361,13 @@ export default function Editproduct() {
               </TextField>
               <TextField
               fullWidth
-              sx={{ mt: 12, width: "40%", height: "50px", p: 1  }}
+              sx={{ mt: 4, width: "40%", height: "50px"}}
               id="outlined-basic"
               label="THC"
               variant="outlined"
               value={THCPercent}
               onChange={(e) => setTHCPercent(e.target.value)}
+              className="input_width"
               InputProps={{
                 startAdornment: <InputAdornment position="end"><PercentIcon fontSize="small"/></InputAdornment>,
               }}
@@ -375,6 +381,7 @@ export default function Editproduct() {
           value={effectType}
           onChange={handleEffectChange}
           input={<OutlinedInput id="select-multiple-chip" label="Product Effect" />}
+          className="input_width"
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value) => (
@@ -402,6 +409,7 @@ export default function Editproduct() {
           multiple
           value={flavourType}
           onChange={handleFlavourChange}
+          className="input_width"
           input={<OutlinedInput id="select-multiple-chip" label="Product Flavour" />}
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>

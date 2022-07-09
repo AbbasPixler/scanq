@@ -108,8 +108,10 @@ input, select {
         margin-top: 1rem;
     }
 
-    .css-a8b1jo-MuiFormControl-root-MuiTextField-root, .css-17hh878-MuiFormControl-root, .loginRmb, .css-6utiqi-MuiFormControl-root, .css-1f1s0qz-MuiFormControl-root-MuiTextField-root {
+    .input_width {
         width: 100%!important;
     }
+
+
 
 }

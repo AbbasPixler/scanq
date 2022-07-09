@@ -47,6 +47,8 @@
     
 }
 
+
+
 .menutitle h1 {
     font-weight: 600;
     letter-spacing: 3px;
@@ -189,10 +191,20 @@ button.filters:hover{
 
 /* nilaya 6th july 2022*/
 .menutitle img {
-    width: 200px;
+    width: 100%;
+}
+
+.menutitle_img {
+    width: 100px;
+    height: 100px;
     margin: 0 auto;
     margin-bottom: 20px;
+    background: #fff;
+    border-radius: 50%;
+    line-height: 140px;
+    overflow: hidden;
 }
+
 
 .menutitle .time {
     display: flex;
@@ -258,6 +270,9 @@ button.filters:hover {
     }
 
 
+    .menutitle h1 {
+        font-size: 16px;
+    }
 
 
 

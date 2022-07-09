@@ -84,26 +84,10 @@ const ShopSchema = new mongoose.Schema(
         },
         categories:[ String ],
         timings:[
-          {
-          dayFrom: {
-          type:String,
-          required: false
+          
+        ]
         },
-        dayTo: {
-          type:String,
-          required: false
-        },
-        timeFrom: {
-          type:String,
-          required: false
-        },
-        timeTo: {
-          type:String,
-          required: false
-        }
-        }]
-      },
-      { timestamps: true }
+        { timestamps: true }
     );
 
 module.exports = mongoose.model("Shop", ShopSchema);

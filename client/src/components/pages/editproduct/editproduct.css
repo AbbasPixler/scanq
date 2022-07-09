@@ -102,6 +102,10 @@ input, select {
       height: 90vh;
 
   }
+  
+  .input_width {
+    width: 100%!important;
+}
 
   .editproductWrapper {
       padding: 0;
