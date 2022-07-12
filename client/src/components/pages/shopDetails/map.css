@@ -5,6 +5,22 @@
   height: 100%;
 }
 
+.noEventsdiv{
+  font-size: 25px;
+    border: solid;
+    padding: 10px 70px;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 105px;
+    max-width: 105px;
+
+}
+
+.addeventButton{
+    margin: auto;
+    margin-top: 105px;
+    max-width: 200px;
+}
 
 .headerTitles {
   display: flex;
@@ -371,6 +387,13 @@
 .follow-product-btn {
   text-align: center;
   margin: 30px 0;
+}
+.addEventLink{
+  padding: 10px 100px;
+  border-radius: 7px;
+  background-color: #21A89F;
+  border: #21A89F;
+  color: white;
 }
 
 .follow-product-btn .viewMorePosts {

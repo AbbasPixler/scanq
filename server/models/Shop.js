@@ -50,18 +50,6 @@ const ShopSchema = new mongoose.Schema(
           type: String,
           required: false
         },
-        grab:{
-          type: String,
-          required: false
-        },
-        lineman:{
-          type: String,
-          required: false
-        },
-        robinhood:{
-          type: String,
-          required: false
-        },
         qrCode:{
           codeText: {
             type: String, 
@@ -84,10 +72,27 @@ const ShopSchema = new mongoose.Schema(
         },
         categories:[ String ],
         timings:[
-          
-        ]
+          {
+          day: {
+          type:String,
+          required: false
         },
-        { timestamps: true }
+        shopStatus: {
+          type:String,
+          default: "Closed",
+          required: false
+        },
+        timeFrom: {
+          type:String,
+          required: false
+        },
+        timeTo: {
+          type:String,
+          required: false
+        }
+        }]
+      },
+      { timestamps: true }
     );
 
 module.exports = mongoose.model("Shop", ShopSchema);

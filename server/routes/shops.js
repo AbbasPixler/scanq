@@ -4,6 +4,7 @@ const Post = require("../models/Post");
 
 //Create Shop
 router.post("/", async (req, res) => {
+  console.log(req.body)
   if(req.body.twitter !== ""){
     if(req.body.twitter.slice(0, 8) !== "https://"){
       const TwitterString  = "https://"+req.body.twitter
@@ -28,24 +29,7 @@ router.post("/", async (req, res) => {
       req.body.youtube = youtubeString
     }
   }
-  if(req.body.grab !== ""){
-    if(req.body.grab.slice(0, 8) !== "https://"){
-      const grabString  = "https://"+req.body.grab
-      req.body.grab = grabString
-    }
-  }
-  if(req.body.lineman !== ""){
-    if(req.body.lineman.slice(0, 8) !== "https://"){
-      const linemanString  = "https://"+req.body.lineman
-      req.body.lineman = linemanString
-    }
-  }
-  if(req.body.robinhood !== ""){
-    if(req.body.robinhood.slice(0, 8) !== "https://"){
-      const robinhoodString  = "https://"+req.body.robinhood
-      req.body.robinhood = robinhoodString
-    }
-  }
+  
   //==================adding categories========================= 
   const newShop = new Shop(req.body);
   try {
@@ -65,6 +49,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
+    console.log(req.body)
     const shop = await Shop.find({username: req.params.id});
     if (shop[0].username === req.body.username) {
 
@@ -96,24 +81,7 @@ router.put("/:id", async (req, res) => {
             req.body.youtube = youtubeString
           }
         }
-        if(req.body.grab !== ""){
-          if(req.body.grab.slice(0, 8) !== "https://"){
-            const grabString  = "https://"+req.body.grab
-            req.body.grab = grabString
-          }
-        }
-        if(req.body.lineman !== ""){
-          if(req.body.lineman.slice(0, 8) !== "https://"){
-            const linemanString  = "https://"+req.body.lineman
-            req.body.lineman = linemanString
-          }
-        }
-        if(req.body.robinhood !== ""){
-          if(req.body.robinhood.slice(0, 8) !== "https://"){
-            const robinhoodString  = "https://"+req.body.robinhood
-            req.body.robinhood = robinhoodString
-          }
-        }
+        
 
         const updatedShop = await Shop.findOneAndUpdate(
           {username: req.params.id},

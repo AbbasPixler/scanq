@@ -26,6 +26,7 @@ import Editproduct from "./components/pages/editproduct/Editproduct";
 import ShopDetails from "./components/pages/shopDetails/shopDetails";
 import Maps from "./components/pages/maps/Maps";
 
+
 function App() {
   const {user} = useContext(Context);
   const { dispatch } = useContext(Context);
@@ -123,7 +124,7 @@ function App() {
         <Route path="/profileinfo" element={user ? <Profileinfo /> :<Register/>}></Route>
         <Route path="/createshop" element={user ? <Createshop /> :<Register/>}></Route>
         <Route path="/Events" element={<Events />}></Route>
-        <Route path="/ShopDetails" element={<ShopDetails />}></Route>
+        <Route path="/ShopDetails/:postId" element={<ShopDetails />}></Route>
         <Route path="/Maps" element={<Maps />}></Route>
       </Routes>
     </Router>

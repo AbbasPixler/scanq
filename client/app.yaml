@@ -14,3 +14,6 @@ handlers:
     upload: build/index.html
 
 service_account: snaqkyo@snaqkyo.iam.gserviceaccount.com
+
+env_variables:
+  REACT_APP_GOOGLE_KEY: "AIzaSyCyHn--Okuy3Q62gDaGI_64tCuf1svZ97k"

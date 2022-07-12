@@ -128,4 +128,16 @@ router.get("/getposts/limitation", async (req, res) => {
   }
 });
 
+// get Events related to a shop
+
+router.get("/getPostsByUsername/:id", async(req, res)=>{
+  try{
+    const username = req.params.id
+    const posts = await Post.find({username}).limit(4).sort({"createdAt":-1})
+    res.status(200).json(posts)
+  }catch(err){
+    res.status(500).json(err.message);
+  }
+})
+
 module.exports = router;

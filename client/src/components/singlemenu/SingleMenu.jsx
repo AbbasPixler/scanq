@@ -45,6 +45,8 @@ export default function SingleMenu() {
   const [products, setproducts] = useState([])
   const [productCategories, setProdductCategories] = useState([])
   const user = useContext(Context);
+  const[shopOpen, setShopOpen] = useState("Close")
+  const [closeTime, setCloseTime] = useState("")
 
   const [category, setCategory]= useState("")
 
@@ -63,6 +65,37 @@ export default function SingleMenu() {
       const getShop = async () => {
         const res = await axiosInstance.get('/shops/' + path)
         setShop(res.data[0])
+        
+      let newDate = new Date().getDay() 
+     
+      if(newDate == 1 && res.data[0].timings[0].shopStatus == "Open"){
+        setShopOpen("Open")
+        setCloseTime(res.data[0].timings[0].timeTo)
+      }
+      if(newDate == 2 && res.data[0].timings[1].shopStatus == "Open"){
+        setShopOpen("Open")
+        setCloseTime(res.data[0].timings[1].timeTo)
+      }
+      if(newDate == 3 && res.data[0].timings[2].shopStatus == "Open"){
+        setShopOpen("Open")
+        setCloseTime(res.data[0].timings[2].timeTo)
+      }
+      if(newDate == 4 && res.data[0].timings[3].shopStatus == "Open"){
+        setShopOpen("Open")
+        setCloseTime(res.data[0].timings[3].timeTo)
+      }
+      if(newDate == 5 && res.data[0].timings[4].shopStatus == "Open"){
+        setShopOpen("Open")
+        setCloseTime(res.data[0].timings[4].timeTo)
+      }
+      if(newDate == 6 && res.data[0].timings[5].shopStatus == "Open"){
+        setShopOpen("Open")
+        setCloseTime(res.data[0].timings[5].timeTo)
+      }
+      if(newDate == 7 && res.data[0].timings[6].shopStatus == "Open"){
+        setShopOpen("Open")
+        setCloseTime(res.data[0].timings[6].timeTo)
+      }
       };
       getShop()
     },[path])
@@ -104,7 +137,7 @@ export default function SingleMenu() {
         </div>
         <h1>{shop.shopTitle}</h1>
         <h1>{shop.address}</h1>
-        <p className="time"><AccessTimeIcon/> <span className="open">Open Now</span> :  <span className="close">Close 20:00</span></p>
+        <p className="time"><AccessTimeIcon/> <span className="open">{shopOpen == "Open"? shopOpen + " now" : shopOpen}</span> {shopOpen == "Open"? <span className="close">:  Closes {closeTime}</span> : <span className="close"></span>}</p>
       </div>
 
       <div className="menuFilters">
