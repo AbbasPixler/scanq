@@ -25,6 +25,13 @@ import Button from "@mui/material/Button";
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import FormHelperText from '@mui/material/FormHelperText';
+import GoogleMap from './GoogleMaps';
+
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
+import { height } from "@mui/system";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -65,7 +72,7 @@ export default function Createshop() {
 
   
   // ================================================
-  // =================Week Day=======================
+  // ===================Week Day=====================
   // ================================================
 
   const [schedule1, setSchedule1] = useState([]);
@@ -120,13 +127,22 @@ export default function Createshop() {
   const[FridayTimingDisabled, setFridayTimingDisabled] = useState(true)
   const[SaturdayTimingDisabled, setSaturdayTimingDisabled] = useState(true)
   const[SundayTimingDisabled, setSundayTimingDisabled] = useState(true)
-  // const[shopStatusStateMon, setShopStatusStateMon] = useState("Closed")
-  // const[shopStatusStateTue, setShopStatusStateTue] = useState("Closed")
-  // const[shopStatusStateWed, setShopStatusStateWed] = useState("Closed")
-  // const[shopStatusStateThu, setShopStatusStateThu] = useState("Closed")
-  // const[shopStatusStateFri, setShopStatusStateFri] = useState("Closed")
-  // const[shopStatusStateSat, setShopStatusStateSat] = useState("Closed")
-  // const[shopStatusStateSun, setShopStatusStateSun] = useState("Closed")
+
+
+  // ================================================================
+
+  // ================================================================
+  // =====================Google Maps States=========================
+  // ================================================================
+
+  const[mapAddress, setMapAddress] = useState("")
+  const[showingInfoWindow, setShowingInfoWindow] = useState(false)
+  const[activeMarker, setActiveMarker] = useState([])
+  const[selectedPlace, setSelectedPlace] = useState([])
+  const[mapCenter, setMapCenter] = useState([])
+
+
+  
 
 
   // ================================================================
@@ -197,11 +213,6 @@ export default function Createshop() {
     setSchedule6({...schedule6, ...day6})
     setSchedule7({...schedule7, ...day7})
     
-    // console.log(schedule1)
-    // console.log(schedule2)
-    // console.log(schedule3)
-    // console.log(schedule4)
-    
     
     const newShop = {
       username:user.username,
@@ -251,7 +262,6 @@ export default function Createshop() {
   useEffect(() => {
     const getShop = async () => {
       const res = await axiosInstance.get('/shops/' +user.username)
-      console.log("resonse:-", res.data[0].timings[0])
       if(res.data[0]){
         setButton("Update")
         setShop(res.data[0])
@@ -274,26 +284,19 @@ export default function Createshop() {
         setCheckboxItems(res.data[0].categories)
         // setShopStatusStateMon(res.data[0].timings[0].shopStatus)
         if(schedule1.shopStatus === "Open"){
-          console.log("YEs", schedule1.shopStatus)
           setMondayTimingDisabled(false)
         }
         if(schedule7.shopStatus === "Open"){
-          console.log("YEs", schedule7.shopStatus)
           setSundayTimingDisabled(false)
         } if(schedule2.shopStatus === "Open"){
-          console.log("YEs", schedule2.shopStatus)
           setTuesdayTimingDisabled(false)
         } if(schedule3.shopStatus === "Open"){
-          console.log("YEs", schedule3.shopStatus)
           setWednesdayTimingDisabled(false)
         } if(schedule4.shopStatus === "Open"){
-          console.log("YEs", schedule4.shopStatus)
           setThursdayTimingDisabled(false)
         } if(schedule5.shopStatus === "Open"){
-          console.log("YEs", schedule5.shopStatus)
           setFridayTimingDisabled(false)
         } if(schedule6.shopStatus === "Open"){
-          console.log("YEs", schedule6.shopStatus)
           setSaturdayTimingDisabled(false)
         }
       }
@@ -301,8 +304,6 @@ export default function Createshop() {
     getShop()
   }, [])
 
-  // console.log(schedule1.shopStatus)
-  // console.log(MondayTimingDisabled)
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -322,6 +323,7 @@ export default function Createshop() {
     setError(false)
   };
 
+  
 
   const action = (
     <React.Fragment>
@@ -364,6 +366,8 @@ return (
             />
           </div>
 
+
+
           <div className="shopFormBody">
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <HomeIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
@@ -381,11 +385,13 @@ return (
               />
             </Box>
 
+      
+
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <ArticleIcon sx={{ color: "action.active", mr: 1, my: 0.5 }}/>
               <TextField
                 fullWidth
-                sx={{ mt: 2, width: "60%", height: "50p%" }}
+                sx={{ mt: 2, width: "60%", height: "50%" }}
                 id="standard-multiline-flexible"
                 placeholder="Shop Description"
                 multiline
@@ -408,7 +414,7 @@ return (
                 onChange={(e) => setTelephone(e.target.value)}
               />
             </Box>
-
+            
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <PlaceIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
               <TextField
@@ -503,7 +509,6 @@ return (
               onChange={(e) => {
                 scheduleData.dayTo = e.target.value
                 setSchedule1({...schedule1, ...scheduleData})
-                console.log( "On change",e.target.value)
                 if(e.target.value === "Closed"){
                   scheduleData.shopStatus = e.target.value
                   setSchedule1({...schedule1, ...scheduleData})
@@ -963,132 +968,12 @@ return (
               />
             </FormControl>
           </div> 
-          {/* <div className="Weekdays">
-            <TextField
-              fullWidth
-              sx={{ mt: 3, mb:3, width: "20%", height: "50px", p: 1 }}
-              id="outlined-select-openingday"
-              select
-              label="From"
-              value={schedule2.dayFrom == undefined ? '' : schedule2.dayFrom}
-              onChange={(e) => {
-                scheduleData.dayFrom = e.target.value
-                setSchedule2({...schedule2, ...scheduleData})
-              }}
-            >
-              {weekdays.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-            <TextField
-              fullWidth
-              sx={{ mt: 3, mb:3, width: "20%", height: "50px", p: 1 }}
-              id="outlined-select-closingday"
-              select
-              label="To"
-              value={schedule2.dayTo == undefined ? '' : schedule2.dayTo}
-              onChange={(e) => {
-                scheduleData.dayTo = e.target.value
-                setSchedule2({...schedule2, ...scheduleData})
-              }}
-              // helperText="Please select your Opening day"
-            >
-              {weekdays.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-            <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
-              <FormHelperText id="filled-weight-helper-text">From</FormHelperText>
-              <OutlinedInput
-                id="outlined-adornment-timeFrom"
-                type="time"
-                value={schedule2.timeFrom == undefined ? '' : schedule2.timeFrom}
-                onChange={(e) => {
-                  scheduleData.timeFrom = e.target.value
-                  setSchedule2({...schedule2, ...scheduleData})
-                }}
-              />
-            </FormControl>
-            <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
-              <FormHelperText id="filled-weight-helper-text">To</FormHelperText>
-              <OutlinedInput
-                id="outlined-adornment-timeTo"
-                type="time"
-                value={schedule2.timeTo == undefined ? '' : schedule2.timeTo}
-                onChange={(e) => {
-                  scheduleData.timeTo = e.target.value
-                  setSchedule2({...schedule2, ...scheduleData})
-                }}
-              />
-            </FormControl>
-          </div> */}
-          {/* <div className="Weekdays">
-            <TextField
-              fullWidth
-              sx={{ mt: 3, mb:3, width: "20%", height: "50px", p: 1 }}
-              id="outlined-select-openingday"
-              select
-              label="From"
-              value={schedule3.dayFrom == undefined ? '' : schedule3.dayFrom}
-              onChange={(e) => {
-                scheduleData.dayFrom = e.target.value
-                setSchedule3({...schedule3, ...scheduleData})
-              }}
-            >
-              {weekdays.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-            <TextField
-              fullWidth
-              sx={{ mt: 3, mb:3, width: "20%", height: "50px", p: 1 }}
-              id="outlined-select-closingday"
-              select
-              label="To"
-              value={schedule3.dayTo == undefined ? '' : schedule3.dayTo}
-              onChange={(e) => {
-                scheduleData.dayTo = e.target.value
-                setSchedule3({...schedule3, ...scheduleData})
-              }}
-              // helperText="Please select your Opening day"
-            >
-              {weekdays.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-            <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
-              <FormHelperText id="filled-weight-helper-text">From</FormHelperText>
-              <OutlinedInput
-                id="outlined-adornment-timeFrom"
-                type="time"
-                value={schedule3.timeFrom == undefined ? '' : schedule3.timeFrom}
-                onChange={(e) => {
-                  scheduleData.timeFrom = e.target.value
-                  setSchedule3({...schedule3, ...scheduleData})
-                }}
-              />
-            </FormControl>
-            <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
-              <FormHelperText id="filled-weight-helper-text">To</FormHelperText>
-              <OutlinedInput
-                id="outlined-adornment-timeTo"
-                type="time"
-                value={schedule3.timeTo == undefined ? '' : schedule3.timeTo}
-                onChange={(e) => {
-                  scheduleData.timeTo = e.target.value
-                  setSchedule3({...schedule3, ...scheduleData})
-                }}
-              />
-            </FormControl>
-          </div> */}
+          <div className="googleMaps">
+            <GoogleMap
+            style={{width: "20px", height: "20px"}}
+            />
+          </div>
+         
           </div>
           <button className="shopSubmit" type="submit">
           {button ?"Update" :"Create"}
@@ -1120,7 +1005,7 @@ return (
               severity="error"
               sx={{ width: "100%" }}
             >
-              {/ Register failed, Username has already been used /}
+              {/* {/ Register failed, Username has already been used /} */}
               {errorMsg}
             </Alert>
           </Snackbar>

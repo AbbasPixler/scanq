@@ -163,12 +163,7 @@ console.log(events == null)
 
           <div className="promotion-slider"  id="slider">
             { events.length == 0 ?
-            user 
-            ? 
-            <div className="addeventButton">
-          <Link className="addEventLink" to="/Blog">Add Events</Link>
-          </div>
-            :
+            
             <div className="noEventsdiv">No events</div>
             
             :

@@ -11,82 +11,104 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
+import GoogleMap from "./GoogleMap"
 import Typography from '@mui/material/Typography';
-import {
-  withGoogleMap,
-  withScriptjs,
-  GoogleMap,
-  Marker,
-  InfoWindow
-} from "react-google-maps";
+// import {
+//   withGoogleMap,
+//   withScriptjs,
+//   GoogleMap,
+//   Marker,
+//   InfoWindow
+// } from "react-google-maps";
 import parkData from './skateboard-parks.json';
 
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
+
 import mapStyles from "./mapStyles";
-console.log(parkData);
 
 // ============================================================
-function Map() {
-  const [selectedPark, setSelectedPark] = useState(null);
 
-  useEffect(() => {
-    const listener = e => {
-      if (e.key === "Escape") {
-        setSelectedPark(null);
-      }
-    };
-    window.addEventListener("keydown", listener);
 
-    return () => {
-      window.removeEventListener("keydown", listener);
-    };
-  }, []);
-  // let featuresArray = parkData.features
 
-  return (
-    <GoogleMap
-      defaultZoom={10}
-      defaultCenter={{ lat: 45.4211, lng: -75.6903 }}
-      defaultOptions={{ styles: mapStyles }}
-    >
-      {parkData.features.map(park => (
-        <Marker
-          key={park.properties.PARK_ID}
-          position={{
-            lat: park.geometry.coordinates[1],
-            lng: park.geometry.coordinates[0]
-          }}
-          onClick={() => {
-            setSelectedPark(park);
-          }}
-          icon={{
-            url: `/skateboarding.png`,
+// function Map() {
+//   const [selectedPark, setSelectedPark] = useState(null);
+//   const [open, setOpen] = React.useState(false);
 
-            scaledSize: new window.google.maps.Size(75, 75)
-          }}
-        />
-      ))}
+//   useEffect(() => {
+//     const listener = e => {
+//       if (e.key === "Escape") {
+//         setSelectedPark(null);
+//       }
+//     };
+//     window.addEventListener("keydown", listener);
 
-      {selectedPark && (
-        <InfoWindow
-          onCloseClick={() => {
-            setSelectedPark(null);
-          }}
-          position={{
-            lat: selectedPark.geometry.coordinates[1],
-            lng: selectedPark.geometry.coordinates[0]
-          }}
-        >
-          <div>
-            <h2>Bhaanu Puncture</h2>
-            <p>{selectedPark.properties.DESCRIPTIO}</p>
-          </div>
-        </InfoWindow>
-      )}
-    </GoogleMap>
-  );
-}
+//     return () => {
+//       window.removeEventListener("keydown", listener);
+//     };
+//   }, []);
+//   // let featuresArray = parkData.features
 
-const MapWrapped = withScriptjs(withGoogleMap(Map));
+//   return (
+//     <GoogleMap
+//       defaultZoom={10}
+//       defaultCenter={{ lat: 45.4211, lng: -75.6903 }}
+//       defaultOptions={{ styles: mapStyles }}
+//     >
+//       {parkData.features.map(park => (
+//         <Marker
+//           key={park.properties.PARK_ID}
+//           position={{
+//             lat: park.geometry.coordinates[1],
+//             lng: park.geometry.coordinates[0]
+//           }}
+//           onClick={() => {
+//             setSelectedPark(park);
+//             setOpen(true);
+//           }}
+//           icon={{
+//             url: `/skateboarding.png`,
+
+//             scaledSize: new window.google.maps.Size(75, 75)
+//           }}
+//         />
+//       ))}
+
+//       {selectedPark && (
+//         <InfoWindow
+//           onCloseClick={() => {
+//             setSelectedPark(null);
+//           }}
+//           position={{
+//             lat: selectedPark.geometry.coordinates[1],
+//             lng: selectedPark.geometry.coordinates[0]
+//           }}
+//         >
+//           <div>
+//             <div><p>Hello</p></div>
+//             <div><p>Hello</p></div>
+//             <div><p>Hello</p></div>
+//             <div><p>Hello</p></div>
+//             <div><p>Hello</p></div>
+//             <div><p>Hello</p></div>
+//             <div><p>Hello</p></div>
+//             <div><p>Hello</p></div>
+//             <div><p>Hello</p></div>
+//             <div><p>Hello</p></div>
+
+            
+          
+//           </div>
+//         </InfoWindow>
+//       )}
+//     </GoogleMap>
+//   );
+// }
+
+// const MapWrapped = withScriptjs(withGoogleMap(Map));
 
 // ============================================================
 
@@ -130,14 +152,15 @@ export default function Maps(){
             <div className="map-popup-outer" style={{ width: "100vw", height: "100vh" }}>
           {/* =========================================== */}
 
-          <MapWrapped
+          {/* <MapWrapped
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
           REACT_APP_GOOGLE_KEY
         }`}
         loadingElement={<div style={{ height: `100%` }} />}
         containerElement={<div style={{ height: `100%` }} />}
         mapElement={<div style={{ height: `100%` }} />}
-      />
+      /> */}
+      <GoogleMap/>
 
           {/* =========================================== */}
             <div>
@@ -227,13 +250,13 @@ export default function Maps(){
                             <h6>Monday</h6>
                             <p>09:00 - 20:00</p>
                           </li>
-                        </ul>
-                      </div>
+                            </ul>
+                          </div>
 
-                      <div className="map-popup-view-btn">
-                        <Link to="#" className="viewMorePosts">View Menu</Link>
-                      </div>
-                    </div>
+                          <div className="map-popup-view-btn">
+                            <Link to="#" className="viewMorePosts">View Menu</Link>
+                          </div>
+                        </div>
                   </div>                
                 </div>
                 </Box>
