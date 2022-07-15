@@ -13,6 +13,9 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import GoogleMap from "./GoogleMap"
 import Typography from '@mui/material/Typography';
+import { axiosInstance } from "./../../../config";
+import  { PicBaseUrl } from "../../../imageBaseUrl";
+
 // import {
 //   withGoogleMap,
 //   withScriptjs,
@@ -29,88 +32,6 @@ import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
 
 import mapStyles from "./mapStyles";
-
-// ============================================================
-
-
-
-// function Map() {
-//   const [selectedPark, setSelectedPark] = useState(null);
-//   const [open, setOpen] = React.useState(false);
-
-//   useEffect(() => {
-//     const listener = e => {
-//       if (e.key === "Escape") {
-//         setSelectedPark(null);
-//       }
-//     };
-//     window.addEventListener("keydown", listener);
-
-//     return () => {
-//       window.removeEventListener("keydown", listener);
-//     };
-//   }, []);
-//   // let featuresArray = parkData.features
-
-//   return (
-//     <GoogleMap
-//       defaultZoom={10}
-//       defaultCenter={{ lat: 45.4211, lng: -75.6903 }}
-//       defaultOptions={{ styles: mapStyles }}
-//     >
-//       {parkData.features.map(park => (
-//         <Marker
-//           key={park.properties.PARK_ID}
-//           position={{
-//             lat: park.geometry.coordinates[1],
-//             lng: park.geometry.coordinates[0]
-//           }}
-//           onClick={() => {
-//             setSelectedPark(park);
-//             setOpen(true);
-//           }}
-//           icon={{
-//             url: `/skateboarding.png`,
-
-//             scaledSize: new window.google.maps.Size(75, 75)
-//           }}
-//         />
-//       ))}
-
-//       {selectedPark && (
-//         <InfoWindow
-//           onCloseClick={() => {
-//             setSelectedPark(null);
-//           }}
-//           position={{
-//             lat: selectedPark.geometry.coordinates[1],
-//             lng: selectedPark.geometry.coordinates[0]
-//           }}
-//         >
-//           <div>
-//             <div><p>Hello</p></div>
-//             <div><p>Hello</p></div>
-//             <div><p>Hello</p></div>
-//             <div><p>Hello</p></div>
-//             <div><p>Hello</p></div>
-//             <div><p>Hello</p></div>
-//             <div><p>Hello</p></div>
-//             <div><p>Hello</p></div>
-//             <div><p>Hello</p></div>
-//             <div><p>Hello</p></div>
-
-            
-          
-//           </div>
-//         </InfoWindow>
-//       )}
-//     </GoogleMap>
-//   );
-// }
-
-// const MapWrapped = withScriptjs(withGoogleMap(Map));
-
-// ============================================================
 
 
 const style = {
@@ -138,9 +59,20 @@ export default function Maps(){
   const REACT_APP_GOOGLE_KEY = "AIzaSyCyHn--Okuy3Q62gDaGI_64tCuf1svZ97k"
 
   const [open, setOpen] = React.useState(false);
+  const [shop, setShop] = useState([])
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+
+  useEffect(() => {
+    const getShop = async () => {
+      const res = await axiosInstance.get('/shops/')
+      setShop(res.data)
+     
+    };
+    getShop()
+  }, [])
 
   const [open_1, setOpen_1] = React.useState(false);
   const handleOpen_1 = () => setOpen_1(true);
@@ -160,11 +92,13 @@ export default function Maps(){
         containerElement={<div style={{ height: `100%` }} />}
         mapElement={<div style={{ height: `100%` }} />}
       /> */}
-      <GoogleMap/>
+      <GoogleMap
+      sendShops={shop}
+      />
 
           {/* =========================================== */}
             <div>
-              <Button onClick={handleOpen}>modal one</Button>
+              {/* <Button onClick={handleOpen}>modal one</Button> */}
               <Modal
                 open={open}
                 onClose={handleClose}
@@ -264,7 +198,7 @@ export default function Maps(){
             </div> 
 
             <div>
-              <Button onClick={handleOpen_1}>modal two</Button>
+              {/* <Button onClick={handleOpen_1}>modal two</Button> */}
               <Modal
                 open={open_1}
                 onClose={handleClose_1}

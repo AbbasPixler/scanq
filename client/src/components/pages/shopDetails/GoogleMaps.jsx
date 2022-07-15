@@ -28,10 +28,11 @@ import PlacesAutocomplete, {
    }
   ])
 
+  // console.log(props.sendCoordinates)
   const containerStyle = {
   
-    width: '50%',
-    height: '20%'
+    width: '40%',
+    height: '45%'
   }
 
   // console.log(afterAddress.lat)
@@ -39,10 +40,6 @@ import PlacesAutocomplete, {
   const handleChange = (address) => {
     setAddress(address );
   };
-
-  console.log( "From Database: " , props.sendCoordinates)
-  console.log(props.sendCoordinates.lat)
-
  
   const handleSelect = (address) => {
     setAddress( address );
@@ -51,7 +48,6 @@ import PlacesAutocomplete, {
       .then(results => getLatLng(results[0]))
       .then(latLng => { 
         console.log('Success', latLng);
-        props.getData(latLng)
         setAfterAddress(latLng)
         // update center state
         setMapCenter(latLng);
@@ -62,7 +58,7 @@ import PlacesAutocomplete, {
   return (
 // ===========================================================
           <div id='googleMaps'>
-          <PlacesAutocomplete
+          {/* <PlacesAutocomplete
             value={address}
             onChange={handleChange}
             onSelect={handleSelect}
@@ -99,7 +95,7 @@ import PlacesAutocomplete, {
                 </div>
               </div>
             )}
-          </PlacesAutocomplete>
+          </PlacesAutocomplete> */}
 
           <Map 
             containerStyle={containerStyle}
@@ -114,23 +110,21 @@ import PlacesAutocomplete, {
             }}
           >
 
-            { 
-            props.sendCoordinates.lat != undefined ?
-            <Marker
-              position ={{
-                lat: props.sendCoordinates.lat,
-                lng: props.sendCoordinates.lng
-              }}
-              />
+            {  props.sendShops != undefined ?
+              props.sendShops.map((shop)=>{
+                if(shop.coordinates){
+                  return(
+                    <Marker
+                    value= {shop.username}
+                  position = {{
+                    lat: shop.coordinates.lat,
+                    lng: shop.coordinates.lng
+                  }}
+                  />
+                  )
+                }
+                })
               :
-            afterAddress.lat != undefined ?
-              <Marker
-              position ={{
-                lat: afterAddress.lat,
-                lng: afterAddress.lng
-              }}
-              />
-            :
               markers.map((marks)=>(
                 <Marker
                 position ={{

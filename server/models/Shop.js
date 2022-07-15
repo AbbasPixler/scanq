@@ -50,6 +50,16 @@ const ShopSchema = new mongoose.Schema(
           type: String,
           required: false
         },
+        coordinates:{
+          lat: {
+            type: Number,
+            required: false
+          },
+          lng:{
+            type: Number,
+            required: false
+          }
+        },
         qrCode:{
           codeText: {
             type: String, 

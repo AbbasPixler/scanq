@@ -140,7 +140,7 @@ export default function Createshop() {
   const[activeMarker, setActiveMarker] = useState([])
   const[selectedPlace, setSelectedPlace] = useState([])
   const[mapCenter, setMapCenter] = useState([])
-
+  const[coordinates, setCoordinates] =useState({})
 
   
 
@@ -158,7 +158,7 @@ export default function Createshop() {
     setSchedule7({...schedule7, ...day7})
 
 
-    if(!file || !shopTitle || !shopDesc || !telephone || !address){
+    if(!file || !shopTitle || !shopDesc || !telephone || !address || !coordinates){
       setOpen(true)
       setError(true)
       setErrorMsg("Please fill all the details in the form!")
@@ -173,6 +173,7 @@ export default function Createshop() {
       facebook: Facebook,
       twitter:Twitter,
       youtube:Youtube,
+      coordinates: coordinates,
       timings:[schedule1,schedule2,schedule3,schedule4,schedule5,schedule6,schedule7],
       categories:checkboxItems
     };
@@ -224,6 +225,7 @@ export default function Createshop() {
       facebook: Facebook,
       twitter:Twitter,
       youtube:Youtube,
+      coordinates: coordinates,
       timings:[schedule1,schedule2,schedule3,schedule4,schedule5,schedule6,schedule7],
       categories:checkboxItems
     };
@@ -282,6 +284,7 @@ export default function Createshop() {
         setSchedule6(res.data[0].timings[5])
         setSchedule7(res.data[0].timings[6])
         setCheckboxItems(res.data[0].categories)
+        setCoordinates(res.data[0].coordinates)
         // setShopStatusStateMon(res.data[0].timings[0].shopStatus)
         if(schedule1.shopStatus === "Open"){
           setMondayTimingDisabled(false)
@@ -323,6 +326,10 @@ export default function Createshop() {
     setError(false)
   };
 
+  const handleAddressChange = (latLng)=>{
+    setCoordinates(latLng)
+    console.log("createShop -> ", latLng)
+  }
   
 
   const action = (
@@ -957,7 +964,7 @@ return (
             <FormControl sx={{ mt: 0, mb:3, width: "15%", height: "50px", p: 1 }} variant="outlined">
             <FormHelperText id="filled-weight-helper-text">To</FormHelperText>
               <OutlinedInput 
-              disabled={SundayTimingDisabled}
+              disabled={ SundayTimingDisabled }
                 id="outlined-adornment-timeTo"
                 type="time"
                 value={schedule7.timeTo == undefined ? '' : schedule7.timeTo}
@@ -970,7 +977,10 @@ return (
           </div> 
           <div className="googleMaps">
             <GoogleMap
+            getData={handleAddressChange}
+            sendCoordinates = {coordinates}
             style={{width: "20px", height: "20px"}}
+            props={user}
             />
           </div>
          
