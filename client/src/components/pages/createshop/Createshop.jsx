@@ -979,8 +979,8 @@ return (
             <GoogleMap
             getData={handleAddressChange}
             sendCoordinates = {coordinates}
-            style={{width: "20px", height: "20px"}}
-            props={user}
+            // style={{width: "20px", height: "20px"}}
+            // props={user}
             />
           </div>
          

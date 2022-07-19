@@ -188,11 +188,22 @@
     text-transform: uppercase;
     font-weight: 600;
 }
+.googleMaps
+{
+    
+}
 
-
-
-
-
+.googleMaps {
+    height:300px;
+}
+.googleMaps div {
+    width: 100%;
+    height: 100%;
+}
+input.location-search-input {
+    position: relative;
+    z-index: 1;
+}
 
 @media only screen and (max-width: 480px) {
     .shopinfo {

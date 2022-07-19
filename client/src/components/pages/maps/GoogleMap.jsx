@@ -71,16 +71,10 @@ import  { PicBaseUrl } from "../../../imageBaseUrl";
   ])
 
   const containerStyle = {
-  
     width: '90%',
-    height: '80vh'
+    height: '80vh',
+    position: "sticky"
   }
-
-  // console.log(afterAddress.lat)
-
-  const handleChange = (address) => {
-    setAddress(address );
-  };
 
   const handleOpenPopup = async(e)=>{
       const res = await axiosInstance.get('/shops/' + e.value )
@@ -90,21 +84,7 @@ import  { PicBaseUrl } from "../../../imageBaseUrl";
     
     handleOpen()
   }
-//  console.log(shop[0])
  console.log(products)
-  const handleSelect = (address) => {
-    setAddress( address );
-    console.log(address)
-    geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
-      .then(latLng => { 
-        console.log('Success', latLng);
-        setAfterAddress(latLng)
-        // update center state
-        setMapCenter(latLng);
-      })
-      .catch(error => console.error('Error', error));
-  };
 
   return (
 // ===========================================================
@@ -135,6 +115,10 @@ import  { PicBaseUrl } from "../../../imageBaseUrl";
                     lat: shop.coordinates.lat,
                     lng: shop.coordinates.lng
                   }}
+                  
+                icon={{
+                  url: "https://storage.googleapis.com/snackyo/map-marker1.png",
+                }}
                   />
                   )
                 }
@@ -145,6 +129,10 @@ import  { PicBaseUrl } from "../../../imageBaseUrl";
                 position ={{
                   lat: marks.lat,
                   lng: marks.lng
+                }}
+                
+                icon={{
+                  url: "https://storage.googleapis.com/snackyo/map-marker1.png",
                 }}
                 />
               ))

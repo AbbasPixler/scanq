@@ -30,9 +30,10 @@ import PlacesAutocomplete, {
 
   const containerStyle = {
   
-    width: '50%',
-    height: '20%'
-  }
+    width: '100%',
+    height: '100%',
+    position: 'initial'
+    }
 
   // console.log(afterAddress.lat)
 
@@ -40,8 +41,7 @@ import PlacesAutocomplete, {
     setAddress(address );
   };
 
-  console.log( "From Database: " , props.sendCoordinates)
-  console.log(props.sendCoordinates.lat)
+ 
 
  
   const handleSelect = (address) => {
@@ -121,6 +121,9 @@ import PlacesAutocomplete, {
                 lat: props.sendCoordinates.lat,
                 lng: props.sendCoordinates.lng
               }}
+              icon={{
+                url: "https://storage.googleapis.com/snackyo/map-marker1.png",
+              }}
               />
               :
             afterAddress.lat != undefined ?
@@ -129,6 +132,9 @@ import PlacesAutocomplete, {
                 lat: afterAddress.lat,
                 lng: afterAddress.lng
               }}
+              icon={{
+                url: "https://storage.googleapis.com/snackyo/map-marker1.png",
+              }}
               />
             :
               markers.map((marks)=>(
@@ -136,6 +142,9 @@ import PlacesAutocomplete, {
                 position ={{
                   lat: marks.lat,
                   lng: marks.lng
+                }}
+                icon={{
+                  url: "https://storage.googleapis.com/snackyo/map-marker1.png",
                 }}
                 />
               ))

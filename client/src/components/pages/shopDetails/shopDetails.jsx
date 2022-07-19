@@ -45,12 +45,11 @@ export default function ShopDetails(){
   const[events, setEvents] = useState([])
   const[shopOpen, setShopOpen] = useState("Close")
   const [closeTime, setCloseTime] = useState("")
-  
+  const[classShop, setClassShop] = useState("close")
   const[coordinates, setCoordinates] =useState({})
 
 
   const { user } = useContext(Context);
-  console.log(user)
   const location = useLocation()
   const path = (location.pathname.split("/")[2])
 
@@ -58,42 +57,52 @@ export default function ShopDetails(){
     const getShop = async () => {
       const res = await axiosInstance.get('/shops/' + path)
       setShop(res.data[0])
-      console.log("hello: ",res.data[0].coordinates)
 
       setCoordinates(res.data[0].coordinates)
       let newDate = new Date().getDay() 
      
     if(newDate == 1 && res.data[0].timings[0].shopStatus == "Open"){
       setShopOpen("Open")
+      setClassShop("Open")
       setCloseTime(res.data[0].timings[0].timeTo)
     }
     if(newDate == 2 && res.data[0].timings[1].shopStatus == "Open"){
       setShopOpen("Open")
+      setClassShop("Open")
       setCloseTime(res.data[0].timings[1].timeTo)
     }
     if(newDate == 3 && res.data[0].timings[2].shopStatus == "Open"){
       setShopOpen("Open")
+      setClassShop("Open")
       setCloseTime(res.data[0].timings[2].timeTo)
     }
     if(newDate == 4 && res.data[0].timings[3].shopStatus == "Open"){
       setShopOpen("Open")
+      setClassShop("Open")
       setCloseTime(res.data[0].timings[3].timeTo)
     }
     if(newDate == 5 && res.data[0].timings[4].shopStatus == "Open"){
       setShopOpen("Open")
+      setClassShop("Open")
       setCloseTime(res.data[0].timings[4].timeTo)
     }
     if(newDate == 6 && res.data[0].timings[5].shopStatus == "Open"){
       setShopOpen("Open")
+      setClassShop("Open")
       setCloseTime(res.data[0].timings[5].timeTo)
     }
     if(newDate == 7 && res.data[0].timings[6].shopStatus == "Open"){
       setShopOpen("Open")
+      setClassShop("Open")
       setCloseTime(res.data[0].timings[6].timeTo)
     }
     };
     getShop()
   },[path])
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -119,8 +128,6 @@ export default function ShopDetails(){
     fetchEvent();
   }, [path]);
 
-  console.log(events.length)
-console.log(events == null)
 
   return(
     <div>
@@ -210,7 +217,7 @@ console.log(events == null)
           <div className="shop-info-inner">
             <div  className="shop-info-info" >
               <ul>
-                <li><p><AccessTimeIcon /> <span className="open">{shopOpen == "Open"? shopOpen + " now" : shopOpen}</span> {shopOpen == "Open"? <span className="close">:  Closes {closeTime}</span> : <span className="close"></span>}</p></li>
+                <li><p><AccessTimeIcon /> <span  className={classShop} >{shopOpen == "Open"? shopOpen + " now" : shopOpen}</span> {shopOpen == "Open"? <span className="close">:  Closes {closeTime}</span> : <span className="close"></span>}</p></li>
                 <li><p><LocationOnIcon/> {shop.address}</p></li>
                 <li><p><LocalPhoneIcon /> {shop.telephone}</p></li>
               </ul>
@@ -219,7 +226,7 @@ console.log(events == null)
                 <GoogleMap
                 sendCoordinates = {coordinates}
                 />
-                </div>
+            </div>
           </div>
        </div>
 
