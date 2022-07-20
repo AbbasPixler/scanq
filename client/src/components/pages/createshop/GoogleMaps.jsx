@@ -13,8 +13,8 @@ import PlacesAutocomplete, {
   const [activeMarker, setActiveMarker] = useState("");
   const [selectedPlace, setSelectedPlace] = useState("");
   const [mapCenter, setMapCenter] = useState({
-    lat: 22.7017909334,
-    lng: 75.8708558335
+    lat: 13.736717,
+    lng: 100.523186
  });
  const [afterAddress, setAfterAddress]= useState({})
  const [markers, setMarker] = useState([
@@ -105,18 +105,19 @@ import PlacesAutocomplete, {
             containerStyle={containerStyle}
             google={props.google}
             initialCenter={{
-              lat: mapCenter.lat,
-              lng: mapCenter.lng
+                 lat: props.sendCoordinates != undefined ? props.sendCoordinates.lat : mapCenter.lat,
+              lng: props.sendCoordinates != undefined ? props.sendCoordinates.lng : mapCenter.lng
             }}
             center={{
-              lat: mapCenter.lat,
-              lng: mapCenter.lng
+              lat: props.sendCoordinates != undefined ? props.sendCoordinates.lat : mapCenter.lat,
+              lng: props.sendCoordinates != undefined ? props.sendCoordinates.lng : mapCenter.lng
             }}
           >
 
             { 
             props.sendCoordinates.lat != undefined ?
             <Marker
+            draggable={true}
               position ={{
                 lat: props.sendCoordinates.lat,
                 lng: props.sendCoordinates.lng
@@ -128,6 +129,7 @@ import PlacesAutocomplete, {
               :
             afterAddress.lat != undefined ?
               <Marker
+              draggable={true}
               position ={{
                 lat: afterAddress.lat,
                 lng: afterAddress.lng

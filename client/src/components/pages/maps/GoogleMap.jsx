@@ -55,13 +55,13 @@ import  { PicBaseUrl } from "../../../imageBaseUrl";
   const [activeMarker, setActiveMarker] = useState("");
   const [selectedPlace, setSelectedPlace] = useState("");
   const [mapCenter, setMapCenter] = useState({
-    lat: 22.7017909334,
-    lng: 75.8708558335
+    lat: 13.736717,
+    lng: 100.523186
  });
  const [afterAddress, setAfterAddress]= useState({})
  const [markers, setMarker] = useState([
   {
-    lat: 22.7017909334,
+lat: 22.7017909334,
     lng: 75.8708558335
   }, 
   {
@@ -71,7 +71,7 @@ import  { PicBaseUrl } from "../../../imageBaseUrl";
   ])
 
   const containerStyle = {
-    width: '90%',
+    width: '100%',
     height: '80vh',
     position: "sticky"
   }

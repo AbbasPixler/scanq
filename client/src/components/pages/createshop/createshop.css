@@ -268,3 +268,9 @@ form.shopForm {
 
 
 }
+
+.autocomplete-dropdown-container{
+    width: 45% !important; 
+    position: relative; 
+    z-index: 1;
+}

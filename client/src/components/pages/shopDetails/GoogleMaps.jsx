@@ -72,6 +72,9 @@ import { PicBaseUrl } from '../../../imageBaseUrl';
                   lat: marks.lat,
                   lng: marks.lng
                 }}
+                icon={{
+                 url: "https://storage.googleapis.com/snackyo/map-marker1.png",
+               }}
                 />
               ))
             }
