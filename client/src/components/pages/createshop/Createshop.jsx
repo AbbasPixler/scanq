@@ -143,7 +143,7 @@ export default function Createshop() {
   const[coordinates, setCoordinates] =useState({})
 
   
-
+// console.log("coordinates :-",coordinates.length)
 
   // ================================================================
 
@@ -156,9 +156,15 @@ export default function Createshop() {
     setSchedule5({...schedule5, ...day5})
     setSchedule6({...schedule6, ...day6})
     setSchedule7({...schedule7, ...day7})
+    // console.log(shopTitle)
+    // console.log(shopDesc)
+    // console.log(telephone)
+    // console.log(address)
+    // console.log(coordinates.lat)
 
 
-    if(!file || !shopTitle || !shopDesc || !telephone || !address || !coordinates){
+
+    if(!file || !shopTitle || !shopDesc || !telephone || !address || coordinates.lat == undefined){
       setOpen(true)
       setError(true)
       setErrorMsg("Please fill all the details in the form!")
@@ -177,6 +183,7 @@ export default function Createshop() {
       timings:[schedule1,schedule2,schedule3,schedule4,schedule5,schedule6,schedule7],
       categories:checkboxItems
     };
+    console.log( "New shop---",newShop)
     if (file) {
       if(file.size > 15728640){
         setOpen(true)
@@ -214,7 +221,7 @@ export default function Createshop() {
     setSchedule6({...schedule6, ...day6})
     setSchedule7({...schedule7, ...day7})
     
-    
+    // console.log(coordinates.lat)
     const newShop = {
       username:user.username,
       shopTitle,
@@ -286,6 +293,7 @@ export default function Createshop() {
         setCheckboxItems(res.data[0].categories)
         setCoordinates(res.data[0].coordinates)
         // setShopStatusStateMon(res.data[0].timings[0].shopStatus)
+        
         if(schedule1.shopStatus === "Open"){
           setMondayTimingDisabled(false)
         }
@@ -306,7 +314,7 @@ export default function Createshop() {
     };
     getShop()
   }, [])
-
+console.log(coordinates)
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -328,7 +336,7 @@ export default function Createshop() {
 
   const handleAddressChange = (latLng)=>{
     setCoordinates(latLng)
-    console.log("createShop -> ", latLng)
+    // console.log("createShop -> ", latLng)
   }
   
 
@@ -565,7 +573,7 @@ return (
           {/* ===========Tuesday========== */}
 
 
-          <div className="Weekdays">
+           <div className="Weekdays">
             <TextField
               className="tuesday"
               fullWidth
@@ -629,7 +637,7 @@ return (
                 }}
               />
             </FormControl>
-              </div>
+              </div> 
 
           {/* ===========Wednesday========== */}
 
@@ -975,6 +983,7 @@ return (
               />
             </FormControl>
           </div> 
+
           <div className="googleMaps">
             <GoogleMap
             getData={handleAddressChange}

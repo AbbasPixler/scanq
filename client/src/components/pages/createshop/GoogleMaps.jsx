@@ -8,6 +8,10 @@ import PlacesAutocomplete, {
 
 
  function MapContainer(props){
+  if(props.sendCoordinates.lat !== undefined){
+
+    console.log("here ---",props.sendCoordinates.lat)
+  }
   const[address ,setAddress] = useState("")
   const[showingInfoWindow, setShowingInfoWindow] = useState(false)
   const [activeMarker, setActiveMarker] = useState("");
@@ -105,19 +109,18 @@ import PlacesAutocomplete, {
             containerStyle={containerStyle}
             google={props.google}
             initialCenter={{
-                 lat: props.sendCoordinates != undefined ? props.sendCoordinates.lat : mapCenter.lat,
-              lng: props.sendCoordinates != undefined ? props.sendCoordinates.lng : mapCenter.lng
+              lat:  props.sendCoordinates.lat != undefined ? props.sendCoordinates.lat :  mapCenter.lat,
+              lng:  props.sendCoordinates.lat != undefined ? props.sendCoordinates.lng :  mapCenter.lng
             }}
             center={{
-              lat: props.sendCoordinates != undefined ? props.sendCoordinates.lat : mapCenter.lat,
-              lng: props.sendCoordinates != undefined ? props.sendCoordinates.lng : mapCenter.lng
+              lat:  props.sendCoordinates.lat != undefined ? props.sendCoordinates.lat :  mapCenter.lat,
+              lng:  props.sendCoordinates.lat != undefined ? props.sendCoordinates.lng :  mapCenter.lng
             }}
           >
 
             { 
             props.sendCoordinates.lat != undefined ?
             <Marker
-            draggable={true}
               position ={{
                 lat: props.sendCoordinates.lat,
                 lng: props.sendCoordinates.lng
@@ -129,7 +132,6 @@ import PlacesAutocomplete, {
               :
             afterAddress.lat != undefined ?
               <Marker
-              draggable={true}
               position ={{
                 lat: afterAddress.lat,
                 lng: afterAddress.lng
