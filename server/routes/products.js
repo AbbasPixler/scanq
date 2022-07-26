@@ -70,8 +70,8 @@ router.get("/:id", async (req, res) => {
     if(product.length > 0){
       res.status(200).json(product)
     }else{
-      const error = "No Products from this user"
-      res.status(500).json(error)
+      const error = "false"
+      res.json(error)
     }
    
   } catch (err) {

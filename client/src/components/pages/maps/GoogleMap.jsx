@@ -185,16 +185,16 @@ lat: 22.7017909334,
                           <p>Share</p>
                         </Link>
                       </div>
-                      <div className="map-popup-modal-icon-inner">
+                      {/* <div className="map-popup-modal-icon-inner">
                         <Link to="#">
                           <FavoriteBorderIcon />
                           <p>Favorite</p>
                         </Link>  
-                      </div>
+                      </div> */}
                     </div>                    
 
                     <div className="map-popup-view-btn">
-                      <Button onClick={handleOpen_1}>View Menu</Button>
+                    <Link to={shop[0] != undefined ? `/shopDetails/${shop[0].username}` : "#"} >View Shop</Link>
                       {/* <Link to="#">View Menu</Link> */}
                     </div>
 
@@ -203,40 +203,40 @@ lat: 22.7017909334,
                       <p className="open">Open Now</p>
 
                       <div className="map-popup-modal-hours-inner">
-                        <ul>
+                      <ul>
                           <li>
                             <h6>Monday</h6>
-                            <p>{shop[0] != undefined? shop[0].timings[0].timeFrom + " - " +  shop[0].timings[0].timeTo : "Shop Title"}</p>
+                            <p>{shop[0] != undefined && shop[0].timings[0].shopStatus == "Open" ? shop[0].timings[0].timeFrom + " - " +  shop[0].timings[0].timeTo : "Closed"}</p>
                           </li>
                           <li>
                             <h6>Tuesday</h6>
-                            <p>{shop[0] != undefined? shop[0].timings[1].timeFrom + " - " +  shop[0].timings[1].timeTo : "Shop Title"}</p>
+                            <p>{shop[0] != undefined && shop[0].timings[1].shopStatus == "Open"? shop[0].timings[1].timeFrom + " - " +  shop[0].timings[1].timeTo : "Closed"}</p>
                           </li>
                           <li>
                             <h6>Wednesday</h6>
-                            <p>{shop[0] != undefined? shop[0].timings[2].timeFrom + " - " +  shop[0].timings[2].timeTo : "Shop Title"}</p>
+                            <p>{shop[0] != undefined && shop[0].timings[2].shopStatus == "Open"? shop[0].timings[2].timeFrom + " - " +  shop[0].timings[2].timeTo : "Closed"}</p>
                           </li>
                           <li>
                             <h6>Thursday</h6>
-                            <p>{shop[0] != undefined? shop[0].timings[3].timeFrom + " - " +  shop[0].timings[3].timeTo : "Shop Title"}</p>
+                            <p>{shop[0] != undefined && shop[0].timings[3].shopStatus == "Open"? shop[0].timings[3].timeFrom + " - " +  shop[0].timings[3].timeTo : "Closed"}</p>
                           </li>
                           <li>
                             <h6>Friday</h6>
-                            <p>{shop[0] != undefined? shop[0].timings[4].timeFrom + " - " +  shop[0].timings[4].timeTo : "Shop Title"}</p>
+                            <p>{shop[0] != undefined && shop[0].timings[4].shopStatus == "Open"? shop[0].timings[4].timeFrom + " - " +  shop[0].timings[4].timeTo : "Closed"}</p>
                           </li>
                           <li>
                             <h6>Saturday</h6>
-                            <p>{shop[0] != undefined? shop[0].timings[5].timeFrom + " - " +  shop[0].timings[5].timeTo : "Shop Title"}</p>
+                            <p>{shop[0] != undefined && shop[0].timings[5].shopStatus == "Open"? shop[0].timings[5].timeFrom + " - " +  shop[0].timings[5].timeTo : "Closed"}</p>
                           </li>
                           <li>
                             <h6>Sunday</h6>
-                            <p>{shop[0] != undefined? shop[0].timings[5].timeFrom + " - " +  shop[0].timings[5].timeTo : "Shop Title"}</p>
+                            <p>{shop[0] != undefined && shop[0].timings[6].shopStatus == "Open"? shop[0].timings[5].timeFrom + " - " +  shop[0].timings[5].timeTo : "Closed"}</p>
                           </li>
                             </ul>
                           </div>
 
                           <div className="map-popup-view-btn">
-                            <Button onClick={handleOpen_1}>View Menu</Button>
+                          {products != "false"?  <Link to="#"  onClick={handleOpen_1}>CHECKOUT PRODUCT</Link> : <Link to={shop[0] != undefined ? `/shopDetails/${shop[0].username}` : "#"}>Shop Detail</Link>}
                           </div>
                         </div>
                   </div>                
@@ -261,7 +261,7 @@ lat: 22.7017909334,
 
                 
                     {
-                      products != undefined ?
+                       products != "false" ?
                       products.map((product)=>{
                         return(
                           <div className="map-popup-modal-image map-popup-modal-image_1">

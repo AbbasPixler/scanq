@@ -38,7 +38,7 @@
 }
 
 .map-popup-modal-upper {
-  background: #11ddf0;
+  background: #29A89F;
   border-radius: 10px 10px 0 0;
   padding: 30px 10px;
 }
@@ -63,6 +63,7 @@
 .map-popup-modal-image-image img {
   width: 100%;
   height: 100%;
+  padding: 10px 0;
 }
 
 .map-popup-modal-image-image {

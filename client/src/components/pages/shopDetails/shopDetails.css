@@ -473,6 +473,10 @@ div#googleMaps {
   position: relative;
 }
 
+.event-map .promotion-slider {
+  height: auto!important;
+}
+
 .shop-info-map div {
   width: 100%;
   height: 100%;

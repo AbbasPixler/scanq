@@ -984,7 +984,7 @@ return (
             </FormControl>
           </div> 
 
-          <div className="googleMaps">
+          <div className="mapcont">
             <GoogleMap
             getData={handleAddressChange}
             sendCoordinates = {coordinates}

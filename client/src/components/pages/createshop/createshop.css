@@ -5,6 +5,10 @@
 
 }
 
+.mapcont div #googleMaps div{
+    height: 300px;
+}
+
 .shopwrapper {
     flex: 9;
     padding: 0px 0px 0px 70px;

@@ -21,6 +21,9 @@ import { axiosInstance } from "./../../../config";
 import { Context } from "./../../../context/Context";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import GoogleMap from "./GoogleMaps";
+import Posts from "./../../posts/Posts"
+
+import Rating from '@mui/material/Rating';
 
 var BudvistaBanner = PicBaseUrl + "BudvistaBanner.jpg"
 
@@ -42,11 +45,15 @@ export default function ShopDetails(){
   const[products, setProducts] = useState([])
   const[shop, setShop] = useState([])
   const[recommendedProducts, setRecommendedProducts] = useState([])
-  const[events, setEvents] = useState([])
+  const[posts, setPosts] = useState([])
   const[shopOpen, setShopOpen] = useState("Close")
   const [closeTime, setCloseTime] = useState("")
   const[classShop, setClassShop] = useState("close")
   const[coordinates, setCoordinates] =useState({})
+  const[shopRating, setShopRating] = useState(0)
+  const[numberOfRatings, setNumberOfRatings] = useState(0)
+  
+  // const [products, setProducts] = useState([])
 
 
   const { user } = useContext(Context);
@@ -96,6 +103,13 @@ export default function ShopDetails(){
       setClassShop("Open")
       setCloseTime(res.data[0].timings[6].timeTo)
     }
+    
+    if(res.data[0].rating.totalRating != undefined){
+      var average = res.data[0].rating.totalRating /  res.data[0].rating.numberOfRatings
+      setShopRating(average)
+      setNumberOfRatings(res.data[0].rating.numberOfRatings)
+      
+    }
     };
     getShop()
   },[path])
@@ -123,7 +137,7 @@ export default function ShopDetails(){
   useEffect(()=>{
     const fetchEvent = async () => {
       const res = await axiosInstance.get("/posts/getPostsByUsername/" + path)
-      setEvents(res.data)
+      setPosts(res.data)
     }
     fetchEvent();
   }, [path]);
@@ -147,6 +161,31 @@ export default function ShopDetails(){
         <div className="shop-share"> <p> <IosShareIcon/> Share</p></div>
       </div>
 
+    {/*  */}
+    
+    <div className="shop-info">
+          <div className="postsTitle">
+            <h1>Shop Info</h1>
+          </div>
+
+          <div className="shop-info-inner">
+            <div  className="shop-info-info" >
+              <ul>
+                <li><p><Rating value={shopRating} precision={0.5}/> ({numberOfRatings}) reviews</p></li>
+                <li><p><AccessTimeIcon /> <span  className={classShop} >{shopOpen == "Open"? shopOpen + " now" : shopOpen}</span> {shopOpen == "Open"? <span className="close">:  Closes {closeTime}</span> : <span className="close"></span>}</p></li>
+                <li><p><LocationOnIcon/> {shop.address}</p></li>
+                <li><p><LocalPhoneIcon /><a href={"tel:0"+shop.telephone}> {"0"+shop.telephone}</a></p></li>
+              </ul>
+            </div>
+            <div className="shop-info-map">
+                <GoogleMap
+                sendCoordinates = {coordinates}
+                />
+            </div>
+          </div>
+       </div>
+    
+    {/*  */}
       <div className="recommended-product">
         <div className="postsTitle">
             <h1>Recommended Products</h1>
@@ -175,27 +214,27 @@ export default function ShopDetails(){
         />
 
           <div className="promotion-slider"  id="slider">
-            { events.length == 0 ?
+            { posts.length == 0 ?
             
             <div className="noEventsdiv">No events</div>
             
             :
-            
-              events.map(event=>{
-                const date = event.createdAt.split("T")[0]
-                return (
-                <div className="promotion-slider-inner">
-                  <div className="promotion-slider-image">
-                    <img src={PicBaseUrl + event.photo} />
-                  </div>
-                  <div className="promotion-slider-content">
-                    <p>{event.title}</p>
-                    <p>{date}</p>
-                  </div>
-                </div>
+            <Posts posts={posts} />   
+              // events.map(event=>{
+              //   const date = event.createdAt.split("T")[0]
+              //   return (
+              //   <div className="promotion-slider-inner">
+              //     <div className="promotion-slider-image">
+              //       <img src={PicBaseUrl + event.photo} />
+              //     </div>
+              //     <div className="promotion-slider-content">
+              //       <p>{event.title}</p>
+              //       <p>{date}</p>
+              //     </div>
+              //   </div>
                 
-                ) 
-              })
+              //   ) 
+              // })
             }
            
             
@@ -209,7 +248,7 @@ export default function ShopDetails(){
         />
        </div>
 
-       <div className="shop-info">
+       {/* <div className="shop-info">
           <div className="postsTitle">
             <h1>Shop Info</h1>
           </div>
@@ -219,7 +258,7 @@ export default function ShopDetails(){
               <ul>
                 <li><p><AccessTimeIcon /> <span  className={classShop} >{shopOpen == "Open"? shopOpen + " now" : shopOpen}</span> {shopOpen == "Open"? <span className="close">:  Closes {closeTime}</span> : <span className="close"></span>}</p></li>
                 <li><p><LocationOnIcon/> {shop.address}</p></li>
-                <li><p><LocalPhoneIcon /> {shop.telephone}</p></li>
+                <li><p><LocalPhoneIcon /><a href={"tel:0"+shop.telephone}> {"0"+shop.telephone}</a></p></li>
               </ul>
             </div>
             <div className="shop-info-map">
@@ -228,7 +267,7 @@ export default function ShopDetails(){
                 />
             </div>
           </div>
-       </div>
+       </div> */}
 
        <div className="follow-section">
         <div className="follow-section-head">
@@ -237,13 +276,13 @@ export default function ShopDetails(){
         <div className="follow-section-content">
 
           <div className="follow-section-image">
-          {shop.instagram ? <p className="insta"><Link  to={shop.instagram}><InstagramIcon/></Link></p>: <p></p>}
-          {shop.facebook ? <p className="face"><Link  to={shop.facebook}><FacebookIcon/></Link></p>: <p></p>}
-          {shop.twitter ? <p className="tweet"><Link  to={shop.twitter}><TwitterIcon/></Link></p>: <p></p>}
-          {shop.youtube ? <p className="youtube"><Link  to={shop.youtube}><YouTubeIcon/></Link></p>: <p></p>}
+          {shop.instagram ? <p className="insta"><a  href={shop.instagram} ><InstagramIcon/></a></p> : <p></p>}
+          {shop.facebook ? <p className="face"><a  href={shop.facebook} ><FacebookIcon/></a></p> : <p></p>}
+          {shop.twitter ? <p className="tweet"><a  href={shop.twitter} ><TwitterIcon/></a></p> : <p></p>}
+          {shop.youtube ? <p className="youtube"><a  href={shop.youtube} ><YouTubeIcon/></a></p> : <p></p>}
         </div> 
           <div className="follow-product-btn">
-          <Link className="viewMorePosts" to={`/shop/${shop.username}`}>View product</Link>
+          {products != "false" ? <Link className="viewMorePosts" to={`/shop/${shop.username}`}>View product</Link> : <Link className="viewMorePosts" to="#">View product</Link>}
           </div>
         </div>
        </div>

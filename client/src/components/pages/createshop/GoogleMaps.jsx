@@ -45,6 +45,20 @@ import PlacesAutocomplete, {
     setAddress(address );
   };
 
+  
+  const onMarkerDragEnd = (t, map, coord) => {
+    // console.log(coord.latLng.lat())
+    // console.log(coord.latLng.lng())
+    const newAddress = {
+      lat: coord.latLng.lat(),
+      lng: coord.latLng.lng()
+    }
+    props.getData(newAddress)
+    // setAddress(newAddress)
+    setAfterAddress(newAddress)
+  };
+
+
  
 
  
@@ -127,7 +141,9 @@ import PlacesAutocomplete, {
               }}
               icon={{
                 url: "https://storage.googleapis.com/snackyo/map-marker1.png",
-              }}
+              }}         
+              draggable={true}
+              onDragend={onMarkerDragEnd}
               />
               :
             afterAddress.lat != undefined ?
@@ -138,7 +154,9 @@ import PlacesAutocomplete, {
               }}
               icon={{
                 url: "https://storage.googleapis.com/snackyo/map-marker1.png",
-              }}
+              }}         
+              draggable={true}
+              onDragend={onMarkerDragEnd}
               />
             :
               markers.map((marks)=>(
@@ -149,7 +167,9 @@ import PlacesAutocomplete, {
                 }}
                 icon={{
                   url: "https://storage.googleapis.com/snackyo/map-marker1.png",
-                }}
+                }}         
+                draggable={true}
+                onDragend={onMarkerDragEnd}
                 />
               ))
             }

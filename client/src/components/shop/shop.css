@@ -63,7 +63,21 @@
 
 
 }
+p.ratingSpan {
+    display: flex;
+    align-items: center;
+    margin: 10px 0 10px 0;
+}
 
+p.ratingSpan span {
+    font-size: 18px;
+}
+
+.reviewspan {
+    font-size: 12px!important;
+    font-weight: 500;
+    margin: 0;
+}
 
 @media only screen and (max-width: 480px) {
     .shop {
