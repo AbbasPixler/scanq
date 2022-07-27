@@ -60,6 +60,19 @@ const ShopSchema = new mongoose.Schema(
             required: false
           }
         },
+        rating:{
+
+          numberOfRatings:{
+            type: Number,
+            required: false
+          },
+
+          totalRating:{
+            type: Number,
+            required: false
+          }
+          
+        },
         qrCode:{
           codeText: {
             type: String, 

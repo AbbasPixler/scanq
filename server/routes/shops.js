@@ -234,6 +234,23 @@ router.get("/getShopCategory/:id", async(req, res)=>{
   }
 })
 
+// update shop ratings 
+router.post("/updateShopRating", async(req, res)=>{
+  try
+  {
+    const rating = {
+      totalRating: req.body.totalRating,
+      numberOfRatings: req.body.numberOfRatings
+    }
+  
+    await Shop.updateOne({username: req.body.username}, {rating: rating})
+  }
+  catch(err)
+  {
+  
+  }
+})
+  
 
 
 module.exports = router;

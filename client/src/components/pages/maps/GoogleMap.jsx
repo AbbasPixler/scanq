@@ -185,12 +185,6 @@ lat: 22.7017909334,
                           <p>Share</p>
                         </Link>
                       </div>
-                      {/* <div className="map-popup-modal-icon-inner">
-                        <Link to="#">
-                          <FavoriteBorderIcon />
-                          <p>Favorite</p>
-                        </Link>  
-                      </div> */}
                     </div>                    
 
                     <div className="map-popup-view-btn">
@@ -230,7 +224,7 @@ lat: 22.7017909334,
                           </li>
                           <li>
                             <h6>Sunday</h6>
-                            <p>{shop[0] != undefined && shop[0].timings[6].shopStatus == "Open"? shop[0].timings[5].timeFrom + " - " +  shop[0].timings[5].timeTo : "Closed"}</p>
+                            <p>{shop[0] != undefined && shop[0].timings[6].shopStatus == "Open"? shop[0].timings[5].timeFrom + " - " +  shop[0].timings[6].timeTo : "Closed"}</p>
                           </li>
                             </ul>
                           </div>

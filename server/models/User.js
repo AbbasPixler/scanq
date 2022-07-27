@@ -41,6 +41,11 @@ const UserSchema = new mongoose.Schema(
     },
     provider_id: {
       type: String,
+    },
+    user_type:{
+      // user_type 2 represents normal user; user_type 1 represents shop owner; 
+      type: Number,
+      default: 1
     }
   },
   { timestamps: true }

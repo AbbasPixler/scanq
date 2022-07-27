@@ -122,12 +122,18 @@
 }
 
 .shop-location p {
-  font-weight: 400;
+  /* font-weight: 400; */
   text-align: center;
-  font-size: 16px;
+  /* font-size: 16px; */
   display: flex;
   align-items: center;
   justify-content: center;
+
+  font-size: 14px;
+  color: #444444;
+  font-style: italic;
+  font-weight: bold;
+
 }
 .shop-location p svg {
   margin-right: 5px;
@@ -137,7 +143,8 @@
     font-size: 30px;
     margin-bottom: 25px;
     font-weight: 600;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
+    text-transform: uppercase;
 }
 
 .shop-content p {
@@ -176,7 +183,8 @@
 
 .recommended-product-inner-inner {
   flex: 1 0 25%;
-  height: 250px;
+  /* height: 250px; */
+  height: 100%;
 }
 
 
@@ -266,6 +274,7 @@
 .shop-info-map {
   flex: 1 0 50%;
   height: 300px;
+  position: relative;
 }
 
 .shop-info-map img {
@@ -305,10 +314,6 @@
   margin-left: 5px;
 }
 
-.shop-info {
-  padding-bottom: 100px;
-}
-
 .follow-section-head {
   display: flex;
   align-items: center;
@@ -318,6 +323,7 @@
 .follow-section-head h1 {
   font-size: 35px;
   font-weight: 700;
+  padding: 10px
 }
 
 .follow-section-image {display: flex;align-items: center;justify-content: center;}
@@ -368,35 +374,7 @@
 
 
 
-@media only screen and (max-width: 480px) {
 
-  .recommended-product-inner {
-    flex-direction: row;
-    overflow-x: scroll;
-    height: auto;
-  }
-
-  .recommended-product-inner-inner {
-    margin-bottom: 30px;
-  }
-
-  .shop-title {
-    flex-direction: column;
-  }
-
-  .shop-content {
-    margin: 30px 0;
-  }
-
-  .shop-info-inner {
-    flex-direction: column;
-  }
-
-  .shop-info-map {
-    margin-top: 30px;
-  }
-
-}
 
 
 .addeventButton{
@@ -466,17 +444,15 @@
   top: 45px;
 }
 
-div#googleMaps {
+div#googleMapsShopDetails {
   width: 100%;
   height: 100%;
   overflow: hidden;
   position: relative;
 }
-
 .event-map .promotion-slider {
   height: auto!important;
 }
-
 .shop-info-map div {
   width: 100%;
   height: 100%;
@@ -529,9 +505,9 @@ div#googleMaps {
     flex-direction: column;
   }
 
-  .shop-info-map {
+  /* .shop-info-map {
     margin-top: 30px;
-  }
+  } */
 
   .shop-info {
     /* background: red; */
@@ -539,6 +515,7 @@ div#googleMaps {
 }
 
 .shop-info-map {
+  margin-top: 30px;
     height: 500px;
     width: 100%;
     /* background: green; */
@@ -546,8 +523,13 @@ div#googleMaps {
     overflow: hidden;
 }
 
-#googleMaps div:nth-child(1) {
+/* #googleMaps div:nth-child(1) {
     width: 100%!important;
+} */
+
+
+#googleMapsShopDetails div:nth-child(1) {
+  width: 100%!important;
 }
 
 .shop-info-inner {
@@ -584,31 +566,51 @@ div#googleMaps {
     height: auto;
   }
 
-  .promotion-slider-inner{
-    width: 355px;
-  }
 
   .recommended-product-inner-inner {
     margin-bottom: 30px;
+    margin-right: 10px;
   }
   .recommend-product-inner-inner img {
     /* height: 150px;
     width: 150px; */
      box-shadow: 0px 1px 2px 1px #c6c6c6;
  }
+
+ .recommend-product.inner.inner img {
+  height: 150px;
+  width: 150px;
+  }
+  
  
  
   .shop-title {
-    flex-direction: column;
+    flex-direction: column-reverse;
+border-bottom: 1px solid #9c9c9c;
+align-items: flex-start;
+padding: 20px 0;
+
   }
 
   .shop-location{
     width: 100%;
     display: flex;
   }
+  
   .shop-content {
     margin: 30px 0;
+    text-align: left;
   }
+  
+  .shop-content h2 {
+    font-size:24px
+    }
+
+    .shop-content p {
+      text-align: left;
+      }
+      
+    
 
   .shop-info-inner {
     flex-direction: column;
@@ -617,15 +619,26 @@ div#googleMaps {
 
   .shop-info-map {
     margin-top: 30px;
+      height: 200px;
+      
+      
   }
 
+  .shop-info-inner {
+    flex-direction: column;
+  }
   
   .postsTitle h1{
     font-size: 24px;
   }
+  .follow-section-head h1 {
+    font-size: 24px;
+    }
+    
 
-  .recommended-product-inner-inner {
+  /* .recommended-product-inner-inner {
     margin-bottom: 30px;
-    margin-right: 10px;
-  }
+
+  } */
 }
+

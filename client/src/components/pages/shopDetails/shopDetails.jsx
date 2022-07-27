@@ -22,14 +22,34 @@ import { Context } from "./../../../context/Context";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import GoogleMap from "./GoogleMaps";
 import Posts from "./../../posts/Posts"
-
 import Rating from '@mui/material/Rating';
+
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 var BudvistaBanner = PicBaseUrl + "BudvistaBanner.jpg"
 
 
 
 export default function ShopDetails(){
+
+    //==================================================== 
+
+  
+const modalStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+  //====================================================
 
   const slideLeft = () => {
     const slider = document.getElementById("slider");
@@ -52,9 +72,10 @@ export default function ShopDetails(){
   const[coordinates, setCoordinates] =useState({})
   const[shopRating, setShopRating] = useState(0)
   const[numberOfRatings, setNumberOfRatings] = useState(0)
-  
-  // const [products, setProducts] = useState([])
-
+  const[totalRating, setTotalRating]= useState(0)
+  // Modal states==============================
+  const [open, setOpen] = React.useState(false);
+    // Modal states==============================
 
   const { user } = useContext(Context);
   const location = useLocation()
@@ -104,10 +125,11 @@ export default function ShopDetails(){
       setCloseTime(res.data[0].timings[6].timeTo)
     }
     
-    if(res.data[0].rating.totalRating != undefined){
+    if(res.data[0].rating.totalRating != undefined && res.data[0].rating.numberOfRatings != undefined){
       var average = res.data[0].rating.totalRating /  res.data[0].rating.numberOfRatings
       setShopRating(average)
       setNumberOfRatings(res.data[0].rating.numberOfRatings)
+      setTotalRating(res.data[0].rating.totalRating)
       
     }
     };
@@ -143,6 +165,28 @@ export default function ShopDetails(){
   }, [path]);
 
 
+  const handleUpdateRating = async (e, newValue)=>{
+    if(user != undefined){
+      const newRating = ( newValue + totalRating) / (numberOfRatings + 1)
+      setShopRating(newRating)
+      setTotalRating(newValue + totalRating)
+      setNumberOfRatings(numberOfRatings + 1)
+      const shopData = {
+        username: path,
+        totalRating: newValue + totalRating,
+        numberOfRatings: numberOfRatings + 1
+      }
+
+       const res =  await axiosInstance.post("/shops/updateShopRating", shopData)
+      //  console.log(res)
+    }
+    
+  }
+
+  const handleAskToLogin =()=>setOpen(true);
+  
+  const handleClose = () => setOpen(false);
+
   return(
     <div>
       <Container>
@@ -171,7 +215,11 @@ export default function ShopDetails(){
           <div className="shop-info-inner">
             <div  className="shop-info-info" >
               <ul>
-                <li><p><Rating value={shopRating} precision={0.5}/> ({numberOfRatings}) reviews</p></li>
+              {user != undefined ?
+                <li><p><Rating value={shopRating} precision={0.5} onChange={handleUpdateRating}/> ({numberOfRatings}) reviews</p></li>
+                :
+                <li><p onClick={handleAskToLogin}><Rating value={shopRating} precision={0.5} readOnly /> ({numberOfRatings}) reviews</p></li>
+                }
                 <li><p><AccessTimeIcon /> <span  className={classShop} >{shopOpen == "Open"? shopOpen + " now" : shopOpen}</span> {shopOpen == "Open"? <span className="close">:  Closes {closeTime}</span> : <span className="close"></span>}</p></li>
                 <li><p><LocationOnIcon/> {shop.address}</p></li>
                 <li><p><LocalPhoneIcon /><a href={"tel:0"+shop.telephone}> {"0"+shop.telephone}</a></p></li>
@@ -192,14 +240,31 @@ export default function ShopDetails(){
         </div>
 
           <div className="recommended-product-inner">
-           { recommendedProducts.map((product)=>{
+           {/* { recommendedProducts.map((product)=>{
               return(
                 
                   <div className="recommended-product-inner-inner">
                   <img src= {PicBaseUrl + product.productImage} />
                 </div>
               )
-            })}
+            })} */}
+             { 
+           recommendedProducts.length > 0
+           
+           ?
+           
+           recommendedProducts.map((product)=>{
+              return(
+                
+                  <div className="recommended-product-inner-inner">
+                  <img src= {PicBaseUrl + product.productImage} />
+                </div>
+              )
+            })
+          :
+          
+          <div className="noEventsdiv">Product has not been added</div>
+          }
           </div>
        </div>
 
@@ -288,6 +353,22 @@ export default function ShopDetails(){
        </div>
        </Container>
       
+          {/* Modal Code Tempelate */}
+          <div>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={modalStyle}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+               Please Login to rate a store!
+              </Typography>
+            </Box>
+          </Modal>
+        </div>
+
 
 
     </div>

@@ -6,8 +6,6 @@ import { PicBaseUrl } from "../../imageBaseUrl";
 import Rating from '@mui/material/Rating';
 
 export default function Shop({shop}) {
-  // const[shopRating, setShopRating] = useState(0)
-  // const[numberOfRatings, setNumberOfRatings] = useState(0)
   var shopRating =  0;
   var numberOfRatings = 0;
   if(shop.rating != undefined){
@@ -30,8 +28,8 @@ export default function Shop({shop}) {
           }
           <div className="shopInfo">
             
-          <p className="ratingSpan"><Rating value={shopRating} precision={0.5}/></p>
-            <Link className="menuTitle" to={`/shop/${shop.username}`}>
+          {shopRating != 0 ?  <p className="ratingSpan"><Rating  value={shopRating} precision={0.5} readOnly/> <span className="reviewspan">({numberOfRatings})</span></p> : <p> </p> }
+                    <Link className="menuTitle" to={`/shop/${shop.username}`}>
               {shop.username}
             </Link>
           <div className="shopCats">
